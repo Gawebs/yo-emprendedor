@@ -53,8 +53,8 @@ export default function Home() {
 
             {/* Placeholder para imagen */}
             <div
-              className="h-80 rounded-lg flex items-center justify-center text-gray-400"
-              style={{ backgroundColor: 'var(--bg-secondary)' }}
+              className="h-80 rounded-lg flex items-center justify-center text-gray-600"
+              style={{ backgroundColor: 'var(--bg-tertiary)' }}
             >
               <span className="text-lg">Imagen / Video Demo</span>
             </div>

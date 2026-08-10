@@ -7,11 +7,14 @@
    ============================================================================ */
 
 :root {
-  /* BRAND */
-  --brand-primary: oklch(70% 0.22 90);    /* Amarillo vibrante */
-  --brand-primary-dark: oklch(55% 0.2 90);
-  --brand-accent: oklch(50% 0.15 155);    /* Verde musgo */
-  --brand-accent-dark: oklch(40% 0.12 155);
+  /* BRAND
+     El color de marca vive en botones, badges e iconos. Nunca como fondo
+     de una seccion entera: eso satura la vista y le compite a la foto del
+     producto, que en un marketplace tiene que ser lo mas vistoso. */
+  --brand-primary: oklch(57.3% 0.153 37.2);      /* Terracota   #C1502E */
+  --brand-primary-dark: oklch(49.3% 0.134 37.3); /*             #9E3F22 */
+  --brand-accent: oklch(44.1% 0.056 173.2);      /* Verde hondo #2F5D50 */
+  --brand-accent-dark: oklch(36.3% 0.047 167.6); /*             #234639 */
 
   /* SEMANTIC */
   --success: oklch(60% 0.15 142);        /* Verde */
@@ -20,7 +23,7 @@
   --info: oklch(60% 0.15 220);           /* Azul */
 
   /* NEUTRAL (escala de grises) */
-  --ink-900: oklch(15% 0 0);             /* Casi negro */
+  --ink-900: oklch(21.8% 0 0);           /* Casi negro   #1A1A1A */
   --ink-800: oklch(25% 0 0);
   --ink-700: oklch(35% 0 0);
   --ink-600: oklch(50% 0 0);             /* Gris oscuro */
@@ -30,10 +33,12 @@
   --ink-200: oklch(92% 0 0);
   --ink-100: oklch(97% 0 0);             /* Casi blanco */
 
-  /* BACKGROUND */
-  --bg-base: oklch(99% 0 0);             /* Blanco puro */
-  --bg-secondary: oklch(96% 0 0);        /* Gris muy claro */
-  --bg-tertiary: oklch(92% 0 0);         /* Gris claro */
+  /* BACKGROUND
+     Base blanca para que las fotos de producto resalten; el crema queda
+     para alternar secciones sin recurrir al color de marca. */
+  --bg-base: oklch(100% 0 0);            /* Blanco       #FFFFFF */
+  --bg-secondary: oklch(97.5% 0.010 72.7); /* Crema      #FBF6F0 */
+  --bg-tertiary: oklch(93.8% 0.018 73.1);  /* Crema medio #F2E9DE */
 
   /* SHADOWS (sutiles) */
   --shadow-sm: 0 1px 2px rgb(0 0 0 / 0.05);
@@ -157,7 +162,7 @@ body {
   .btn-primary {
     @apply inline-flex items-center justify-center px-4 py-2 rounded-lg font-medium transition-all;
     background-color: var(--brand-primary);
-    color: var(--ink-900);
+    color: white;
   }
   .btn-primary:hover {
     background-color: var(--brand-primary-dark);

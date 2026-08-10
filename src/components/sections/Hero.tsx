@@ -3,7 +3,7 @@ import { URLS } from '@/constants/contacto';
 
 export function Hero() {
   return (
-    <section className="py-20 md:py-32" style={{ backgroundColor: 'var(--brand-primary)' }}>
+    <section className="py-20 md:py-32" style={{ backgroundColor: 'var(--bg-secondary)' }}>
       <div className="container-tight flex justify-center">
         <div className="max-w-2xl text-center">
           <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
@@ -15,7 +15,7 @@ export function Hero() {
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link href={URLS.catalogoUrl} className="btn-accent text-base px-6 py-3">
+            <Link href={URLS.catalogoUrl} className="btn-primary text-base px-6 py-3">
               Explorar Catálogo
             </Link>
             <Link href={URLS.signupUrl} className="btn-outline text-base px-6 py-3">

@@ -1,19 +1,19 @@
 'use client';
 
 import { useSearchParams, useRouter } from 'next/navigation';
-import { Home, Monitor, Wine, Gift, Shirt, Backpack, Kids, Sparkles, Ring, Coffee } from 'lucide-react';
+import { Home, Monitor, Droplet, Gift, Shirt, Backpack, Baby, Sparkles, Gem, Coffee } from 'lucide-react';
 
 const CATEGORIAS = [
   { id: '1', nombre: 'Casa', icon: Home },
   { id: '2', nombre: 'Tecnología', icon: Monitor },
   { id: '3', nombre: 'Hogar', icon: Coffee },
-  { id: '4', nombre: 'Bebidas', icon: Wine },
+  { id: '4', nombre: 'Bebidas', icon: Droplet },
   { id: '5', nombre: 'Regalos', icon: Gift },
   { id: '6', nombre: 'Moda', icon: Shirt },
   { id: '7', nombre: 'Accesorios', icon: Backpack },
-  { id: '8', nombre: 'Niños', icon: Kids },
+  { id: '8', nombre: 'Niños', icon: Baby },
   { id: '9', nombre: 'Belleza', icon: Sparkles },
-  { id: '10', nombre: 'Joyería', icon: Ring },
+  { id: '10', nombre: 'Joyería', icon: Gem },
 ];
 
 export function CategoriaFilter() {

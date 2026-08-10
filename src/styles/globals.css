@@ -8,10 +8,10 @@
 
 :root {
   /* BRAND */
-  --brand-primary: oklch(70% 0.2 50);    /* Amarillo mostaza */
-  --brand-primary-dark: oklch(55% 0.18 50);
-  --brand-accent: oklch(70% 0.22 90);    /* Amarillo vibrante */
-  --brand-accent-dark: oklch(55% 0.2 90);
+  --brand-primary: oklch(70% 0.22 90);    /* Amarillo vibrante */
+  --brand-primary-dark: oklch(55% 0.2 90);
+  --brand-accent: oklch(50% 0.15 155);    /* Verde musgo */
+  --brand-accent-dark: oklch(40% 0.12 155);
 
   /* SEMANTIC */
   --success: oklch(60% 0.15 142);        /* Verde */

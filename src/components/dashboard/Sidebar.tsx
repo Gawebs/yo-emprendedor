@@ -29,7 +29,7 @@ export function Sidebar() {
             width={1467}
             height={558}
             priority
-            className="h-10 w-auto invert"
+            className="h-14 w-auto invert"
           />
         </Link>
       </div>

@@ -17,7 +17,7 @@ export function Footer() {
               alt="Yo Emprendedor"
               width={1467}
               height={558}
-              className="h-9 w-auto invert mb-4"
+              className="h-14 w-auto invert mb-4"
             />
             <p className="text-sm text-gray-300">
               Plataforma de marketplace local para emprendedores de San Miguel de Tucumán.

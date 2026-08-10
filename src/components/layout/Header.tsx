@@ -11,7 +11,7 @@ export function Header() {
 
   return (
     <header className="sticky top-0 z-40 bg-white border-b border-gray-200">
-      <div className="container-tight flex items-center justify-between h-16">
+      <div className="container-tight flex items-center justify-between h-24">
         {/* Logo */}
         <Link href="/" className="flex items-center">
           <Image
@@ -20,7 +20,7 @@ export function Header() {
             width={1467}
             height={558}
             priority
-            className="h-9 w-auto"
+            className="h-[72px] w-auto"
           />
         </Link>
 

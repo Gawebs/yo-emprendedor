@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import Image from 'next/image';
 import { Menu, X } from 'lucide-react';
 import { useState } from 'react';
 import { URLS, CONTACTO } from '@/constants/contacto';
@@ -12,15 +13,21 @@ export function Header() {
     <header className="sticky top-0 z-40 bg-white border-b border-gray-200">
       <div className="container-tight flex items-center justify-between h-16">
         {/* Logo */}
-        <Link href="/" className="flex items-center gap-2">
-          <div className="w-10 h-10 rounded-full" style={{ backgroundColor: 'var(--brand-primary)' }}>
-            <span className="flex items-center justify-center h-full font-bold text-sm" style={{ color: 'var(--ink-900)' }}>
-              YE
-            </span>
-          </div>
-          <span className="font-bold text-lg hidden sm:inline" style={{ color: 'var(--ink-900)' }}>
-            Yo Emprendedor
-          </span>
+        <Link href="/" className="flex items-center gap-2 h-full">
+          <Image
+            src="/logo-favicon.png"
+            alt="Yo Emprendedor"
+            width={40}
+            height={40}
+            className="h-10 w-auto"
+          />
+          <Image
+            src="/logo-web.png"
+            alt="Yo Emprendedor"
+            width={120}
+            height={40}
+            className="hidden sm:inline h-8 w-auto"
+          />
         </Link>
 
         {/* Desktop Navigation */}

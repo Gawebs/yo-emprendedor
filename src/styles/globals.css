@@ -10,8 +10,8 @@
   /* BRAND */
   --brand-primary: oklch(70% 0.2 50);    /* Amarillo mostaza */
   --brand-primary-dark: oklch(55% 0.18 50);
-  --brand-accent: oklch(60% 0.22 15);    /* Rojo/Naranja */
-  --brand-accent-dark: oklch(45% 0.2 15);
+  --brand-accent: oklch(70% 0.22 90);    /* Amarillo vibrante */
+  --brand-accent-dark: oklch(55% 0.2 90);
 
   /* SEMANTIC */
   --success: oklch(60% 0.15 142);        /* Verde */

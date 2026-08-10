@@ -4,8 +4,8 @@ import { URLS } from '@/constants/contacto';
 export function Hero() {
   return (
     <section className="py-20 md:py-32" style={{ backgroundColor: 'var(--brand-primary)' }}>
-      <div className="container-tight">
-        <div className="max-w-2xl">
+      <div className="container-tight flex justify-center">
+        <div className="max-w-2xl text-center">
           <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
             Vende tus productos en un solo lugar
           </h1>
@@ -14,7 +14,7 @@ export function Hero() {
             Conecta con clientes sin tener que crear tu propia tienda.
           </p>
 
-          <div className="flex flex-col sm:flex-row gap-4">
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link href={URLS.catalogoUrl} className="btn-accent text-base px-6 py-3">
               Explorar Catálogo
             </Link>

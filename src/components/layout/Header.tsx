@@ -25,13 +25,13 @@ export function Header() {
 
         {/* Desktop Navigation */}
         <nav className="hidden md:flex items-center gap-6">
-          <Link href={URLS.catalogoUrl} className="text-sm font-medium hover:text-[var(--brand-primary)]">
+          <Link href={URLS.catalogoUrl} className="text-sm font-medium text-gray-700 hover:text-[var(--brand-primary)]">
             Catálogo
           </Link>
-          <Link href="#" className="text-sm font-medium hover:text-[var(--brand-primary)]">
+          <Link href="#" className="text-sm font-medium text-gray-700 hover:text-[var(--brand-primary)]">
             Sobre Nosotros
           </Link>
-          <a href={URLS.whatsappLink} className="text-sm font-medium hover:text-[var(--brand-primary)]">
+          <a href={URLS.whatsappLink} className="text-sm font-medium text-gray-700 hover:text-[var(--brand-primary)]">
             Contacto
           </a>
         </nav>

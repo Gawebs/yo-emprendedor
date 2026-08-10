@@ -12,18 +12,14 @@ export function Header() {
   return (
     <header className="sticky top-0 z-40 bg-white border-b border-gray-200">
       <div className="container-tight flex items-center justify-between h-16">
-        {/* Logo */}
+        {/* Logo - TODO: Replace with actual logos once Vercel image serving is fixed */}
         <Link href="/" className="flex items-center gap-2">
-          <img
-            src="https://raw.githubusercontent.com/Gawebs/yo-emprendedor/master/public/logo-favicon.png"
-            alt="Yo Emprendedor"
-            className="h-10 w-10"
-          />
-          <img
-            src="https://raw.githubusercontent.com/Gawebs/yo-emprendedor/master/public/logo-web.png"
-            alt="Yo Emprendedor"
-            className="hidden sm:block h-8"
-          />
+          <div className="w-10 h-10 rounded-full flex items-center justify-center font-bold text-white" style={{ backgroundColor: 'var(--brand-primary)' }}>
+            YE
+          </div>
+          <span className="font-bold text-lg hidden sm:inline" style={{ color: 'var(--ink-900)' }}>
+            Yo Emprendedor
+          </span>
         </Link>
 
         {/* Desktop Navigation */}

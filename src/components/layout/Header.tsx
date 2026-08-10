@@ -13,20 +13,16 @@ export function Header() {
     <header className="sticky top-0 z-40 bg-white border-b border-gray-200">
       <div className="container-tight flex items-center justify-between h-16">
         {/* Logo */}
-        <Link href="/" className="flex items-center gap-2 h-full">
-          <Image
+        <Link href="/" className="flex items-center gap-2">
+          <img
             src="/logo-favicon.png"
             alt="Yo Emprendedor"
-            width={40}
-            height={40}
-            className="h-10 w-auto"
+            className="h-10 w-10"
           />
-          <Image
+          <img
             src="/logo-web.png"
             alt="Yo Emprendedor"
-            width={120}
-            height={40}
-            className="hidden sm:inline h-8 w-auto"
+            className="hidden sm:block h-8"
           />
         </Link>
 

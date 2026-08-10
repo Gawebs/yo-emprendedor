@@ -69,7 +69,13 @@
   --z-tooltip: 1070;
 }
 
-/* Dark mode (future) */
+/* Dark mode: desactivado a proposito.
+   Invertir los tokens --ink-* sin invertir las superficies de marca rompe
+   el contraste: el hero y los botones mantienen su fondo amarillo fijo, asi
+   que el texto pasaba a casi blanco sobre amarillo (1.33:1, ilegible).
+   Para reactivarlo hay que darle a --brand-primary una variante oscura y
+   revisar cada superficie de marca, no solo los neutros.
+
 @media (prefers-color-scheme: dark) {
   :root {
     --bg-base: oklch(20% 0 0);
@@ -81,6 +87,7 @@
     --ink-600: oklch(75% 0 0);
   }
 }
+*/
 
 /* ============================================================================
    BASE STYLES
@@ -165,13 +172,17 @@ body {
     background-color: var(--brand-accent-dark);
   }
 
+  /* Borde y texto en el neutro oscuro, no en el amarillo de marca: el
+     amarillo desaparece sobre el hero (que ya es amarillo) y no tiene
+     contraste suficiente sobre blanco. */
   .btn-outline {
-    @apply inline-flex items-center justify-center px-4 py-2 rounded-lg font-medium transition-all border;
-    border-color: var(--brand-primary);
-    color: var(--brand-primary);
+    @apply inline-flex items-center justify-center px-4 py-2 rounded-lg font-medium transition-all border-2;
+    border-color: var(--ink-900);
+    color: var(--ink-900);
   }
   .btn-outline:hover {
-    background-color: var(--bg-secondary);
+    background-color: var(--ink-900);
+    color: var(--bg-base);
   }
 
   .card {

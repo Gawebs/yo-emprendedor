@@ -14,16 +14,12 @@ export function Header() {
       <div className="container-tight flex items-center justify-between h-16">
         {/* Logo */}
         <Link href="/" className="flex items-center gap-2">
-          <img
-            src="/logo-favicon.png"
-            alt="Yo Emprendedor"
-            className="h-10 w-10"
-          />
-          <img
-            src="/logo-web.png"
-            alt="Yo Emprendedor"
-            className="hidden sm:block h-8"
-          />
+          <div className="w-10 h-10 rounded-full flex items-center justify-center font-bold text-white" style={{ backgroundColor: 'var(--brand-primary)' }}>
+            YE
+          </div>
+          <span className="font-bold text-lg hidden sm:inline" style={{ color: 'var(--ink-900)' }}>
+            Yo Emprendedor
+          </span>
         </Link>
 
         {/* Desktop Navigation */}

@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 import { Package, TrendingUp, DollarSign, Bell, Clock, Sparkles, LogOut } from 'lucide-react';
 import { URLS } from '@/constants/contacto';
@@ -21,11 +22,15 @@ export function Sidebar() {
     <aside className="w-64 bg-gray-900 text-white h-screen flex flex-col fixed left-0 top-0 border-r border-gray-800">
       {/* Logo */}
       <div className="p-6 border-b border-gray-800">
-        <Link href="/dashboard" className="flex items-center gap-2">
-          <div className="w-10 h-10 rounded-full flex items-center justify-center font-bold text-sm" style={{ backgroundColor: 'var(--brand-primary)' }}>
-            YE
-          </div>
-          <span className="font-bold">Yo Emprendedor</span>
+        <Link href="/dashboard" className="flex items-center">
+          <Image
+            src="/logo-web.png"
+            alt="Yo Emprendedor"
+            width={1467}
+            height={558}
+            priority
+            className="h-10 w-auto invert"
+          />
         </Link>
       </div>
 

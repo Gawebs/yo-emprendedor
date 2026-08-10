@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import Image from 'next/image';
 import { Mail, Phone, MapPin } from 'lucide-react';
 import { CONTACTO, URLS } from '@/constants/contacto';
 
@@ -11,7 +12,13 @@ export function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
           {/* About */}
           <div>
-            <h3 className="font-bold text-lg mb-4">Yo Emprendedor</h3>
+            <Image
+              src="/logo-web.png"
+              alt="Yo Emprendedor"
+              width={1467}
+              height={558}
+              className="h-9 w-auto invert mb-4"
+            />
             <p className="text-sm text-gray-300">
               Plataforma de marketplace local para emprendedores de San Miguel de Tucumán.
             </p>

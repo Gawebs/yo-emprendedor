@@ -1,6 +1,12 @@
 import Link from 'next/link';
 import { URLS } from '@/constants/contacto';
 
+const PROMOCIONES = [
+  '10% off pagando por transferencia o efectivo',
+  '3 cuotas sin interés',
+  'Envío gratis en tu primera compra',
+];
+
 export function Hero() {
   return (
     <section className="py-20 md:py-32" style={{ backgroundColor: 'var(--bg-secondary)' }}>
@@ -24,12 +30,16 @@ export function Hero() {
           </div>
 
           {/* Promotions Banner */}
-          <div className="mt-12 p-4 rounded-lg" style={{ backgroundColor: 'var(--brand-accent)', color: 'white' }}>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm font-medium">
-              <div>💳 10% off transferencia/efectivo</div>
-              <div>📅 3 cuotas sin interés</div>
-              <div>🚚 Envío gratis tu primera compra</div>
-            </div>
+          <div className="mt-12 grid grid-cols-1 sm:grid-cols-3 gap-3">
+            {PROMOCIONES.map((promo) => (
+              <div
+                key={promo}
+                className="rounded-lg px-4 py-5 text-base font-medium leading-snug"
+                style={{ backgroundColor: 'var(--brand-accent)', color: 'white' }}
+              >
+                {promo}
+              </div>
+            ))}
           </div>
         </div>
       </div>

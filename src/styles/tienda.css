@@ -483,3 +483,99 @@
   .ye-tienda .paso { padding: 1.15rem; }
   .ye-tienda .opcion-card { padding: .8rem .9rem; gap: .7rem; }
 }
+
+/* ── PAGINAS DE TEXTO ───────────────────────────────────────────────────── */
+.ye-tienda .legal { max-width: 760px; padding-bottom: 2.5rem; }
+.ye-tienda .legal-head { padding-bottom: 1.5rem; margin-bottom: 1.5rem; border-bottom: 1px solid var(--border); }
+.ye-tienda .legal-titulo { font-size: clamp(1.6rem, 3.2vw, 2.2rem); font-weight: 700; }
+.ye-tienda .legal-bajada { color: var(--negro-soft); font-size: 1rem; margin-top: .4rem; }
+.ye-tienda .legal-fecha { color: var(--negro-soft); font-size: .8rem; margin-top: .7rem; }
+.ye-tienda .legal-h2 { font-size: 1.1rem; font-weight: 700; margin: 2rem 0 .75rem; }
+.ye-tienda .legal-p { font-size: .95rem; color: var(--negro-soft); line-height: 1.85; margin-bottom: 1rem; }
+.ye-tienda .legal-lista { display: flex; flex-direction: column; gap: .5rem; margin-bottom: 1.25rem; }
+.ye-tienda .legal-lista li {
+  font-size: .95rem; color: var(--negro-soft); line-height: 1.7;
+  padding-left: 1.15rem; position: relative;
+}
+.ye-tienda .legal-lista li::before {
+  content: ''; position: absolute; left: 0; top: .6em;
+  width: 5px; height: 5px; border-radius: 50%; background: var(--verde);
+}
+.ye-tienda .legal-destacado {
+  background: var(--verde-light); border-left: 3px solid var(--verde);
+  border-radius: 0 6px 6px 0; padding: 1.1rem 1.25rem;
+  font-size: .95rem; color: #2f3b22; line-height: 1.75; margin: 1.25rem 0;
+}
+.ye-tienda .legal-link { color: var(--dorado); font-weight: 600; }
+.ye-tienda .legal-link:hover { text-decoration: underline; }
+.ye-tienda .legal-cierre {
+  border-top: 1px solid var(--border); padding: 2rem 0 3.5rem;
+  text-align: center; color: var(--negro-soft); font-size: .95rem;
+}
+.ye-tienda .legal-cierre-acciones {
+  display: flex; flex-direction: column; gap: .85rem; align-items: center; margin-top: 1.25rem;
+}
+.ye-tienda .legal-cierre-acciones .btn-carrito { max-width: 300px; margin: 0; }
+
+/* ── PILARES (nosotros) ─────────────────────────────────────────────────── */
+.ye-tienda .pilares { padding-bottom: 1rem; }
+.ye-tienda .pilares-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; margin-top: 1.25rem; }
+.ye-tienda .pilar {
+  border: 1px solid var(--border); border-top: 3px solid var(--amarillo);
+  border-radius: 6px; padding: 1.5rem; background: var(--blanco);
+}
+.ye-tienda .pilar-num {
+  font-family: var(--font-spartan), sans-serif; font-weight: 900;
+  font-size: .9rem; color: var(--dorado); display: block; margin-bottom: .5rem;
+}
+.ye-tienda .pilar-titulo { font-size: 1rem; font-weight: 700; margin-bottom: .3rem; }
+.ye-tienda .pilar-bajada { font-size: .85rem; color: var(--verde); font-weight: 600; margin-bottom: .5rem; }
+.ye-tienda .pilar-texto { font-size: .87rem; color: var(--negro-soft); line-height: 1.7; }
+
+/* ── PASOS (como comprar) ───────────────────────────────────────────────── */
+.ye-tienda .pasos-lista { display: flex; flex-direction: column; gap: .85rem; margin-bottom: 1.5rem; }
+.ye-tienda .pasos-lista li { display: flex; gap: .85rem; align-items: flex-start; font-size: .95rem; color: var(--negro-soft); line-height: 1.7; }
+.ye-tienda .pasos-num {
+  width: 26px; height: 26px; border-radius: 50%; background: var(--verde); color: var(--blanco);
+  display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+  font-family: var(--font-spartan), sans-serif; font-weight: 700; font-size: .82rem; margin-top: 1px;
+}
+
+/* ── ATAJOS ─────────────────────────────────────────────────────────────── */
+.ye-tienda .atajos { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; padding-bottom: 1rem; }
+.ye-tienda .atajo {
+  border: 1px solid var(--border); border-radius: 6px; padding: 1.15rem;
+  display: flex; flex-direction: column; gap: .25rem; transition: box-shadow .2s, transform .2s;
+}
+.ye-tienda .atajo:hover { box-shadow: var(--shadow); transform: translateY(-2px); }
+.ye-tienda .atajo-titulo { font-family: var(--font-spartan), sans-serif; font-weight: 700; font-size: .92rem; color: var(--negro); }
+.ye-tienda .atajo-texto { font-size: .82rem; color: var(--negro-soft); }
+
+/* ── GRILLA DE CATEGORIAS ───────────────────────────────────────────────── */
+.ye-tienda .cats-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.25rem; padding-bottom: 3rem; }
+.ye-tienda .cat-card {
+  border: 1px solid var(--border); border-radius: 8px; padding: 1.75rem 1rem;
+  text-align: center; display: flex; flex-direction: column; align-items: center; gap: .2rem;
+  transition: box-shadow .2s, transform .2s;
+}
+.ye-tienda .cat-card:hover { box-shadow: var(--shadow); transform: translateY(-3px); }
+.ye-tienda .cat-card .categoria-circulo { margin-bottom: .85rem; }
+.ye-tienda .cat-card-nombre { font-size: .95rem; color: var(--negro); font-weight: 600; }
+.ye-tienda .cat-card-cuenta { font-size: .8rem; color: var(--negro-soft); }
+
+/* ── EN PREPARACION ─────────────────────────────────────────────────────── */
+.ye-tienda .preparacion { text-align: center; max-width: 560px; margin: 0 auto; padding: 3rem 0 4rem; }
+.ye-tienda .preparacion > svg { color: var(--verde); margin-bottom: 1rem; }
+.ye-tienda .preparacion h1 { margin-bottom: 1rem; }
+.ye-tienda .preparacion-links { font-size: .87rem; color: var(--negro-soft); margin-top: 2rem; line-height: 1.9; }
+
+@media (max-width: 900px) {
+  .ye-tienda .pilares-grid { grid-template-columns: 1fr 1fr; }
+  .ye-tienda .atajos { grid-template-columns: 1fr 1fr; }
+  .ye-tienda .cats-grid { grid-template-columns: repeat(3, 1fr); }
+}
+@media (max-width: 600px) {
+  .ye-tienda .pilares-grid { grid-template-columns: 1fr; }
+  .ye-tienda .atajos { grid-template-columns: 1fr; }
+  .ye-tienda .cats-grid { grid-template-columns: 1fr 1fr; }
+}

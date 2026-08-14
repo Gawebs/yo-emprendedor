@@ -9,7 +9,8 @@
     "lint": "next lint",
     "type-check": "tsc --noEmit",
     "db:push": "supabase db push",
-    "db:reset": "supabase db reset"
+    "db:reset": "supabase db reset",
+    "prueba:precios": "tsx scripts/prueba-precios.ts"
   },
   "dependencies": {
     "@supabase/ssr": "^0.1.0",

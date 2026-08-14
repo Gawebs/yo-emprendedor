@@ -65,8 +65,13 @@ export type Resumen = {
 };
 
 /**
- * La gift card no paga envio (politica de gift card, punto 5): se descuenta
- * solo contra los productos, nunca contra el flete.
+ * Dos reglas de la politica de gift card que se cruzan con el resto:
+ *
+ * - Punto 5: no paga envio. Se descuenta contra los productos, nunca contra
+ *   el flete.
+ * - Punto 6: no se combina con promociones ni descuentos. Por eso, cuando hay
+ *   gift card, el 10% de transferencia/efectivo no se aplica: se toma el
+ *   beneficio que le conviene al cliente, no los dos juntos.
  */
 export function calcularResumen(
   subtotal: number,
@@ -74,12 +79,18 @@ export function calcularResumen(
   metodo: MetodoPago,
   saldoGiftCard = 0
 ): Resumen {
-  const descuentoPago = descuentoPorPago(metodo, subtotal);
   const envio = costoEnvio(modalidad, subtotal);
   const zona = MODALIDADES.find((m) => m.id === modalidad);
 
-  const restanteProductos = Math.max(0, subtotal - descuentoPago);
-  const descuentoGiftCard = Math.min(saldoGiftCard, restanteProductos);
+  const conDescuentoPago = descuentoPorPago(metodo, subtotal);
+  const conGiftCard = Math.min(saldoGiftCard, subtotal);
+
+  // Sin gift card, manda el descuento por medio de pago. Con gift card, se
+  // usa la que descuenta mas y la otra queda en cero.
+  const usaGiftCard = conGiftCard > 0 && conGiftCard >= conDescuentoPago;
+
+  const descuentoPago = usaGiftCard ? 0 : conDescuentoPago;
+  const descuentoGiftCard = usaGiftCard ? conGiftCard : 0;
 
   return {
     subtotal,

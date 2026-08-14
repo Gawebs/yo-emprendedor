@@ -21,10 +21,20 @@ import {
 } from '@/components/landing/data';
 import '@/styles/landing.css';
 
-/** Foto de portada del hero. Reemplazar por la fachada real del local. */
+/**
+ * PLACEHOLDER — foto de portada del hero. Va la fachada real del local.
+ * Horizontal, idealmente 1600x900 o mas. Le cae encima brightness(.35) y un
+ * velo negro, asi que conviene una toma con algo de luz propia (la fachada de
+ * noche con el cartel prendido funciona bien); una foto ya oscura se apaga del
+ * todo. El texto ocupa la mitad izquierda: dejar ese lado despejado.
+ * Al reemplazar, mover el archivo a /public y usar next/image en vez de la URL.
+ */
 const HERO_FOTO =
   'https://images.unsplash.com/photo-1555529669-e69e7aa0ba9a?w=1600&q=80';
-/** Foto del interior con clientes. Reemplazar por la foto real de la tienda. */
+/**
+ * PLACEHOLDER — interior de la tienda, mejor con clientes adentro.
+ * Se recorta a 4:3, asi que el motivo tiene que estar centrado. 800x600 alcanza.
+ */
 const TIENDA_FOTO =
   'https://images.unsplash.com/photo-1441984904996-e0b6ba687e04?w=800&q=80';
 

@@ -60,13 +60,16 @@
 .ye-landing .amarillo { color: var(--dorado); }
 .ye-landing .verde { color: var(--verde); }
 
-/* ── NAV ── */
+/* ── NAV ──
+   El padding vertical y el alto del logo estan atados: suman el alto de la
+   banda (67px con el borde). Para agrandar el logo hay que restarle al
+   padding la misma cantidad, o la barra crece. */
 .ye-landing nav {
   position: fixed; top: 0; left: 0; right: 0; z-index: 100;
   background: rgba(255, 247, 220, 0.95);
   backdrop-filter: blur(12px);
   border-bottom: 1px solid var(--border);
-  padding: .875rem 0;
+  padding: 5px 0;
 }
 .ye-landing .nav-inner {
   max-width: 1080px; margin: 0 auto; padding: 0 2rem;
@@ -75,7 +78,7 @@
 .ye-landing .nav-logo {
   display: flex; align-items: center; text-decoration: none;
 }
-.ye-landing .nav-logo img { height: 38px; width: auto; display: block; }
+.ye-landing .nav-logo img { height: 56px; width: auto; display: block; }
 .ye-landing .nav-cta {
   background: var(--negro); color: var(--amarillo-pale);
   border: none; padding: .5rem 1.25rem; border-radius: 2px;

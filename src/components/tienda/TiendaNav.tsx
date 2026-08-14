@@ -6,11 +6,11 @@ import { Search, ShoppingBag, Menu } from 'lucide-react';
 import { PROMOS } from './data';
 
 const LINKS = [
-  { href: '/tienda/categorias', label: 'Categorías' },
-  { href: '/tienda/ofertas', label: 'Ofertas' },
-  { href: '/tienda/mas-vendidos', label: 'Más vendidos' },
-  { href: '/tienda/gift-card', label: 'Gift card' },
-  { href: '/tienda/marcas', label: 'Marcas', destacado: true },
+  { href: '/categorias', label: 'Categorías' },
+  { href: '/ofertas', label: 'Ofertas' },
+  { href: '/mas-vendidos', label: 'Más vendidos' },
+  { href: '/gift-card', label: 'Gift card' },
+  { href: '/marcas', label: 'Marcas', destacado: true },
 ];
 
 export function TiendaNav({ itemsCarrito = 0 }: { itemsCarrito?: number }) {
@@ -26,7 +26,7 @@ export function TiendaNav({ itemsCarrito = 0 }: { itemsCarrito?: number }) {
 
       <header className="nav">
         <nav className="nav-inner" aria-label="Principal">
-          <Link href="/tienda" className="nav-logo" aria-label="Yo Emprendedor, ir a la tienda">
+          <Link href="/" className="nav-logo" aria-label="Yo Emprendedor, ir a la tienda">
             <Image src="/logo-web.png" alt="Yo Emprendedor" width={1467} height={558} priority />
           </Link>
 
@@ -45,7 +45,7 @@ export function TiendaNav({ itemsCarrito = 0 }: { itemsCarrito?: number }) {
               <Search size={19} aria-hidden="true" />
             </button>
 
-            <Link href="/tienda/carrito" className="nav-icono" aria-label={`Carrito, ${itemsCarrito} productos`}>
+            <Link href="/carrito" className="nav-icono" aria-label={`Carrito, ${itemsCarrito} productos`}>
               <ShoppingBag size={19} aria-hidden="true" />
               {itemsCarrito > 0 && <span className="nav-badge">{itemsCarrito}</span>}
             </Link>

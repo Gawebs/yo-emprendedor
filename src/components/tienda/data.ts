@@ -59,8 +59,8 @@ export const PRODUCTOS: Producto[] = [
 ];
 
 export const OFERTAS_DIA = [
-  { titulo: 'Envío gratis en accesorios', href: '/tienda/categoria/accesorios' },
-  { titulo: '20% off en belleza', href: '/tienda/categoria/belleza' },
+  { titulo: 'Envío gratis en accesorios', href: '/categoria/accesorios' },
+  { titulo: '20% off en belleza', href: '/categoria/belleza' },
 ];
 
 /** Las filas que se muestran en la home, en orden. */
@@ -91,3 +91,70 @@ export const productosDe = (categoria: string) =>
 
 export const nombreCategoria = (slug: string) =>
   CATEGORIAS.find((c) => c.slug === slug)?.nombre ?? slug;
+
+/** Atributos de la ficha. Todos opcionales: el wireframe marca aroma y
+ *  variante como "si aplica al producto". */
+export type Variantes = {
+  talles?: string[];
+  colores?: { nombre: string; hex: string }[];
+  aromas?: string[];
+  variantes?: string[];
+};
+
+export type ProductoDetalle = Producto & {
+  codigo: string;
+  medidas?: string;
+  descripcion: string;
+  opciones: Variantes;
+};
+
+const OPCIONES_POR_DEFECTO: Variantes = {
+  colores: [
+    { nombre: 'Arena', hex: '#e0cfa0' },
+    { nombre: 'Piedra', hex: '#8a8578' },
+    { nombre: 'Carbón', hex: '#5c574f' },
+  ],
+};
+
+const DETALLES: Record<string, Partial<ProductoDetalle>> = {
+  'remera-oversize-tejida': {
+    medidas: 'Largo 65cm — Ancho 50cm',
+    descripcion: 'Remera de algodón tejido a mano, corte oversize. Ideal para uso diario.',
+    opciones: {
+      talles: ['S', 'M', 'L', 'XL'],
+      colores: OPCIONES_POR_DEFECTO.colores,
+      aromas: ['Lavanda', 'Vainilla', 'Cítrico'],
+      variantes: ['Clásico', 'Premium'],
+    },
+  },
+  'perfume-floral': {
+    descripcion: 'Perfume de autor con notas florales, elaborado en pequeños lotes.',
+    opciones: { aromas: ['Lavanda', 'Vainilla', 'Cítrico'], variantes: ['Clásico', 'Premium'] },
+  },
+  'aros-dorados': {
+    medidas: 'Alto 3cm',
+    descripcion: 'Aros artesanales con baño de oro, livianos y para uso diario.',
+    opciones: { colores: OPCIONES_POR_DEFECTO.colores },
+  },
+};
+
+/** Arma la ficha completa a partir del listado, con lo puesto en DETALLES. */
+export function productoDetalle(slug: string): ProductoDetalle | null {
+  const base = PRODUCTOS.find((p) => p.slug === slug);
+  if (!base) return null;
+
+  const extra = DETALLES[slug] ?? {};
+  const indice = PRODUCTOS.findIndex((p) => p.slug === slug);
+
+  return {
+    ...base,
+    codigo: extra.codigo ?? `YE-${String(indice + 1).padStart(5, '0')}`,
+    medidas: extra.medidas,
+    descripcion: extra.descripcion ?? `${base.nombre}, elaborado por una marca local de Tucumán.`,
+    opciones: extra.opciones ?? OPCIONES_POR_DEFECTO,
+  };
+}
+
+/** Otros productos de la misma categoria, para la fila de relacionados. */
+export const relacionadosDe = (slug: string, categoria: string, limite = 5) =>
+  PRODUCTOS.filter((p) => p.categoria === categoria && p.slug !== slug).slice(0, limite);

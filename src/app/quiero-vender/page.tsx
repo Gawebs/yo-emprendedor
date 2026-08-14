@@ -505,7 +505,7 @@ export default function Home() {
               <IconoWhatsapp size={16} style={{ verticalAlign: 'middle', marginRight: '.5rem' }} />
               WhatsApp
             </a>
-            <a href="/productos" className="btn-ghost">Ver tienda online</a>
+            <a href="/" className="btn-ghost">Ver tienda online</a>
             <a href="#plans" className="btn-ghost">Ver planes</a>
           </div>
           <div className="cta-contact">

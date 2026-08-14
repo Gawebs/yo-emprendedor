@@ -246,3 +246,104 @@
   .ye-tienda .nav-inner { height: 64px; gap: 1rem; }
   .ye-tienda .nav-logo img { height: 38px; }
 }
+
+/* ── MIGA DE PAN ────────────────────────────────────────────────────────── */
+.ye-tienda .miga { font-size: .82rem; color: var(--negro-soft); padding: 1.25rem 0; }
+.ye-tienda .miga a:hover { color: var(--verde); text-decoration: underline; }
+.ye-tienda .miga-sep { margin: 0 .4rem; opacity: .5; }
+
+/* ── FICHA DE PRODUCTO ──────────────────────────────────────────────────── */
+.ye-tienda .ficha { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; padding-bottom: 3rem; }
+.ye-tienda .galeria-principal {
+  aspect-ratio: 1; background: var(--gris-card); border-radius: 8px;
+  overflow: hidden; margin-bottom: .85rem;
+}
+.ye-tienda .galeria-principal img { width: 100%; height: 100%; object-fit: cover; }
+.ye-tienda .galeria-minis { display: grid; grid-template-columns: repeat(3, 1fr); gap: .85rem; }
+.ye-tienda .galeria-mini {
+  aspect-ratio: 4/3; background: var(--gris-card); border-radius: 6px;
+  border: 2px solid transparent; cursor: pointer; padding: 0; overflow: hidden;
+}
+.ye-tienda .galeria-mini[aria-current='true'] { border-color: var(--verde); }
+
+.ye-tienda .ficha-titulo { font-size: 1.75rem; font-weight: 700; margin-bottom: .85rem; }
+.ye-tienda .ficha-precios { display: flex; align-items: baseline; gap: .85rem; margin-bottom: 1.75rem; }
+.ye-tienda .ficha-antes { font-size: 1.05rem; color: var(--negro-soft); text-decoration: line-through; }
+.ye-tienda .ficha-precio { font-size: 2rem; font-weight: 900; font-family: var(--font-spartan), sans-serif; }
+
+.ye-tienda .opcion { margin-bottom: 1.25rem; }
+.ye-tienda .opcion-label { font-size: .92rem; color: var(--negro); margin-bottom: .5rem; display: block; }
+.ye-tienda .opcion-nota { color: var(--negro-soft); font-size: .82rem; }
+.ye-tienda .opcion-botones { display: flex; gap: .6rem; flex-wrap: wrap; }
+.ye-tienda .opcion-btn {
+  padding: .55rem 1.15rem; border: 1px solid var(--border); border-radius: 5px;
+  background: var(--blanco); color: var(--negro); cursor: pointer;
+  font-family: inherit; font-size: .88rem; transition: all .15s;
+}
+.ye-tienda .opcion-btn:hover { border-color: var(--verde); }
+.ye-tienda .opcion-btn[aria-pressed='true'] { background: var(--verde); color: var(--blanco); border-color: var(--verde); }
+.ye-tienda .opcion-btn:disabled { opacity: .4; cursor: not-allowed; text-decoration: line-through; }
+
+.ye-tienda .colores { display: flex; gap: .7rem; }
+.ye-tienda .color-btn {
+  width: 34px; height: 34px; border-radius: 50%; cursor: pointer; padding: 0;
+  border: 2px solid transparent; box-shadow: 0 0 0 1px var(--border);
+  transition: box-shadow .15s;
+}
+.ye-tienda .color-btn[aria-pressed='true'] { box-shadow: 0 0 0 2px var(--verde); border-color: var(--blanco); }
+
+.ye-tienda .btn-carrito {
+  width: 100%; background: var(--verde); color: var(--blanco); border: none;
+  border-radius: 6px; padding: 1.05rem; cursor: pointer; margin: 1.5rem 0;
+  font-family: var(--font-spartan), 'League Spartan', sans-serif;
+  font-size: 1.05rem; font-weight: 700; transition: background .15s;
+}
+.ye-tienda .btn-carrito:hover { background: var(--verde-mid); }
+.ye-tienda .btn-carrito:disabled { background: var(--negro-soft); cursor: not-allowed; }
+
+.ye-tienda .ficha-bullets { border-top: 1px solid var(--border); padding-top: 1.25rem; display: flex; flex-direction: column; gap: .75rem; }
+.ye-tienda .ficha-bullet { display: flex; gap: .75rem; align-items: center; font-size: .9rem; color: var(--negro); }
+.ye-tienda .ficha-bullet svg { color: var(--verde); flex-shrink: 0; }
+
+.ye-tienda .detalles { border-top: 1px solid var(--border); padding: 2rem 0; }
+.ye-tienda .detalles h2 { font-size: 1.1rem; font-weight: 700; margin-bottom: .85rem; }
+.ye-tienda .detalles-datos { display: flex; gap: 3rem; flex-wrap: wrap; font-size: .9rem; color: var(--negro-soft); margin-bottom: 1.5rem; }
+.ye-tienda .detalles p { font-size: .92rem; color: var(--negro-soft); line-height: 1.8; }
+
+/* ── MARCAS ─────────────────────────────────────────────────────────────── */
+.ye-tienda .marcas-head { text-align: center; padding: 2.5rem 0 2rem; }
+.ye-tienda .marcas-titulo { font-size: clamp(1.5rem, 3vw, 2rem); font-weight: 700; margin-bottom: .4rem; }
+.ye-tienda .marcas-sub { color: var(--negro-soft); font-size: .95rem; }
+.ye-tienda .marcas-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.25rem; padding-bottom: 3rem; }
+.ye-tienda .marca {
+  border: 1px solid var(--border); border-radius: 8px; padding: 1.75rem 1rem;
+  text-align: center; transition: box-shadow .2s, transform .2s; background: var(--blanco);
+}
+.ye-tienda .marca:hover { box-shadow: var(--shadow); transform: translateY(-3px); }
+.ye-tienda .marca-logo {
+  width: 76px; height: 76px; border-radius: 50%; background: var(--gris-card);
+  margin: 0 auto .85rem; display: flex; align-items: center; justify-content: center;
+  font-family: var(--font-spartan), sans-serif; font-weight: 900; font-size: 1.4rem;
+  color: var(--negro-soft);
+}
+.ye-tienda .marca-nombre { font-size: .92rem; color: var(--negro); }
+
+/* ── GRILLA DE CATEGORIA ────────────────────────────────────────────────── */
+.ye-tienda .cat-head { padding: .5rem 0 1.75rem; }
+.ye-tienda .cat-titulo { font-size: clamp(1.5rem, 3vw, 2rem); font-weight: 700; }
+.ye-tienda .cat-cuenta { color: var(--negro-soft); font-size: .9rem; margin-top: .25rem; }
+.ye-tienda .grilla {
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 1.25rem; padding-bottom: 3rem;
+}
+.ye-tienda .vacio { padding: 3rem 0 4rem; text-align: center; color: var(--negro-soft); }
+
+@media (max-width: 900px) {
+  .ye-tienda .ficha { grid-template-columns: 1fr; gap: 2rem; }
+  .ye-tienda .marcas-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 600px) {
+  .ye-tienda .marcas-grid { grid-template-columns: 1fr 1fr; gap: .85rem; }
+  .ye-tienda .grilla { grid-template-columns: 1fr 1fr; gap: .85rem; }
+  .ye-tienda .detalles-datos { gap: 1rem; flex-direction: column; }
+}

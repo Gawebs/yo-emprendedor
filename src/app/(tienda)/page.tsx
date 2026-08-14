@@ -42,7 +42,7 @@ export default function TiendaHome() {
         <div className="contenedor">
           <div className="categorias-fila">
             {CATEGORIAS.map(({ slug, nombre, icono: Icono }) => (
-              <Link key={slug} href={`/tienda/categoria/${slug}`} className="categoria">
+              <Link key={slug} href={`/categoria/${slug}`} className="categoria">
                 <span className="categoria-circulo">
                   <Icono size={24} strokeWidth={1.75} aria-hidden="true" />
                 </span>
@@ -58,7 +58,7 @@ export default function TiendaHome() {
           <section className="fila" key={slug} aria-labelledby={`fila-${slug}`}>
             <div className="fila-head">
               <h2 className="fila-titulo" id={`fila-${slug}`}>{nombreCategoria(slug)}</h2>
-              <Link href={`/tienda/categoria/${slug}`} className="fila-vertodo">ver todo</Link>
+              <Link href={`/categoria/${slug}`} className="fila-vertodo">ver todo</Link>
             </div>
             <div className="fila-carril">
               {productosDe(slug).map((producto) => (
@@ -90,9 +90,11 @@ export default function TiendaHome() {
         </div>
       </div>
 
+      {/* Las dos puertas a la seccion de emprendedores: una va directo a los
+          planes, la otra al arranque de la landing. */}
       <div className="ctas">
-        <Link href="/#plans" className="cta-grande">¡Quiero vender!</Link>
-        <Link href="/" className="cta-grande">¡Soy emprendedor!</Link>
+        <Link href="/quiero-vender#plans" className="cta-grande">¡Quiero vender!</Link>
+        <Link href="/quiero-vender" className="cta-grande">¡Soy emprendedor!</Link>
       </div>
     </>
   );

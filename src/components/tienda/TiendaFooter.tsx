@@ -3,12 +3,12 @@ import { Instagram, Facebook, Mail, Phone, MapPin } from 'lucide-react';
 import { CONTACTO } from './data';
 
 const INSTITUCIONAL = [
-  { href: '/tienda', label: 'Inicio' },
-  { href: '/tienda/nosotros', label: 'Nosotros' },
-  { href: '/tienda/preguntas-frecuentes', label: 'Preguntas frecuentes' },
-  { href: '/tienda/terminos', label: 'Términos y condiciones' },
-  { href: '/tienda/privacidad', label: 'Política de privacidad' },
-  { href: '/tienda/cambios', label: 'Cambios y devoluciones' },
+  { href: '/', label: 'Inicio' },
+  { href: '/nosotros', label: 'Nosotros' },
+  { href: '/preguntas-frecuentes', label: 'Preguntas frecuentes' },
+  { href: '/terminos', label: 'Términos y condiciones' },
+  { href: '/privacidad', label: 'Política de privacidad' },
+  { href: '/cambios', label: 'Cambios y devoluciones' },
 ];
 
 export function TiendaFooter() {
@@ -49,7 +49,7 @@ export function TiendaFooter() {
             <h2 className="pie-titulo">Consultas por mayor</h2>
             <ul className="pie-lista">
               <li><a href={CONTACTO.telefonoLink}>{CONTACTO.telefono}</a></li>
-              <li><Link href="/tienda/trabajos-a-medida">Trabajos a medida</Link></li>
+              <li><Link href="/trabajos-a-medida">Trabajos a medida</Link></li>
             </ul>
           </div>
 

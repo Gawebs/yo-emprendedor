@@ -3,7 +3,7 @@ import { formatearPrecio, type Producto } from './data';
 
 export function ProductoCard({ producto }: { producto: Producto }) {
   return (
-    <Link href={`/tienda/producto/${producto.slug}`} className="prod">
+    <Link href={`/producto/${producto.slug}`} className="prod">
       <div className="prod-foto">
         {producto.etiqueta && <span className="prod-etiqueta">{producto.etiqueta}</span>}
         {/* Sin foto todavia: el bloque gris hace de marcador hasta que haya imagenes reales. */}

@@ -43,10 +43,18 @@ Enums: `producto_estado` (activo/inactivo/descontinuado), `venta_estado` (pendie
 
 ## Decisiones de diseño ya tomadas
 
-**Las tres promos del hero van sin emojis**, en bloques separados, no como columnas dentro de un banner. Gabriel las pidió así el 10-ago-2026.
+**La home (`/`) es la landing de venta de planes**, no el hero del marketplace. Reemplazada el 14-ago-2026 por el diseño que trajo Gabriel: vende Impulso ($250K), Crecimiento ($550K) y Expansión ($950K) mensuales. Vive en `src/app/page.tsx`; los textos, precios y testimonios están en `src/components/landing/data.ts`, no inline.
 
-**El texto de esas promos va a 16px y es deliberado:** a 18px, en columnas de 216px, la frase más larga se parte en tres renglones y las cajas quedan desparejas. Si se sube el tamaño hay que acortar el texto.
+**El CSS de la landing está scopeado bajo `.ye-landing`** (`src/styles/landing.css`) a propósito: trae su propia paleta y estilos de elemento (`section`, `nav`, `footer`) que pisarían el catálogo y el dashboard si vivieran en `:root`.
 
-Los textos viven en una constante arriba de `src/components/sections/Hero.tsx`, no inline.
+**Header, Footer y FloatingCTA no están en el layout raíz.** La landing trae los suyos; el resto los recibe vía `src/app/productos/layout.tsx` y `src/app/auth/layout.tsx`.
 
-**Branding:** amarillo mostaza (~#DAA520) y rojo/naranja (~#FF6B35), tokens OKLCH en CSS variables. Logo con tipografía script, cuerpo sans-serif. Tono emprendedor, local, accesible. CTAs: "Quiero vender!" y "Explorar ahora".
+**El contenido no depende de JS para verse.** El ocultamiento de las animaciones cuelga de `.reveal-activo`, clase que agrega `Reveal.tsx` al montar, más un rescate a los 2.5s si el observer nunca reporta. Sin eso, 72 elementos en `opacity:0` dejan la landing en blanco.
+
+**Branding de la landing:** amarillo `#e4c763` sobre beige `#fff7dc`, negro `#313131`, verde `#55643f`, dorado `#7d6210`. League Spartan para títulos y Open Sans para cuerpo, vía `next/font`.
+
+El amarillo de marca es solo para fondos y para texto sobre negro: sobre blanco da 1.7:1. Para texto sobre superficies claras va `--dorado`. El verde original del diseño (`#7f8f6a`) daba 3.2:1 y se oscureció a `#55643f`.
+
+**El catálogo (`/productos`) usa otra paleta:** terracota `#C1502E` sobre crema `#FBF6F0`, elegida el 14-ago-2026 tras auditar los referentes del rubro (Etsy, Shopify, Mercado Libre). El criterio que salió de esa auditoría: el color de marca va en botones y badges, nunca como fondo de una sección entera.
+
+**Las fotos del hero y de la sección "qué es" son placeholders de Unsplash**, marcados con constantes en `src/app/page.tsx`. Faltan las fotos reales del local.

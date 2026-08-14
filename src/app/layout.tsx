@@ -1,16 +1,30 @@
 import type { Metadata } from 'next';
+import { League_Spartan, Open_Sans } from 'next/font/google';
 import { TenantProvider } from '@/contexts/TenantContext';
-import { Header } from '@/components/layout/Header';
-import { Footer } from '@/components/layout/Footer';
-import { FloatingCTA } from '@/components/layout/FloatingCTA';
 import '@/styles/globals.css';
 
+const leagueSpartan = League_Spartan({
+  subsets: ['latin'],
+  weight: ['400', '600', '700', '900'],
+  variable: '--font-spartan',
+  display: 'swap',
+});
+
+const openSans = Open_Sans({
+  subsets: ['latin'],
+  weight: ['300', '400', '600'],
+  style: ['normal', 'italic'],
+  variable: '--font-open-sans',
+  display: 'swap',
+});
+
 export const metadata: Metadata = {
-  title: 'Yo Emprendedor | Marketplace Local Tucumán',
-  description: 'Plataforma de marketplace local para emprendedores de San Miguel de Tucumán.',
+  title: 'Yo Emprendedor — Tu marca creciendo y vendiendo, aunque no estés presente',
+  description:
+    'Visibilidad, presencia física y gestión de ventas en San Miguel de Tucumán. Sin abrir un local, sin invertir tu tiempo y sin riesgos innecesarios.',
   openGraph: {
     title: 'Yo Emprendedor',
-    description: 'Vende tus productos en un solo lugar',
+    description: 'Tu marca creciendo y vendiendo, aunque no estés presente.',
   },
 };
 
@@ -20,14 +34,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="es">
+    <html lang="es" className={`${leagueSpartan.variable} ${openSans.variable}`}>
       <body>
-        <TenantProvider>
-          <Header />
-          <main className="min-h-screen">{children}</main>
-          <Footer />
-          <FloatingCTA />
-        </TenantProvider>
+        <TenantProvider>{children}</TenantProvider>
       </body>
     </html>
   );

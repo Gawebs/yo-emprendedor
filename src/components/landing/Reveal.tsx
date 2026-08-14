@@ -32,13 +32,16 @@ export function Reveal() {
     contenedor.classList.add('reveal-activo');
 
     const temporizadores: ReturnType<typeof setTimeout>[] = [];
-    let huboIntersecciones = false;
+    let observerRespondio = false;
 
     const observer = new IntersectionObserver(
       (entradas) => {
+        // Cualquier llamada prueba que el observer vive, intersecte o no: en la
+        // primera pasada reporta todo lo observado, con isIntersecting en false
+        // para lo que esta debajo del fold.
+        observerRespondio = true;
         entradas.forEach((entrada, i) => {
           if (!entrada.isIntersecting) return;
-          huboIntersecciones = true;
           temporizadores.push(setTimeout(() => entrada.target.classList.add('visible'), i * 55));
           observer.unobserve(entrada.target);
         });
@@ -48,10 +51,13 @@ export function Reveal() {
 
     elementos.forEach((el) => observer.observe(el));
 
-    // Red de seguridad: si el observer nunca reporto (entorno sin compositing,
-    // pagina restaurada desde bfcache, etc.), mostrar todo antes que dejarlo en blanco.
+    // Red de seguridad para cuando el observer no corre (entorno sin compositing,
+    // bfcache, etc.). Se mide que haya respondido, no que algo haya entrado en
+    // pantalla: el hero ocupa el alto completo, asi que al cargar no hay ningun
+    // .reveal a la vista y esperar una interseccion revelaria todo de una,
+    // matando la animacion.
     const rescate = setTimeout(() => {
-      if (!huboIntersecciones) mostrarTodo();
+      if (!observerRespondio) mostrarTodo();
     }, PLAZO_DE_RESCATE);
 
     return () => {

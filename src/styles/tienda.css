@@ -1,0 +1,248 @@
+/* ============================================================================
+   CANAL DE VENTAS — Yo Emprendedor
+
+   Misma paleta y tipografias que la landing de planes (.ye-landing), pero
+   scopeado aparte: la tienda tiene su propio nav, footer y densidad. Las dos
+   hablan el mismo idioma visual sin compartir reglas.
+   ============================================================================ */
+
+.ye-tienda {
+  --amarillo: #e4c763;
+  --amarillo-light: #f5e09a;
+  --amarillo-pale: #fff7dc;
+  --negro: #313131;
+  --negro-soft: #4a4a4a;
+  --beige: #fff7dc;
+  --beige-mid: #f5edcc;
+  --verde: #55643f;
+  --verde-mid: #6b7a52;
+  --verde-light: #e8ede0;
+  --dorado: #7d6210;
+  --blanco: #ffffff;
+  --gris-card: #f0efec;
+  --border: rgba(49, 49, 49, 0.12);
+  --shadow: 0 4px 24px rgba(49, 49, 49, 0.07);
+
+  background: var(--blanco);
+  color: var(--negro);
+  font-family: var(--font-open-sans), 'Open Sans', sans-serif;
+  line-height: 1.6;
+}
+
+.ye-tienda * { box-sizing: border-box; margin: 0; padding: 0; }
+.ye-tienda h1, .ye-tienda h2, .ye-tienda h3, .ye-tienda h4 {
+  font-family: var(--font-spartan), 'League Spartan', sans-serif;
+}
+.ye-tienda ul { list-style: none; }
+.ye-tienda a { color: inherit; text-decoration: none; }
+
+.ye-tienda .contenedor { max-width: 1200px; margin: 0 auto; padding: 0 1.5rem; }
+
+/* ── BARRA DE PROMOS ────────────────────────────────────────────────────── */
+.ye-tienda .promos {
+  background: var(--negro); color: var(--amarillo-pale);
+  font-size: .78rem; padding: .5rem 0;
+}
+.ye-tienda .promos-inner {
+  max-width: 1200px; margin: 0 auto; padding: 0 1.5rem;
+  display: flex; justify-content: center; gap: 2.5rem; flex-wrap: wrap;
+  text-align: center;
+}
+
+/* ── NAV ────────────────────────────────────────────────────────────────── */
+.ye-tienda .nav {
+  background: var(--blanco); border-bottom: 1px solid var(--border);
+  position: sticky; top: 0; z-index: 50;
+}
+.ye-tienda .nav-inner {
+  max-width: 1200px; margin: 0 auto; padding: 0 1.5rem;
+  display: flex; align-items: center; gap: 1.5rem; height: 72px;
+}
+.ye-tienda .nav-logo img { height: 46px; width: auto; display: block; }
+.ye-tienda .nav-links { display: flex; align-items: center; gap: 1.5rem; margin-left: 1rem; }
+.ye-tienda .nav-link {
+  font-size: .9rem; color: var(--negro); padding: .35rem 0;
+  border-bottom: 2px solid transparent; transition: border-color .15s, color .15s;
+}
+.ye-tienda .nav-link:hover { color: var(--verde); border-bottom-color: var(--verde); }
+.ye-tienda .nav-link.destacado { color: var(--verde); font-weight: 600; }
+.ye-tienda .nav-acciones { margin-left: auto; display: flex; align-items: center; gap: .75rem; }
+.ye-tienda .nav-icono {
+  width: 40px; height: 40px; border-radius: 50%; border: 1px solid var(--border);
+  background: var(--blanco); color: var(--negro);
+  display: flex; align-items: center; justify-content: center; cursor: pointer;
+  transition: background .15s; position: relative;
+}
+.ye-tienda .nav-icono:hover { background: var(--beige); }
+.ye-tienda .nav-badge {
+  position: absolute; top: -4px; right: -4px; min-width: 19px; height: 19px;
+  border-radius: 10px; background: var(--verde); color: var(--blanco);
+  font-size: .68rem; font-weight: 700; display: flex; align-items: center;
+  justify-content: center; padding: 0 5px;
+  font-family: var(--font-spartan), sans-serif;
+}
+.ye-tienda .btn-sesion {
+  background: var(--verde); color: var(--blanco);
+  padding: .6rem 1.4rem; border-radius: 999px; border: none; cursor: pointer;
+  font-family: var(--font-spartan), 'League Spartan', sans-serif;
+  font-size: .85rem; font-weight: 700; white-space: nowrap;
+  transition: background .15s;
+}
+.ye-tienda .btn-sesion:hover { background: var(--verde-mid); }
+.ye-tienda .nav-hamburguesa { display: none; }
+
+/* ── BANNER ─────────────────────────────────────────────────────────────── */
+.ye-tienda .banner {
+  background: var(--amarillo); padding: 3.5rem 1.5rem; text-align: center;
+  position: relative; overflow: hidden;
+}
+.ye-tienda .banner-titulo {
+  font-size: clamp(1.4rem, 3vw, 2rem); font-weight: 900; color: var(--negro);
+  margin-bottom: .5rem;
+}
+.ye-tienda .banner-sub { font-size: .9rem; color: #4a3e1c; }
+.ye-tienda .banner-puntos { display: flex; gap: .5rem; justify-content: center; margin-top: 1.25rem; }
+.ye-tienda .banner-punto {
+  width: 8px; height: 8px; border-radius: 50%; background: rgba(49, 49, 49, .25);
+  border: none; padding: 0; cursor: pointer; transition: background .2s;
+}
+.ye-tienda .banner-punto[aria-current='true'] { background: var(--negro); }
+
+/* ── OFERTAS DEL DIA ────────────────────────────────────────────────────── */
+.ye-tienda .ofertas { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; padding: 1.75rem 0; }
+.ye-tienda .oferta {
+  border: 1px solid var(--border); border-radius: 6px; padding: 1.5rem;
+  background: var(--blanco); transition: box-shadow .2s, transform .2s;
+}
+.ye-tienda a.oferta:hover { box-shadow: var(--shadow); transform: translateY(-2px); }
+.ye-tienda .oferta-tag {
+  font-size: .72rem; color: var(--negro-soft); text-transform: uppercase;
+  letter-spacing: .1em; font-family: var(--font-spartan), sans-serif; font-weight: 600;
+}
+.ye-tienda .oferta-titulo { font-size: 1.15rem; font-weight: 700; margin-top: .35rem; }
+
+/* ── CATEGORIAS ─────────────────────────────────────────────────────────── */
+.ye-tienda .categorias { background: var(--verde-light); padding: 1.5rem 0; }
+.ye-tienda .categorias-fila {
+  display: flex; gap: 1.75rem; overflow-x: auto; padding: .25rem .5rem;
+  scrollbar-width: none; justify-content: center;
+}
+.ye-tienda .categorias-fila::-webkit-scrollbar { display: none; }
+.ye-tienda .categoria { text-align: center; flex-shrink: 0; width: 84px; }
+.ye-tienda .categoria-circulo {
+  width: 58px; height: 58px; border-radius: 50%; background: var(--verde);
+  color: var(--blanco); display: flex; align-items: center; justify-content: center;
+  margin: 0 auto .5rem; transition: transform .2s, background .2s;
+}
+.ye-tienda .categoria:hover .categoria-circulo { transform: translateY(-3px); background: var(--verde-mid); }
+.ye-tienda .categoria-nombre { font-size: .78rem; color: var(--negro); line-height: 1.3; }
+
+/* ── FILAS DE PRODUCTOS ─────────────────────────────────────────────────── */
+.ye-tienda .fila { padding: 1.75rem 0 .5rem; }
+.ye-tienda .fila-head { display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 1rem; }
+.ye-tienda .fila-titulo { font-size: 1.2rem; font-weight: 700; }
+.ye-tienda .fila-vertodo { font-size: .82rem; color: var(--dorado); font-weight: 600; }
+.ye-tienda .fila-vertodo:hover { text-decoration: underline; }
+.ye-tienda .fila-carril {
+  display: grid; grid-auto-flow: column; grid-auto-columns: minmax(180px, 1fr);
+  gap: 1rem; overflow-x: auto; padding-bottom: .75rem;
+  scroll-snap-type: x mandatory; scrollbar-width: thin;
+}
+.ye-tienda .fila-carril > * { scroll-snap-align: start; }
+
+/* ── TARJETA DE PRODUCTO ────────────────────────────────────────────────── */
+.ye-tienda .prod {
+  border: 1px solid var(--border); border-radius: 6px; overflow: hidden;
+  background: var(--blanco); display: flex; flex-direction: column;
+  transition: box-shadow .2s, transform .2s;
+}
+.ye-tienda a.prod:hover { box-shadow: var(--shadow); transform: translateY(-3px); }
+.ye-tienda .prod-foto {
+  aspect-ratio: 1; background: var(--gris-card); position: relative;
+  display: flex; align-items: center; justify-content: center;
+}
+.ye-tienda .prod-foto img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.ye-tienda .prod-etiqueta {
+  position: absolute; top: .6rem; left: .6rem;
+  background: var(--verde); color: var(--blanco);
+  font-size: .68rem; font-weight: 700; padding: .2rem .6rem; border-radius: 3px;
+  font-family: var(--font-spartan), sans-serif; letter-spacing: .04em;
+}
+.ye-tienda .prod-cuerpo { padding: .75rem .85rem 1rem; display: flex; flex-direction: column; gap: .3rem; flex: 1; }
+.ye-tienda .prod-nombre { font-size: .88rem; color: var(--negro); line-height: 1.4; }
+.ye-tienda .prod-precios { display: flex; align-items: baseline; gap: .5rem; margin-top: auto; padding-top: .35rem; }
+.ye-tienda .prod-antes { font-size: .78rem; color: var(--negro-soft); text-decoration: line-through; }
+.ye-tienda .prod-precio { font-size: 1.05rem; font-weight: 700; font-family: var(--font-spartan), sans-serif; }
+
+/* ── SERVICIOS ──────────────────────────────────────────────────────────── */
+.ye-tienda .servicios {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem;
+  padding: 3rem 0; text-align: center;
+}
+.ye-tienda .servicio-icono { color: var(--verde); margin-bottom: .6rem; display: flex; justify-content: center; }
+.ye-tienda .servicio-titulo { font-family: var(--font-spartan), sans-serif; font-weight: 700; font-size: .95rem; }
+.ye-tienda .servicio-texto { font-size: .82rem; color: var(--negro-soft); }
+
+/* ── CTAS FINALES ───────────────────────────────────────────────────────── */
+.ye-tienda .ctas { display: grid; grid-template-columns: 1fr 1fr; }
+.ye-tienda .cta-grande {
+  background: var(--negro); color: var(--amarillo-pale); padding: 1.5rem;
+  text-align: center; font-family: var(--font-spartan), 'League Spartan', sans-serif;
+  font-size: 1.05rem; font-weight: 700; transition: background .2s, color .2s;
+}
+.ye-tienda .cta-grande + .cta-grande { border-left: 1px solid rgba(255, 247, 220, .15); }
+.ye-tienda .cta-grande:hover { background: var(--amarillo); color: var(--negro); }
+
+/* ── FOOTER ─────────────────────────────────────────────────────────────── */
+.ye-tienda .pie { background: var(--blanco); border-top: 1px solid var(--border); padding: 3rem 0 2rem; }
+.ye-tienda .pie-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2rem; }
+.ye-tienda .pie-titulo {
+  font-family: var(--font-spartan), sans-serif; font-weight: 700; font-size: .95rem;
+  margin-bottom: .85rem; color: var(--negro);
+}
+.ye-tienda .pie-lista { display: flex; flex-direction: column; gap: .45rem; }
+.ye-tienda .pie-lista a, .ye-tienda .pie-dato { font-size: .85rem; color: var(--negro-soft); }
+.ye-tienda .pie-lista a:hover { color: var(--verde); }
+.ye-tienda .pie-redes { display: flex; gap: .6rem; margin-bottom: 1.1rem; }
+.ye-tienda .pie-red {
+  width: 34px; height: 34px; border-radius: 50%; border: 1px solid var(--border);
+  display: flex; align-items: center; justify-content: center; color: var(--negro-soft);
+  transition: background .15s, color .15s;
+}
+.ye-tienda .pie-red:hover { background: var(--verde); color: var(--blanco); border-color: var(--verde); }
+.ye-tienda .pie-news { font-size: .85rem; color: var(--negro-soft); margin-bottom: .5rem; }
+.ye-tienda .pie-form { display: flex; gap: .5rem; }
+.ye-tienda .pie-input {
+  flex: 1; min-width: 0; padding: .7rem .9rem; border: 1px solid var(--border);
+  border-radius: 4px; font-family: inherit; font-size: .88rem; background: var(--blanco);
+  color: var(--negro);
+}
+.ye-tienda .pie-input:focus { outline: none; border-color: var(--verde); box-shadow: 0 0 0 2px rgba(85, 100, 63, .15); }
+.ye-tienda .pie-btn {
+  background: var(--verde); color: var(--blanco); border: none; border-radius: 4px;
+  padding: .7rem 1.1rem; cursor: pointer; font-family: var(--font-spartan), sans-serif;
+  font-weight: 700; font-size: .82rem;
+}
+.ye-tienda .pie-btn:hover { background: var(--verde-mid); }
+.ye-tienda .pie-legal {
+  border-top: 1px solid var(--border); margin-top: 2rem; padding-top: 1.25rem;
+  font-size: .78rem; color: var(--negro-soft); text-align: center;
+}
+
+/* ── RESPONSIVE ─────────────────────────────────────────────────────────── */
+@media (max-width: 900px) {
+  .ye-tienda .nav-links { display: none; }
+  .ye-tienda .nav-hamburguesa { display: flex; }
+  .ye-tienda .pie-grid { grid-template-columns: 1fr 1fr; }
+  .ye-tienda .servicios { grid-template-columns: 1fr; gap: 2rem; }
+  .ye-tienda .categorias-fila { justify-content: flex-start; }
+}
+@media (max-width: 600px) {
+  .ye-tienda .promos-inner { gap: 1rem; font-size: .72rem; }
+  .ye-tienda .ofertas { grid-template-columns: 1fr; }
+  .ye-tienda .ctas { grid-template-columns: 1fr; }
+  .ye-tienda .cta-grande + .cta-grande { border-left: none; border-top: 1px solid rgba(255, 247, 220, .15); }
+  .ye-tienda .pie-grid { grid-template-columns: 1fr; gap: 1.75rem; }
+  .ye-tienda .nav-inner { height: 64px; gap: 1rem; }
+  .ye-tienda .nav-logo img { height: 38px; }
+}

@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import { TiendaNav } from '@/components/tienda/TiendaNav';
 import { TiendaFooter } from '@/components/tienda/TiendaFooter';
+import { CarritoProvider } from '@/contexts/CarritoContext';
 import '@/styles/tienda.css';
 
 export const metadata: Metadata = {
@@ -15,10 +16,12 @@ export default function TiendaLayout({
   children: React.ReactNode;
 }) {
   return (
-    <div className="ye-tienda">
-      <TiendaNav />
-      <main>{children}</main>
-      <TiendaFooter />
-    </div>
+    <CarritoProvider>
+      <div className="ye-tienda">
+        <TiendaNav />
+        <main>{children}</main>
+        <TiendaFooter />
+      </div>
+    </CarritoProvider>
   );
 }

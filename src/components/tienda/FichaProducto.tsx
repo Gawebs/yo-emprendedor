@@ -3,11 +3,13 @@
 import { useState } from 'react';
 import { Truck, Store, CreditCard } from 'lucide-react';
 import { formatearPrecio, type ProductoDetalle } from './data';
+import { useCarrito } from '@/contexts/CarritoContext';
 
 const FOTOS_MINIATURA = 3;
 
 export function FichaProducto({ producto }: { producto: ProductoDetalle }) {
   const { opciones } = producto;
+  const { agregar: agregarAlCarrito } = useCarrito();
 
   const [foto, setFoto] = useState(0);
   const [talle, setTalle] = useState(opciones.talles?.[0]);
@@ -16,9 +18,19 @@ export function FichaProducto({ producto }: { producto: ProductoDetalle }) {
   const [variante, setVariante] = useState(opciones.variantes?.[0]);
   const [agregado, setAgregado] = useState(false);
 
+  /** "Talle M · Arena · Cítrico" — solo lo que el producto realmente ofrece. */
+  const detalle = [talle && `Talle ${talle}`, color, aroma, variante]
+    .filter(Boolean)
+    .join(' · ');
+
   const agregar = () => {
-    // El carrito todavia no existe: por ahora deja constancia de la seleccion
-    // para poder verificar que los selectores devuelven lo elegido.
+    agregarAlCarrito({
+      slug: producto.slug,
+      nombre: producto.nombre,
+      precio: producto.precio,
+      categoria: producto.categoria,
+      detalle: detalle || undefined,
+    });
     setAgregado(true);
     setTimeout(() => setAgregado(false), 2200);
   };

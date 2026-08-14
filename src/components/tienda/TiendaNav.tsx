@@ -4,6 +4,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { Search, ShoppingBag, Menu } from 'lucide-react';
 import { PROMOS } from './data';
+import { useCarrito } from '@/contexts/CarritoContext';
 
 const LINKS = [
   { href: '/categorias', label: 'Categorías' },
@@ -13,7 +14,12 @@ const LINKS = [
   { href: '/marcas', label: 'Marcas', destacado: true },
 ];
 
-export function TiendaNav({ itemsCarrito = 0 }: { itemsCarrito?: number }) {
+export function TiendaNav() {
+  const { cantidadTotal, cargado } = useCarrito();
+  // Hasta leer localStorage el contador se omite, para que el server y el
+  // cliente pinten lo mismo y no salte un badge al hidratar.
+  const itemsCarrito = cargado ? cantidadTotal : 0;
+
   return (
     <>
       <div className="promos">

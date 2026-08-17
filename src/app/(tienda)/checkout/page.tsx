@@ -9,11 +9,13 @@ import {
   MODALIDADES,
   metodosPara,
   calcularResumen,
+  descuentoPorPago,
   formatearPrecio,
   CUOTAS_SIN_INTERES,
   type Modalidad,
   type MetodoPago,
 } from '@/lib/tienda/precios';
+import { validarGiftCard, CODIGOS_DEMO, type GiftCard } from '@/lib/tienda/giftcards';
 
 const PROVINCIAS_SIN_ENVIO_LOCAL = 'Tucumán';
 
@@ -29,6 +31,27 @@ export default function CheckoutPage() {
   });
   const [enviando, setEnviando] = useState(false);
 
+  const [codigoGift, setCodigoGift] = useState('');
+  const [giftCard, setGiftCard] = useState<GiftCard | null>(null);
+  const [errorGift, setErrorGift] = useState('');
+
+  const aplicarGiftCard = () => {
+    const resultado = validarGiftCard(codigoGift);
+    if (resultado.ok) {
+      setGiftCard(resultado.giftCard);
+      setErrorGift('');
+      return;
+    }
+    setGiftCard(null);
+    setErrorGift(resultado.motivo);
+  };
+
+  const quitarGiftCard = () => {
+    setGiftCard(null);
+    setCodigoGift('');
+    setErrorGift('');
+  };
+
   const metodosDisponibles = useMemo(() => metodosPara(modalidad), [modalidad]);
 
   // Si cambia la modalidad y el metodo elegido deja de tener sentido
@@ -39,8 +62,12 @@ export default function CheckoutPage() {
     }
   }, [metodosDisponibles, metodo]);
 
-  const resumen = calcularResumen(subtotal, modalidad, metodo);
+  const resumen = calcularResumen(subtotal, modalidad, metodo, giftCard?.saldo ?? 0);
   const necesitaDireccion = modalidad !== 'retiro_local';
+
+  // Cuanto habria descontado el medio de pago sin gift card, para poder avisar
+  // que se eligio el beneficio mayor en vez de sumarlos.
+  const descuentoPorPagoSiNoHubieraGift = descuentoPorPago(metodo, subtotal);
 
   const actualizar = (campo: keyof typeof datos) =>
     (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) =>
@@ -202,6 +229,54 @@ export default function CheckoutPage() {
             <div className="resumen-fila resumen-descuento">
               <span>Descuento 10%</span><span>−{formatearPrecio(resumen.descuentoPago)}</span>
             </div>
+          )}
+
+          {resumen.descuentoGiftCard > 0 && (
+            <div className="resumen-fila resumen-descuento">
+              <span>Gift Card {giftCard?.codigo}</span>
+              <span>−{formatearPrecio(resumen.descuentoGiftCard)}</span>
+            </div>
+          )}
+
+          <div className="gift-bloque">
+            {giftCard ? (
+              <div className="gift-aplicada">
+                <div>
+                  <p className="gift-codigo">{giftCard.codigo}</p>
+                  <p className="gift-saldo">
+                    Saldo {formatearPrecio(giftCard.saldo)}
+                    {giftCard.saldo > resumen.descuentoGiftCard && resumen.descuentoGiftCard > 0 && (
+                      <> · queda {formatearPrecio(giftCard.saldo - resumen.descuentoGiftCard)} para otra compra</>
+                    )}
+                  </p>
+                </div>
+                <button type="button" className="gift-quitar" onClick={quitarGiftCard}>Quitar</button>
+              </div>
+            ) : (
+              <>
+                <label className="gift-label" htmlFor="c-gift">¿Tenés una Gift Card?</label>
+                <div className="gift-fila">
+                  <input
+                    id="c-gift" className="gift-input" value={codigoGift}
+                    onChange={(e) => { setCodigoGift(e.target.value); setErrorGift(''); }}
+                    placeholder="YE-REGALO-10" autoComplete="off"
+                  />
+                  <button type="button" className="gift-aplicar" onClick={aplicarGiftCard}>Aplicar</button>
+                </div>
+                {errorGift && <p className="gift-error" role="alert">{errorGift}</p>}
+                <p className="gift-demo">
+                  Códigos de prueba: {CODIGOS_DEMO.map((g) => g.codigo).join(' · ')}
+                </p>
+              </>
+            )}
+          </div>
+
+          {/* Politica de gift card, punto 6: no se combina con promociones. */}
+          {giftCard && resumen.descuentoPago === 0 && descuentoPorPagoSiNoHubieraGift > 0 && (
+            <p className="gift-aviso">
+              La Gift Card no se combina con el 10% de transferencia o efectivo. Se aplicó la que más
+              te conviene.
+            </p>
           )}
 
           <div className="resumen-fila">

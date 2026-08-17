@@ -51,57 +51,65 @@ export type Producto = {
   /** Un producto puede tener las dos, una o ninguna: se apilan sobre la foto. */
   oferta?: boolean;
   masVendido?: boolean;
+  /**
+   * Que emprendedora lo hace. NO se muestra en ningun punto del recorrido de
+   * compra —home, rubro, ficha, carrito— porque si el cliente identifica la
+   * marca puede buscarla y comprarle directo, salteandose la plataforma.
+   * Aparece recien en la confirmacion del pedido, donde la venta ya se cerro,
+   * y sirve para saber quien prepara cada cosa y a quien liquidarle.
+   */
+  marca: string;
 };
 
 export const PRODUCTOS: Producto[] = [
-  { slug: 'aros-dorados', nombre: 'Aros dorados', precio: 8500, categoria: 'accesorios', masVendido: true },
-  { slug: 'collar-plateado', nombre: 'Collar plateado', precio: 6200, categoria: 'accesorios' },
-  { slug: 'pulsera-trenzada', nombre: 'Pulsera trenzada', precio: 4900, precioAntes: 6500, categoria: 'accesorios', oferta: true, masVendido: true },
-  { slug: 'cinturon-cuero', nombre: 'Cinturón cuero', precio: 11300, categoria: 'accesorios' },
-  { slug: 'anillo-ajustable', nombre: 'Anillo ajustable', precio: 3800, categoria: 'accesorios' },
+  { slug: 'aros-dorados', nombre: 'Aros dorados', precio: 8500, categoria: 'accesorios', masVendido: true, marca: 'Luna Bijou' },
+  { slug: 'collar-plateado', nombre: 'Collar plateado', precio: 6200, categoria: 'accesorios', marca: 'Nara' },
+  { slug: 'pulsera-trenzada', nombre: 'Pulsera trenzada', precio: 4900, precioAntes: 6500, categoria: 'accesorios', oferta: true, masVendido: true, marca: 'Kai' },
+  { slug: 'cinturon-cuero', nombre: 'Cinturón cuero', precio: 11300, categoria: 'accesorios', marca: 'Sur' },
+  { slug: 'anillo-ajustable', nombre: 'Anillo ajustable', precio: 3800, categoria: 'accesorios', marca: 'Piel Natural' },
 
-  { slug: 'serum-facial', nombre: 'Serum facial', precio: 9900, categoria: 'belleza', masVendido: true },
-  { slug: 'labial-mate', nombre: 'Labial mate', precio: 5400, categoria: 'belleza' },
-  { slug: 'crema-corporal', nombre: 'Crema corporal', precio: 7800, precioAntes: 9750, categoria: 'belleza', oferta: true },
-  { slug: 'perfume-floral', nombre: 'Perfume floral', precio: 14500, categoria: 'belleza' },
-  { slug: 'set-de-brochas', nombre: 'Set de brochas', precio: 12100, categoria: 'belleza' },
+  { slug: 'serum-facial', nombre: 'Serum facial', precio: 9900, categoria: 'belleza', masVendido: true, marca: 'Bloom' },
+  { slug: 'labial-mate', nombre: 'Labial mate', precio: 5400, categoria: 'belleza', marca: 'Aroma' },
+  { slug: 'crema-corporal', nombre: 'Crema corporal', precio: 7800, precioAntes: 9750, categoria: 'belleza', oferta: true, marca: 'Tierra' },
+  { slug: 'perfume-floral', nombre: 'Perfume floral', precio: 14500, categoria: 'belleza', marca: 'Hilo' },
+  { slug: 'set-de-brochas', nombre: 'Set de brochas', precio: 12100, categoria: 'belleza', marca: 'Luna Bijou' },
 
-  { slug: 'portavelas-ceramica', nombre: 'Portavelas cerámica', precio: 6900, categoria: 'deco' },
-  { slug: 'cuadro-tejido', nombre: 'Cuadro tejido', precio: 15200, categoria: 'deco', masVendido: true },
-  { slug: 'macetero-pintado', nombre: 'Macetero pintado', precio: 8300, categoria: 'deco' },
-  { slug: 'espejo-redondo', nombre: 'Espejo redondo', precio: 18600, categoria: 'deco' },
-  { slug: 'set-posavasos', nombre: 'Set posavasos', precio: 4700, categoria: 'deco' },
+  { slug: 'portavelas-ceramica', nombre: 'Portavelas cerámica', precio: 6900, categoria: 'deco', marca: 'Nara' },
+  { slug: 'cuadro-tejido', nombre: 'Cuadro tejido', precio: 15200, categoria: 'deco', masVendido: true, marca: 'Kai' },
+  { slug: 'macetero-pintado', nombre: 'Macetero pintado', precio: 8300, categoria: 'deco', marca: 'Sur' },
+  { slug: 'espejo-redondo', nombre: 'Espejo redondo', precio: 18600, categoria: 'deco', marca: 'Piel Natural' },
+  { slug: 'set-posavasos', nombre: 'Set posavasos', precio: 4700, categoria: 'deco', marca: 'Bloom' },
 
   // Indumentaria: es el rubro que lleva talle, no "hogar" como estaba antes.
-  { slug: 'remera-oversize-tejida', nombre: 'Remera oversize tejida', precio: 14500, precioAntes: 18000, categoria: 'indumentaria', oferta: true, masVendido: true },
-  { slug: 'buzo-oversize', nombre: 'Buzo oversize', precio: 16200, categoria: 'indumentaria' },
-  { slug: 'pantalon-wide-leg', nombre: 'Pantalón wide leg', precio: 13800, categoria: 'indumentaria' },
-  { slug: 'top-canesu', nombre: 'Top canesú', precio: 8900, categoria: 'indumentaria' },
-  { slug: 'vestido-lino', nombre: 'Vestido lino', precio: 19500, categoria: 'indumentaria' },
+  { slug: 'remera-oversize-tejida', nombre: 'Remera oversize tejida', precio: 14500, precioAntes: 18000, categoria: 'indumentaria', oferta: true, masVendido: true, marca: 'Aroma' },
+  { slug: 'buzo-oversize', nombre: 'Buzo oversize', precio: 16200, categoria: 'indumentaria', marca: 'Tierra' },
+  { slug: 'pantalon-wide-leg', nombre: 'Pantalón wide leg', precio: 13800, categoria: 'indumentaria', marca: 'Hilo' },
+  { slug: 'top-canesu', nombre: 'Top canesú', precio: 8900, categoria: 'indumentaria', marca: 'Luna Bijou' },
+  { slug: 'vestido-lino', nombre: 'Vestido lino', precio: 19500, categoria: 'indumentaria', marca: 'Nara' },
 
-  { slug: 'vela-aromatica', nombre: 'Vela aromática de soja', precio: 7200, categoria: 'hogar', masVendido: true },
-  { slug: 'difusor-varillas', nombre: 'Difusor con varillas', precio: 9800, categoria: 'hogar' },
-  { slug: 'te-hebras', nombre: 'Té en hebras', precio: 5600, categoria: 'te-y-aromas' },
-  { slug: 'set-mate', nombre: 'Set matero', precio: 21000, precioAntes: 25000, categoria: 'regalos', oferta: true },
-  { slug: 'body-bebe', nombre: 'Body de algodón', precio: 6800, categoria: 'infantiles' },
-  { slug: 'toalla-bordada', nombre: 'Toalla bordada', precio: 11500, categoria: 'blanqueria' },
+  { slug: 'vela-aromatica', nombre: 'Vela aromática de soja', precio: 7200, categoria: 'hogar', masVendido: true, marca: 'Kai' },
+  { slug: 'difusor-varillas', nombre: 'Difusor con varillas', precio: 9800, categoria: 'hogar', marca: 'Sur' },
+  { slug: 'te-hebras', nombre: 'Té en hebras', precio: 5600, categoria: 'te-y-aromas', marca: 'Piel Natural' },
+  { slug: 'set-mate', nombre: 'Set matero', precio: 21000, precioAntes: 25000, categoria: 'regalos', oferta: true, marca: 'Bloom' },
+  { slug: 'body-bebe', nombre: 'Body de algodón', precio: 6800, categoria: 'infantiles', marca: 'Aroma' },
+  { slug: 'toalla-bordada', nombre: 'Toalla bordada', precio: 11500, categoria: 'blanqueria', marca: 'Tierra' },
 
   // Las filas de la home son carruseles: con pocos productos no habria nada
   // que deslizar y las flechas no tendrian sentido.
-  { slug: 'aros-piedra', nombre: 'Aros con piedra natural', precio: 9700, categoria: 'accesorios' },
-  { slug: 'choker-cuero', nombre: 'Choker de cuero', precio: 5300, categoria: 'accesorios' },
-  { slug: 'llavero-tejido', nombre: 'Llavero tejido', precio: 2900, categoria: 'accesorios' },
-  { slug: 'agenda-artesanal', nombre: 'Agenda artesanal', precio: 13400, categoria: 'accesorios', masVendido: true },
+  { slug: 'aros-piedra', nombre: 'Aros con piedra natural', precio: 9700, categoria: 'accesorios', marca: 'Hilo' },
+  { slug: 'choker-cuero', nombre: 'Choker de cuero', precio: 5300, categoria: 'accesorios', marca: 'Luna Bijou' },
+  { slug: 'llavero-tejido', nombre: 'Llavero tejido', precio: 2900, categoria: 'accesorios', marca: 'Nara' },
+  { slug: 'agenda-artesanal', nombre: 'Agenda artesanal', precio: 13400, categoria: 'accesorios', masVendido: true, marca: 'Kai' },
 
-  { slug: 'jabon-artesanal', nombre: 'Jabón artesanal', precio: 3600, categoria: 'belleza' },
-  { slug: 'aceite-capilar', nombre: 'Aceite capilar', precio: 8400, categoria: 'belleza' },
-  { slug: 'mascara-pestanas', nombre: 'Máscara de pestañas', precio: 6900, precioAntes: 8600, categoria: 'belleza', oferta: true },
-  { slug: 'exfoliante-cafe', nombre: 'Exfoliante de café', precio: 5900, categoria: 'belleza' },
+  { slug: 'jabon-artesanal', nombre: 'Jabón artesanal', precio: 3600, categoria: 'belleza', marca: 'Sur' },
+  { slug: 'aceite-capilar', nombre: 'Aceite capilar', precio: 8400, categoria: 'belleza', marca: 'Piel Natural' },
+  { slug: 'mascara-pestanas', nombre: 'Máscara de pestañas', precio: 6900, precioAntes: 8600, categoria: 'belleza', oferta: true, marca: 'Bloom' },
+  { slug: 'exfoliante-cafe', nombre: 'Exfoliante de café', precio: 5900, categoria: 'belleza', marca: 'Aroma' },
 
-  { slug: 'lampara-mesa', nombre: 'Lámpara de mesa', precio: 24500, categoria: 'deco' },
-  { slug: 'almohadon-lino', nombre: 'Almohadón de lino', precio: 12800, categoria: 'deco' },
-  { slug: 'bandeja-madera', nombre: 'Bandeja de madera', precio: 9600, precioAntes: 12000, categoria: 'deco', oferta: true },
-  { slug: 'movil-colgante', nombre: 'Móvil colgante', precio: 7400, categoria: 'deco' },
+  { slug: 'lampara-mesa', nombre: 'Lámpara de mesa', precio: 24500, categoria: 'deco', marca: 'Tierra' },
+  { slug: 'almohadon-lino', nombre: 'Almohadón de lino', precio: 12800, categoria: 'deco', marca: 'Hilo' },
+  { slug: 'bandeja-madera', nombre: 'Bandeja de madera', precio: 9600, precioAntes: 12000, categoria: 'deco', oferta: true, marca: 'Luna Bijou' },
+  { slug: 'movil-colgante', nombre: 'Móvil colgante', precio: 7400, categoria: 'deco', marca: 'Nara' },
 ];
 
 export const OFERTAS_DIA = [

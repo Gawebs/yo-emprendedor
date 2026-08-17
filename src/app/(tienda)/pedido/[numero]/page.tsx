@@ -8,7 +8,7 @@ import { CONTACTO } from '@/components/tienda/data';
 
 type Pedido = {
   numero: string;
-  items: { id: string; nombre: string; cantidad: number; precio: number; detalle?: string }[];
+  items: { id: string; nombre: string; cantidad: number; precio: number; detalle?: string; marca?: string }[];
   nombre: string; email: string; telefono: string;
   direccion?: string; ciudad?: string; provincia?: string;
   modalidad: string; metodo: string;
@@ -33,6 +33,7 @@ export default function PedidoPage({ params }: { params: Promise<{ numero: strin
   const modalidad = MODALIDADES.find((m) => m.id === pedido?.modalidad);
   const metodo = METODOS_PAGO.find((m) => m.id === pedido?.metodo);
   const retira = pedido?.modalidad === 'retiro_local';
+  const marcasDistintas = new Set((pedido?.items ?? []).map((i) => i.marca).filter(Boolean)).size;
 
   return (
     <div className="contenedor">
@@ -63,14 +64,28 @@ export default function PedidoPage({ params }: { params: Promise<{ numero: strin
                 </div>
               </div>
 
+              {/* Recien aca aparece la marca: la venta ya se cerro dentro de
+                  la plataforma, asi que mostrarla no abre la puerta a que la
+                  proxima compra se haga por afuera. Y le da calidez saber quien
+                  preparo cada cosa. */}
               <ul className="resumen-items">
                 {pedido.items.map((i) => (
                   <li key={i.id}>
-                    <span>{i.cantidad}× {i.nombre}{i.detalle ? ` · ${i.detalle}` : ''}</span>
+                    <span>
+                      {i.cantidad}× {i.nombre}{i.detalle ? ` · ${i.detalle}` : ''}
+                      {i.marca && <span className="pedido-marca">Preparado por {i.marca}</span>}
+                    </span>
                     <span>{formatearPrecio(i.precio * i.cantidad)}</span>
                   </li>
                 ))}
               </ul>
+
+              {marcasDistintas > 1 && (
+                <p className="pedido-varias-marcas">
+                  Tu pedido lo preparan {marcasDistintas} marcas distintas. Nosotros lo juntamos y te
+                  lo entregamos todo junto.
+                </p>
+              )}
 
               <div className="resumen-fila"><span>Subtotal</span><span>{formatearPrecio(pedido.resumen.subtotal)}</span></div>
               {pedido.resumen.descuentoPago > 0 && (

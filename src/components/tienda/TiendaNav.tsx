@@ -4,8 +4,9 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { useEffect, useState } from 'react';
 import { usePathname } from 'next/navigation';
-import { Search, ShoppingBag, Menu, X, Store } from 'lucide-react';
+import { ShoppingBag, Menu, X, Store } from 'lucide-react';
 import { PROMOS } from './data';
+import { Buscador } from './Buscador';
 import { useCarrito } from '@/contexts/CarritoContext';
 
 const LINKS = [
@@ -73,9 +74,7 @@ export function TiendaNav() {
                 estaba solo al pie de la home. */}
             <Link href="/quiero-vender" className="btn-vender">Quiero vender</Link>
 
-            <button type="button" className="nav-icono" aria-label="Buscar productos">
-              <Search size={19} aria-hidden="true" />
-            </button>
+            <Buscador />
 
             <Link href="/carrito" className="nav-icono" aria-label={`Carrito, ${itemsCarrito} productos`}>
               <ShoppingBag size={19} aria-hidden="true" />

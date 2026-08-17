@@ -13,6 +13,8 @@ export type ItemCarrito = {
   cantidad: number;
   detalle?: string;      // "Talle M · Cítrico"
   categoria: string;
+  /** Viaja con el item pero no se muestra hasta la confirmacion del pedido. */
+  marca: string;
 };
 
 type Ctx = {

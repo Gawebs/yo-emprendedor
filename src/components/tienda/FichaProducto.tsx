@@ -29,6 +29,7 @@ export function FichaProducto({ producto }: { producto: ProductoDetalle }) {
       nombre: producto.nombre,
       precio: producto.precio,
       categoria: producto.categoria,
+      marca: producto.marca,
       detalle: detalle || undefined,
     });
     setAgregado(true);

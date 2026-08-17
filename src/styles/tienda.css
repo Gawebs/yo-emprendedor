@@ -6,22 +6,32 @@
    hablan el mismo idioma visual sin compartir reglas.
    ============================================================================ */
 
+/* Paleta de marca que definio Anita desde su brand kit de Canva:
+   amarillo #e2c76a, verde #7f8f6a, blanco, y #6f6a63 como oscuro.
+   Los tres van tal cual donde son superficie o grafico.
+
+   El verde de marca da 3.5:1 con texto blanco encima, asi que no sirve para
+   botones con texto: para eso esta --verde-oscuro, del mismo tono pero
+   legible. El color que se ve sigue siendo el de Anita; el oscuro aparece
+   solo donde hay palabras que leer. */
 .ye-tienda {
-  --amarillo: #e4c763;
-  --amarillo-light: #f5e09a;
-  --amarillo-pale: #fff7dc;
-  --negro: #313131;
-  --negro-soft: #4a4a4a;
-  --beige: #fff7dc;
-  --beige-mid: #f5edcc;
-  --verde: #55643f;
-  --verde-mid: #6b7a52;
-  --verde-light: #e8ede0;
+  --amarillo: #e2c76a;
+  --amarillo-light: #f0dc9c;
+  --amarillo-pale: #fdf6e3;
+  --negro: #6f6a63;
+  --negro-fuerte: #46423d;
+  --negro-soft: #6f6a63;
+  --beige: #fdf6e3;
+  --beige-mid: #f5edd6;
+  --verde: #7f8f6a;
+  --verde-oscuro: #5d6b4c;
+  --verde-mid: #6e7d59;
+  --verde-light: #eef1e8;
   --dorado: #7d6210;
   --blanco: #ffffff;
   --gris-card: #f0efec;
-  --border: rgba(49, 49, 49, 0.12);
-  --shadow: 0 4px 24px rgba(49, 49, 49, 0.07);
+  --border: rgba(111, 106, 99, 0.2);
+  --shadow: 0 4px 24px rgba(111, 106, 99, 0.1);
 
   background: var(--blanco);
   color: var(--negro);
@@ -64,8 +74,8 @@
   font-size: .9rem; color: var(--negro); padding: .35rem 0;
   border-bottom: 2px solid transparent; transition: border-color .15s, color .15s;
 }
-.ye-tienda .nav-link:hover { color: var(--verde); border-bottom-color: var(--verde); }
-.ye-tienda .nav-link.destacado { color: var(--verde); font-weight: 600; }
+.ye-tienda .nav-link:hover { color: var(--verde-oscuro); border-bottom-color: var(--verde-oscuro); }
+.ye-tienda .nav-link.destacado { color: var(--verde-oscuro); font-weight: 600; }
 .ye-tienda .nav-acciones { margin-left: auto; display: flex; align-items: center; gap: .75rem; }
 .ye-tienda .nav-icono {
   width: 40px; height: 40px; border-radius: 50%; border: 1px solid var(--border);
@@ -76,13 +86,13 @@
 .ye-tienda .nav-icono:hover { background: var(--beige); }
 .ye-tienda .nav-badge {
   position: absolute; top: -4px; right: -4px; min-width: 19px; height: 19px;
-  border-radius: 10px; background: var(--verde); color: var(--blanco);
+  border-radius: 10px; background: var(--verde-oscuro); color: var(--blanco);
   font-size: .68rem; font-weight: 700; display: flex; align-items: center;
   justify-content: center; padding: 0 5px;
   font-family: var(--font-spartan), sans-serif;
 }
 .ye-tienda .btn-sesion {
-  background: var(--verde); color: var(--blanco);
+  background: var(--verde-oscuro); color: var(--blanco);
   padding: .6rem 1.4rem; border-radius: 999px; border: none; cursor: pointer;
   font-family: var(--font-spartan), 'League Spartan', sans-serif;
   font-size: .85rem; font-weight: 700; white-space: nowrap;
@@ -143,8 +153,10 @@
 .ye-tienda .fila-titulo { font-size: 1.2rem; font-weight: 700; }
 .ye-tienda .fila-vertodo { font-size: .82rem; color: var(--dorado); font-weight: 600; }
 .ye-tienda .fila-vertodo:hover { text-decoration: underline; }
+/* Ancho fijo, no 1fr: con 1fr las tarjetas se estiran hasta llenar el ancho
+   y el carril nunca desborda, asi que nunca habria nada que deslizar. */
 .ye-tienda .fila-carril {
-  display: grid; grid-auto-flow: column; grid-auto-columns: minmax(180px, 1fr);
+  display: grid; grid-auto-flow: column; grid-auto-columns: 200px;
   gap: 1rem; overflow-x: auto; padding-bottom: .75rem;
   scroll-snap-type: x mandatory; scrollbar-width: thin;
 }
@@ -164,7 +176,7 @@
 .ye-tienda .prod-foto img { width: 100%; height: 100%; object-fit: cover; display: block; }
 .ye-tienda .prod-etiqueta {
   position: absolute; top: .6rem; left: .6rem;
-  background: var(--verde); color: var(--blanco);
+  background: var(--verde-oscuro); color: var(--blanco);
   font-size: .68rem; font-weight: 700; padding: .2rem .6rem; border-radius: 3px;
   font-family: var(--font-spartan), sans-serif; letter-spacing: .04em;
 }
@@ -202,14 +214,14 @@
 }
 .ye-tienda .pie-lista { display: flex; flex-direction: column; gap: .45rem; }
 .ye-tienda .pie-lista a, .ye-tienda .pie-dato { font-size: .85rem; color: var(--negro-soft); }
-.ye-tienda .pie-lista a:hover { color: var(--verde); }
+.ye-tienda .pie-lista a:hover { color: var(--verde-oscuro); }
 .ye-tienda .pie-redes { display: flex; gap: .6rem; margin-bottom: 1.1rem; }
 .ye-tienda .pie-red {
   width: 34px; height: 34px; border-radius: 50%; border: 1px solid var(--border);
   display: flex; align-items: center; justify-content: center; color: var(--negro-soft);
   transition: background .15s, color .15s;
 }
-.ye-tienda .pie-red:hover { background: var(--verde); color: var(--blanco); border-color: var(--verde); }
+.ye-tienda .pie-red:hover { background: var(--verde-oscuro); color: var(--blanco); border-color: var(--verde); }
 .ye-tienda .pie-news { font-size: .85rem; color: var(--negro-soft); margin-bottom: .5rem; }
 .ye-tienda .pie-form { display: flex; gap: .5rem; }
 .ye-tienda .pie-input {
@@ -217,9 +229,9 @@
   border-radius: 4px; font-family: inherit; font-size: .88rem; background: var(--blanco);
   color: var(--negro);
 }
-.ye-tienda .pie-input:focus { outline: none; border-color: var(--verde); box-shadow: 0 0 0 2px rgba(85, 100, 63, .15); }
+.ye-tienda .pie-input:focus { outline: none; border-color: var(--verde); box-shadow: 0 0 0 2px rgba(93, 107, 76, .2); }
 .ye-tienda .pie-btn {
-  background: var(--verde); color: var(--blanco); border: none; border-radius: 4px;
+  background: var(--verde-oscuro); color: var(--blanco); border: none; border-radius: 4px;
   padding: .7rem 1.1rem; cursor: pointer; font-family: var(--font-spartan), sans-serif;
   font-weight: 700; font-size: .82rem;
 }
@@ -249,7 +261,7 @@
 
 /* ── MIGA DE PAN ────────────────────────────────────────────────────────── */
 .ye-tienda .miga { font-size: .82rem; color: var(--negro-soft); padding: 1.25rem 0; }
-.ye-tienda .miga a:hover { color: var(--verde); text-decoration: underline; }
+.ye-tienda .miga a:hover { color: var(--verde-oscuro); text-decoration: underline; }
 .ye-tienda .miga-sep { margin: 0 .4rem; opacity: .5; }
 
 /* ── FICHA DE PRODUCTO ──────────────────────────────────────────────────── */
@@ -281,7 +293,7 @@
   font-family: inherit; font-size: .88rem; transition: all .15s;
 }
 .ye-tienda .opcion-btn:hover { border-color: var(--verde); }
-.ye-tienda .opcion-btn[aria-pressed='true'] { background: var(--verde); color: var(--blanco); border-color: var(--verde); }
+.ye-tienda .opcion-btn[aria-pressed='true'] { background: var(--verde-oscuro); color: var(--blanco); border-color: var(--verde); }
 .ye-tienda .opcion-btn:disabled { opacity: .4; cursor: not-allowed; text-decoration: line-through; }
 
 .ye-tienda .colores { display: flex; gap: .7rem; }
@@ -293,7 +305,7 @@
 .ye-tienda .color-btn[aria-pressed='true'] { box-shadow: 0 0 0 2px var(--verde); border-color: var(--blanco); }
 
 .ye-tienda .btn-carrito {
-  width: 100%; background: var(--verde); color: var(--blanco); border: none;
+  width: 100%; background: var(--verde-oscuro); color: var(--blanco); border: none;
   border-radius: 6px; padding: 1.05rem; cursor: pointer; margin: 1.5rem 0;
   font-family: var(--font-spartan), 'League Spartan', sans-serif;
   font-size: 1.05rem; font-weight: 700; transition: background .15s;
@@ -358,7 +370,7 @@
 .ye-tienda .carrito-foto { width: 84px; height: 84px; border-radius: 6px; background: var(--gris-card); display: block; }
 .ye-tienda .carrito-datos { min-width: 0; }
 .ye-tienda .carrito-nombre { font-size: .95rem; color: var(--negro); display: block; }
-.ye-tienda .carrito-nombre:hover { color: var(--verde); }
+.ye-tienda .carrito-nombre:hover { color: var(--verde-oscuro); }
 .ye-tienda .carrito-detalle { font-size: .82rem; color: var(--negro-soft); margin-top: .15rem; }
 .ye-tienda .carrito-unitario { font-size: .8rem; color: var(--negro-soft); margin-top: .15rem; }
 .ye-tienda .carrito-cantidad {
@@ -399,7 +411,7 @@
 }
 .ye-tienda .resumen-items li { display: flex; justify-content: space-between; gap: 1rem; font-size: .85rem; color: var(--negro-soft); }
 .ye-tienda .resumen-fila { display: flex; justify-content: space-between; gap: 1rem; font-size: .9rem; padding: .3rem 0; }
-.ye-tienda .resumen-descuento { color: var(--verde); font-weight: 600; }
+.ye-tienda .resumen-descuento { color: var(--verde-oscuro); font-weight: 600; }
 .ye-tienda .resumen-total {
   display: flex; justify-content: space-between; align-items: baseline; gap: 1rem;
   border-top: 1px solid var(--border); margin-top: .75rem; padding-top: .85rem;
@@ -422,7 +434,7 @@
 .ye-tienda .paso { border: 1px solid var(--border); border-radius: 8px; padding: 1.6rem; }
 .ye-tienda .paso-titulo { font-size: 1.1rem; font-weight: 700; margin-bottom: 1.15rem; display: flex; align-items: center; gap: .7rem; }
 .ye-tienda .paso-num {
-  width: 27px; height: 27px; border-radius: 50%; background: var(--verde); color: var(--blanco);
+  width: 27px; height: 27px; border-radius: 50%; background: var(--verde-oscuro); color: var(--blanco);
   display: inline-flex; align-items: center; justify-content: center; font-size: .85rem; flex-shrink: 0;
 }
 .ye-tienda .paso-nota { font-size: .82rem; color: var(--negro-soft); margin-top: 1rem; }
@@ -434,7 +446,7 @@
   font-family: inherit; font-size: .9rem; color: var(--negro); background: var(--blanco);
 }
 .ye-tienda .campo input:focus, .ye-tienda .campo textarea:focus {
-  outline: none; border-color: var(--verde); box-shadow: 0 0 0 2px rgba(85, 100, 63, .15);
+  outline: none; border-color: var(--verde); box-shadow: 0 0 0 2px rgba(93, 107, 76, .2);
 }
 .ye-tienda .campo textarea { resize: vertical; }
 
@@ -451,7 +463,7 @@
 .ye-tienda .opcion-card-detalle { display: block; font-size: .8rem; color: var(--negro-soft); margin-top: .1rem; }
 .ye-tienda .opcion-card-precio { font-family: var(--font-spartan), sans-serif; font-weight: 700; font-size: .92rem; white-space: nowrap; }
 .ye-tienda .opcion-card-badge {
-  background: var(--verde); color: var(--blanco); font-size: .7rem; font-weight: 700;
+  background: var(--verde-oscuro); color: var(--blanco); font-size: .7rem; font-weight: 700;
   padding: .2rem .55rem; border-radius: 3px; white-space: nowrap;
   font-family: var(--font-spartan), sans-serif;
 }
@@ -536,7 +548,7 @@
 .ye-tienda .pasos-lista { display: flex; flex-direction: column; gap: .85rem; margin-bottom: 1.5rem; }
 .ye-tienda .pasos-lista li { display: flex; gap: .85rem; align-items: flex-start; font-size: .95rem; color: var(--negro-soft); line-height: 1.7; }
 .ye-tienda .pasos-num {
-  width: 26px; height: 26px; border-radius: 50%; background: var(--verde); color: var(--blanco);
+  width: 26px; height: 26px; border-radius: 50%; background: var(--verde-oscuro); color: var(--blanco);
   display: flex; align-items: center; justify-content: center; flex-shrink: 0;
   font-family: var(--font-spartan), sans-serif; font-weight: 700; font-size: .82rem; margin-top: 1px;
 }
@@ -578,4 +590,55 @@
   .ye-tienda .pilares-grid { grid-template-columns: 1fr; }
   .ye-tienda .atajos { grid-template-columns: 1fr; }
   .ye-tienda .cats-grid { grid-template-columns: 1fr 1fr; }
+}
+
+/* ── AJUSTES SEGUN LO QUE DEFINIO ANITA ─────────────────────────────────── */
+
+/* Banner y ofertas: media medida mas de alto (cambios 1 y 2). */
+.ye-tienda .banner { padding: 5.25rem 1.5rem; }
+.ye-tienda .oferta { padding: 2.25rem 1.5rem; }
+
+/* Carriles con flechas en ambos extremos (cambios 3 y 4). */
+.ye-tienda .carril-envoltorio { position: relative; }
+.ye-tienda .carril-flecha {
+  position: absolute; top: 50%; transform: translateY(-50%); z-index: 3;
+  width: 38px; height: 38px; border-radius: 50%;
+  background: var(--blanco); border: 1px solid var(--border);
+  color: var(--negro); cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  box-shadow: var(--shadow); transition: background .15s, opacity .15s;
+}
+.ye-tienda .carril-flecha:hover:not(:disabled) { background: var(--beige); }
+.ye-tienda .carril-flecha:disabled { opacity: .35; cursor: default; }
+.ye-tienda .carril-flecha-izq { left: -10px; }
+.ye-tienda .carril-flecha-der { right: -10px; }
+.ye-tienda .fila-carril { scroll-behavior: smooth; }
+.ye-tienda .categorias-fila { scroll-behavior: smooth; }
+
+/* Etiquetas apilables: un producto puede tener las dos a la vez. */
+.ye-tienda .prod-badges {
+  position: absolute; top: .6rem; left: .6rem; z-index: 2;
+  display: flex; flex-direction: column; gap: .3rem; align-items: flex-start;
+}
+.ye-tienda .prod-badge {
+  font-family: var(--font-spartan), sans-serif;
+  font-size: .68rem; font-weight: 700; letter-spacing: .04em;
+  padding: .22rem .6rem; border-radius: 3px; white-space: nowrap;
+}
+.ye-tienda .badge-oferta { background: var(--verde-oscuro); color: var(--blanco); }
+.ye-tienda .badge-vendido { background: var(--amarillo); color: #4a3e1c; }
+.ye-tienda .galeria-principal { position: relative; }
+
+/* Jerarquia de texto: el oscuro de marca (#6f6a63) para el cuerpo, un tono
+   mas profundo del mismo gris para titulos, que si no todo pesa igual. */
+.ye-tienda h1, .ye-tienda h2, .ye-tienda h3,
+.ye-tienda .prod-precio, .ye-tienda .ficha-precio,
+.ye-tienda .resumen-total, .ye-tienda .carrito-subtotal { color: var(--negro-fuerte); }
+
+@media (max-width: 600px) {
+  .ye-tienda .banner { padding: 3.5rem 1.25rem; }
+  .ye-tienda .oferta { padding: 1.5rem 1.25rem; }
+  .ye-tienda .carril-flecha { width: 32px; height: 32px; }
+  .ye-tienda .carril-flecha-izq { left: -6px; }
+  .ye-tienda .carril-flecha-der { right: -6px; }
 }

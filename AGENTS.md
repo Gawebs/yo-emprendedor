@@ -51,7 +51,17 @@ Enums: `producto_estado` (activo/inactivo/descontinuado), `venta_estado` (pendie
 
 **El contenido no depende de JS para verse.** El ocultamiento de las animaciones cuelga de `.reveal-activo`, clase que agrega `Reveal.tsx` al montar, más un rescate a los 2.5s si el observer nunca reporta. Sin eso, 72 elementos en `opacity:0` dejan la landing en blanco.
 
-**Branding de la landing:** amarillo `#e4c763` sobre beige `#fff7dc`, negro `#313131`, verde `#55643f`, dorado `#7d6210`. League Spartan para títulos y Open Sans para cuerpo, vía `next/font`.
+**Paleta oficial de marca** (brand kit de Canva, la dio Anita el 14-ago-2026): amarillo `#e2c76a`, verde `#7f8f6a`, blanco, y `#6f6a63` como oscuro. Son los que usa la tienda.
+
+El verde de marca da 3.5:1 con texto blanco encima, así que no sirve para botones con texto: para eso está `--verde-oscuro` (`#5d6b4c`), del mismo tono pero legible. El color que se ve sigue siendo el de Anita; el oscuro aparece solo donde hay palabras.
+
+**Los 9 rubros** los fijó Anita: Belleza, Accesorios, Infantiles, Hogar, Deco, Blanquería, Té y aromas, Regalos e Indumentaria. Antes de esa corrección circulaban otras listas (11 rubros, y una de bazar/regalería); esta es la buena.
+
+**Qué atributos muestra cada rubro** está en `ATRIBUTOS_POR_RUBRO` (`src/components/tienda/data.ts`). Un collar no tiene talle y una vela no tiene talle pero sí aroma: la ficha arma los selectores desde ahí, no con un formulario fijo.
+
+**El comprador nunca ve de qué marca es un producto** — ni en la home, ni en la categoría, ni en la ficha, ni en el carrito. Anita lo decidió porque si el cliente identifica la marca, la busca en Instagram y la próxima vez le compra directo, salteándose la plataforma. La marca sí puede aparecer en la confirmación del pedido ("Preparado por…"), donde la venta ya está cerrada. `pedido_items.emprendedor_id` se guarda igual, para liquidar.
+
+**Branding de la landing de planes** (`/quiero-vender`): amarillo `#e4c763` sobre beige `#fff7dc`, negro `#313131`, verde `#55643f`, dorado `#7d6210`. League Spartan para títulos y Open Sans para cuerpo, vía `next/font`.
 
 El amarillo de marca es solo para fondos y para texto sobre negro: sobre blanco da 1.7:1. Para texto sobre superficies claras va `--dorado`. El verde original del diseño (`#7f8f6a`) daba 3.2:1 y se oscureció a `#55643f`.
 

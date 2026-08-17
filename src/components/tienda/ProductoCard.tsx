@@ -5,7 +5,13 @@ export function ProductoCard({ producto }: { producto: Producto }) {
   return (
     <Link href={`/producto/${producto.slug}`} className="prod">
       <div className="prod-foto">
-        {producto.etiqueta && <span className="prod-etiqueta">{producto.etiqueta}</span>}
+        {/* Un producto puede llevar las dos etiquetas, una o ninguna. */}
+        {(producto.oferta || producto.masVendido) && (
+          <div className="prod-badges">
+            {producto.oferta && <span className="prod-badge badge-oferta">Oferta</span>}
+            {producto.masVendido && <span className="prod-badge badge-vendido">Más vendido</span>}
+          </div>
+        )}
         {/* Sin foto todavia: el bloque gris hace de marcador hasta que haya imagenes reales. */}
       </div>
       <div className="prod-cuerpo">

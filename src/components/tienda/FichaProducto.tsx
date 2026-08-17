@@ -38,7 +38,14 @@ export function FichaProducto({ producto }: { producto: ProductoDetalle }) {
   return (
     <div className="ficha">
       <div>
-        <div className="galeria-principal" />
+        <div className="galeria-principal">
+          {(producto.oferta || producto.masVendido) && (
+            <div className="prod-badges">
+              {producto.oferta && <span className="prod-badge badge-oferta">Oferta</span>}
+              {producto.masVendido && <span className="prod-badge badge-vendido">Más vendido</span>}
+            </div>
+          )}
+        </div>
         <div className="galeria-minis">
           {Array.from({ length: FOTOS_MINIATURA }, (_, i) => (
             <button

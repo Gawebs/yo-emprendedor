@@ -1,6 +1,25 @@
 import Link from 'next/link';
-import { Instagram, Facebook, Mail, Phone, MapPin } from 'lucide-react';
+import { Instagram, Facebook, Youtube, Mail, Phone, MapPin } from 'lucide-react';
+import { IconoWhatsapp } from '@/components/landing/IconoWhatsapp';
 import { CONTACTO } from './data';
+
+/** lucide no trae TikTok, asi que va aparte igual que WhatsApp. */
+function IconoTiktok({ size = 17 }: { size?: number }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false">
+      <path d="M16.6 5.82A4.28 4.28 0 0 1 15.54 3h-3.09v12.4a2.59 2.59 0 0 1-2.59 2.5 2.59 2.59 0 0 1 0-5.18c.27 0 .52.04.77.12v-3.2a5.8 5.8 0 0 0-.77-.05A5.72 5.72 0 0 0 4.15 15.3a5.72 5.72 0 0 0 5.71 5.7 5.72 5.72 0 0 0 5.72-5.7V9.01a7.35 7.35 0 0 0 4.27 1.37V7.3a4.25 4.25 0 0 1-3.25-1.48z" />
+    </svg>
+  );
+}
+
+/** Las cinco que pidio Anita, en ese orden. */
+const REDES = [
+  { nombre: 'Instagram', href: CONTACTO.instagram, Icono: Instagram },
+  { nombre: 'Facebook', href: CONTACTO.facebook, Icono: Facebook },
+  { nombre: 'TikTok', href: CONTACTO.tiktok, Icono: IconoTiktok },
+  { nombre: 'YouTube', href: CONTACTO.youtube, Icono: Youtube },
+  { nombre: 'WhatsApp', href: `https://wa.me/${CONTACTO.whatsappNumero}`, Icono: IconoWhatsapp },
+];
 
 const INSTITUCIONAL = [
   { href: '/', label: 'Inicio' },
@@ -56,12 +75,12 @@ export function TiendaFooter() {
           <div>
             <h2 className="pie-titulo">Conocenos</h2>
             <div className="pie-redes">
-              <a href={CONTACTO.instagram} className="pie-red" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
-                <Instagram size={17} aria-hidden="true" />
-              </a>
-              <a href={CONTACTO.instagram} className="pie-red" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
-                <Facebook size={17} aria-hidden="true" />
-              </a>
+              {REDES.map(({ nombre, href, Icono }) => (
+                <a key={nombre} href={href} className="pie-red" target="_blank"
+                   rel="noopener noreferrer" aria-label={nombre}>
+                  <Icono size={17} />
+                </a>
+              ))}
             </div>
             <p className="pie-news">Enterate antes que nadie</p>
             <form className="pie-form">

@@ -2,6 +2,7 @@ import Link from 'next/link';
 import { Truck, CreditCard, Store } from 'lucide-react';
 import { ProductoCard } from '@/components/tienda/ProductoCard';
 import { BannerCarrusel } from '@/components/tienda/BannerCarrusel';
+import { Carril } from '@/components/tienda/Carril';
 import {
   CATEGORIAS,
   OFERTAS_DIA,
@@ -40,7 +41,7 @@ export default function TiendaHome() {
 
       <section className="categorias" aria-label="Categorías">
         <div className="contenedor">
-          <div className="categorias-fila">
+          <Carril className="categorias-fila" etiqueta="rubros">
             {CATEGORIAS.map(({ slug, nombre, icono: Icono }) => (
               <Link key={slug} href={`/categoria/${slug}`} className="categoria">
                 <span className="categoria-circulo">
@@ -49,7 +50,7 @@ export default function TiendaHome() {
                 <span className="categoria-nombre">{nombre}</span>
               </Link>
             ))}
-          </div>
+          </Carril>
         </div>
       </section>
 
@@ -60,11 +61,11 @@ export default function TiendaHome() {
               <h2 className="fila-titulo" id={`fila-${slug}`}>{nombreCategoria(slug)}</h2>
               <Link href={`/categoria/${slug}`} className="fila-vertodo">ver todo</Link>
             </div>
-            <div className="fila-carril">
+            <Carril className="fila-carril" etiqueta={`productos de ${nombreCategoria(slug).toLowerCase()}`}>
               {productosDe(slug).map((producto) => (
                 <ProductoCard key={producto.slug} producto={producto} />
               ))}
-            </div>
+            </Carril>
           </section>
         ))}
       </div>

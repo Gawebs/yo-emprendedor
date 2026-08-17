@@ -642,3 +642,52 @@
   .ye-tienda .carril-flecha-izq { left: -6px; }
   .ye-tienda .carril-flecha-der { right: -6px; }
 }
+
+/* ── CRUCE ENTRE SECCIONES ──────────────────────────────────────────────── */
+/* La puerta a la otra seccion vive en la barra fija, no al pie de la pagina. */
+
+.ye-tienda .btn-vender {
+  display: inline-flex; align-items: center; white-space: nowrap;
+  border: 1px solid var(--verde-oscuro); color: var(--verde-oscuro);
+  background: transparent; border-radius: 999px; padding: .55rem 1.15rem;
+  font-family: var(--font-spartan), 'League Spartan', sans-serif;
+  font-size: .85rem; font-weight: 700; transition: background .15s, color .15s;
+}
+.ye-tienda .btn-vender:hover { background: var(--verde-oscuro); color: var(--blanco); }
+
+/* ── MENU EN CELULAR ────────────────────────────────────────────────────── */
+.ye-tienda .menu-fondo {
+  position: fixed; inset: 0; z-index: 60; border: none; padding: 0;
+  background: rgba(70, 66, 61, .45); cursor: pointer;
+}
+.ye-tienda .menu-movil {
+  position: fixed; top: 0; right: 0; bottom: 0; z-index: 61;
+  width: min(84vw, 320px); background: var(--blanco);
+  border-left: 1px solid var(--border); padding: 5.5rem 1.5rem 2rem;
+  display: flex; flex-direction: column; gap: .25rem;
+  overflow-y: auto;
+}
+.ye-tienda .menu-movil ul { display: flex; flex-direction: column; }
+.ye-tienda .menu-movil ul a {
+  display: block; padding: .95rem .25rem; font-size: 1rem; color: var(--negro);
+  border-bottom: 1px solid var(--border);
+}
+.ye-tienda .menu-movil ul a:hover { color: var(--verde-oscuro); }
+.ye-tienda .menu-vender {
+  display: flex; align-items: center; justify-content: center; gap: .5rem;
+  margin-top: 1.5rem; padding: .9rem 1rem; border-radius: 6px;
+  background: var(--verde-oscuro); color: var(--blanco);
+  font-family: var(--font-spartan), 'League Spartan', sans-serif;
+  font-size: .92rem; font-weight: 700;
+}
+.ye-tienda .menu-vender:hover { background: var(--verde-mid); }
+
+@media (max-width: 1080px) {
+  /* Con poco ancho el boton de texto aprieta al resto; en celular la puerta
+     a "quiero vender" queda dentro del menu. */
+  .ye-tienda .btn-vender { display: none; }
+}
+@media (min-width: 901px) {
+  .ye-tienda .menu-movil, .ye-tienda .menu-fondo { display: none; }
+}
+

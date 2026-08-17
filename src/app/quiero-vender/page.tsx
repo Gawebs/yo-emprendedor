@@ -1,5 +1,6 @@
+import Link from 'next/link';
 import Image from 'next/image';
-import { Check, MapPin, Phone, Mail, Instagram } from 'lucide-react';
+import { Check, MapPin, Phone, Mail, Instagram, Store } from 'lucide-react';
 import { Reveal } from '@/components/landing/Reveal';
 import { Faq } from '@/components/landing/Faq';
 import { FormContacto } from '@/components/landing/FormContacto';
@@ -43,12 +44,21 @@ export default function Home() {
     <div className="ye-landing">
       <Reveal />
 
+      {/* El logo vuelve a la tienda, que es la home real del sitio, y el link
+          a la tienda vive en la barra fija: antes la unica salida estaba en el
+          CTA del final y habia que scrollear toda la pagina para encontrarla. */}
       <nav>
         <div className="nav-inner">
-          <a className="nav-logo" href="#hero" aria-label="Yo Emprendedor, inicio">
+          <Link className="nav-logo" href="/" aria-label="Yo Emprendedor, ir a la tienda">
             <Image src="/logo-web.png" alt="Yo Emprendedor" width={1467} height={558} priority />
-          </a>
-          <a href="#plans" className="nav-cta">Ver planes</a>
+          </Link>
+          <div className="nav-acciones">
+            <Link href="/" className="nav-tienda">
+              <Store size={16} aria-hidden="true" />
+              Ver tienda
+            </Link>
+            <a href="#plans" className="nav-cta">Ver planes</a>
+          </div>
         </div>
       </nav>
 
@@ -505,7 +515,7 @@ export default function Home() {
               <IconoWhatsapp size={16} style={{ verticalAlign: 'middle', marginRight: '.5rem' }} />
               WhatsApp
             </a>
-            <a href="/" className="btn-ghost">Ver tienda online</a>
+            <Link href="/" className="btn-ghost">Ver tienda online</Link>
             <a href="#plans" className="btn-ghost">Ver planes</a>
           </div>
           <div className="cta-contact">

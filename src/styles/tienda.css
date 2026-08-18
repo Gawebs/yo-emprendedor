@@ -806,3 +806,37 @@
   .ye-tienda .buscador-panel { margin: 0; border-radius: 0; max-height: 100vh; height: 100vh; }
   .ye-tienda .gift-fila { flex-direction: column; }
 }
+
+/* ── TABLA RESUMEN DE ENVIOS ────────────────────────────────────────────── */
+.ye-tienda .tabla-wrap { overflow-x: auto; margin-bottom: 3rem; }
+.ye-tienda .tabla-envios { width: 100%; border-collapse: collapse; font-size: .88rem; min-width: 560px; }
+.ye-tienda .tabla-envios th {
+  text-align: left; padding: .8rem 1rem; background: var(--verde-light); color: #2f3b22;
+  font-family: var(--font-spartan), sans-serif; font-size: .75rem; font-weight: 700;
+  letter-spacing: .08em; text-transform: uppercase;
+}
+.ye-tienda .tabla-envios td {
+  padding: .8rem 1rem; border-bottom: 1px solid var(--border); color: var(--negro-soft);
+  vertical-align: top;
+}
+.ye-tienda .tabla-envios tr:last-child td { border-bottom: none; }
+.ye-tienda .tabla-envios strong { color: var(--negro-fuerte); font-weight: 600; }
+
+@media (max-width: 640px) {
+  /* En celular la tabla pasa a tarjetas: 4 columnas no entran y obligar a
+     scrollear de costado para leer un precio es peor que apilar. */
+  .ye-tienda .tabla-envios { min-width: 0; }
+  .ye-tienda .tabla-envios thead { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+  .ye-tienda .tabla-envios tr {
+    display: block; border: 1px solid var(--border); border-radius: 6px;
+    padding: .5rem .25rem; margin-bottom: .85rem;
+  }
+  .ye-tienda .tabla-envios td {
+    display: flex; justify-content: space-between; gap: 1rem;
+    border-bottom: none; padding: .4rem 1rem; text-align: right;
+  }
+  .ye-tienda .tabla-envios td::before {
+    content: attr(data-etiqueta); font-weight: 600; color: var(--negro-fuerte);
+    text-align: left; flex-shrink: 0;
+  }
+}

@@ -12,13 +12,36 @@ This block is written and re-added by `next dev` — verify at `node_modules/nex
 
 Marketplace B2C más dashboard para emprendedores, para **Anita** (pareja de Ale). Local físico en 24 de Septiembre 734, San Miguel de Tucumán. Contacto: yoemprendedortucuman@gmail.com, +54 381 214-6172.
 
-## Estado real (11-ago-2026)
+## Estado real (19-ago-2026)
 
-Deployado en **yo-emprendedor.vercel.app** y funcionando, pero **con datos mock**: no hay `.env.local`, solo `.env.local.example`, así que Supabase todavía no está conectado. Las páginas de productos usan datos falsos.
+Deployado en **yo-emprendedor.vercel.app**. Repo: `Gawebs/yo-emprendedor`.
 
-Repo: `Gawebs/yo-emprendedor`.
+El sitio tiene **dos secciones**, y esa división es la clave para entenderlo:
 
-Lo que falta para producción real: crear el proyecto de Supabase, correr el schema (`npm run db:push`), completar la integración de auth en las Server Actions y cablear las páginas a datos reales.
+1. **La tienda**, en la raíz (`/`). Es el canal de ventas y la puerta de entrada.
+2. **La sección de emprendedoras**, en `/quiero-vender`. Vende los planes.
+
+Está **todo con datos mock**: no hay `.env.local`, Supabase no está conectado y no cobra. Los pedidos y las cuentas se guardan en `localStorage`, así que solo existen en el navegador de quien los creó — decisión consciente mientras sea demo.
+
+Lo que falta para producción: crear el proyecto de Supabase, correr las migraciones, reemplazar `CuentaContext` por Supabase Auth, cablear las páginas a datos reales e integrar Mercado Pago.
+
+## Fuente de verdad del contenido
+
+Los textos, políticas y decisiones de negocio salen de los documentos que redactó **Anita**, en `Downloads/YO EMPRENDEDOR/Políticas y protocolos/`. **Mandan los documentos**, no lo que se haya decidido sobre la marcha para avanzar: ya pasó dos veces que el checkout hacía lo contrario de lo que decían sus propios términos.
+
+De ahí salieron dos correcciones que conviene no revertir sin leerlos:
+
+- **La tienda online no acepta efectivo** (Términos, sección 14). El efectivo es solo para compras presenciales en el local. Por eso el 10% de descuento quedó atado a la transferencia.
+- **Hay que registrarse para comprar** (Términos, sección 5). El checkout redirige a `/auth/login?volver=/checkout` y al volver prellena los datos de la cuenta.
+
+## Verificaciones
+
+```bash
+npm run prueba:precios   # 15 casos sobre las reglas de precio
+npx tsc --noEmit         # strict: true desde el 19-ago-2026
+```
+
+Las reglas de precio viven en `src/lib/tienda/precios.ts`, separadas de la UI, y son lo más fácil de romper sin darse cuenta: el umbral de envío gratis, el 10%, y el cruce con la gift card (que no se combina con promociones ni paga envío).
 
 ## Stack y patrones
 

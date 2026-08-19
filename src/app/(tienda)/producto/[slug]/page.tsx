@@ -8,6 +8,7 @@ import {
   relacionadosDe,
   nombreCategoria,
   PRODUCTOS,
+  rubroPrincipal,
 } from '@/components/tienda/data';
 
 // En Next 16 los params de ruta llegan como Promise.
@@ -33,14 +34,14 @@ export default async function ProductoPage({ params }: Props) {
   const producto = productoDetalle(slug);
   if (!producto) notFound();
 
-  const relacionados = relacionadosDe(slug, producto.categoria);
+  const relacionados = relacionadosDe(slug, rubroPrincipal(producto));
 
   return (
     <div className="contenedor">
       <nav className="miga" aria-label="Miga de pan">
         <Link href="/">Home</Link>
         <span className="miga-sep">/</span>
-        <Link href={`/categoria/${producto.categoria}`}>{nombreCategoria(producto.categoria)}</Link>
+        <Link href={`/categoria/${rubroPrincipal(producto)}`}>{nombreCategoria(rubroPrincipal(producto))}</Link>
         <span className="miga-sep">/</span>
         <span>{producto.nombre}</span>
       </nav>

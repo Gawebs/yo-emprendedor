@@ -840,3 +840,52 @@
     text-align: left; flex-shrink: 0;
   }
 }
+
+/* ── SUBRUBROS EN LA PAGINA DE CATEGORIAS ───────────────────────────────── */
+.ye-tienda .cats-lista { display: flex; flex-direction: column; gap: 1.25rem; padding-bottom: 3rem; }
+.ye-tienda .cat-bloque {
+  border: 1px solid var(--border); border-radius: 8px; padding: 1.5rem;
+  background: var(--blanco);
+}
+.ye-tienda .cat-bloque-head {
+  display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem;
+}
+.ye-tienda .cat-bloque-head:hover .cat-card-nombre { color: var(--verde-oscuro); }
+.ye-tienda .cat-bloque-head .categoria-circulo { width: 48px; height: 48px; margin: 0; flex-shrink: 0; }
+.ye-tienda .cat-bloque .cat-card-nombre { display: block; font-size: 1.05rem; font-weight: 700; }
+.ye-tienda .cat-bloque .cat-card-cuenta { display: block; }
+.ye-tienda .subrubros { display: flex; flex-wrap: wrap; gap: .5rem; }
+.ye-tienda .subrubros a {
+  display: inline-block; font-size: .82rem; color: var(--negro-soft);
+  border: 1px solid var(--border); border-radius: 999px; padding: .35rem .85rem;
+  transition: border-color .15s, color .15s;
+}
+.ye-tienda .subrubros a:hover { border-color: var(--verde-oscuro); color: var(--verde-oscuro); }
+.ye-tienda .cat-nota { font-size: .82rem; color: var(--negro-soft); line-height: 1.6; font-style: italic; }
+
+/* ── BOTON DE ARREPENTIMIENTO ───────────────────────────────────────────── */
+.ye-tienda .pie-arrepentimiento {
+  border-top: 1px solid var(--border); margin-top: 2rem; padding-top: 1.5rem;
+  display: flex; flex-direction: column; align-items: center; gap: .5rem; text-align: center;
+}
+.ye-tienda .btn-arrepentimiento {
+  display: inline-flex; align-items: center; gap: .55rem;
+  border: 2px solid var(--negro-fuerte); color: var(--negro-fuerte);
+  border-radius: 6px; padding: .8rem 1.6rem;
+  font-family: var(--font-spartan), 'League Spartan', sans-serif;
+  font-size: .95rem; font-weight: 700;
+  transition: background .15s, color .15s;
+}
+.ye-tienda .btn-arrepentimiento:hover { background: var(--negro-fuerte); color: var(--blanco); }
+.ye-tienda .pie-arrepentimiento-nota { font-size: .8rem; color: var(--negro-soft); max-width: 460px; line-height: 1.5; }
+
+.ye-tienda .arrep-form { max-width: 720px; margin-bottom: 2rem; }
+.ye-tienda .arrep-enviado {
+  max-width: 720px; margin-bottom: 2rem; padding: 1.75rem;
+  background: var(--verde-light); border-radius: 8px;
+}
+
+@media (max-width: 600px) {
+  .ye-tienda .cat-bloque { padding: 1.15rem; }
+  .ye-tienda .btn-arrepentimiento { font-size: .88rem; padding: .7rem 1.15rem; }
+}

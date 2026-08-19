@@ -21,19 +21,37 @@ export default function CategoriasPage() {
         <p className="cat-cuenta">{CATEGORIAS.length} categorías para explorar</p>
       </header>
 
-      <div className="cats-grid">
-        {CATEGORIAS.map(({ slug, nombre, icono: Icono }) => {
+      <div className="cats-lista">
+        {CATEGORIAS.map(({ slug, nombre, icono: Icono, sub, nota }) => {
           const cuenta = productosDe(slug).length;
           return (
-            <Link href={`/categoria/${slug}`} className="cat-card" key={slug}>
-              <span className="categoria-circulo">
-                <Icono size={26} strokeWidth={1.75} aria-hidden="true" />
-              </span>
-              <span className="cat-card-nombre">{nombre}</span>
-              <span className="cat-card-cuenta">
-                {cuenta === 0 ? 'Próximamente' : `${cuenta} ${cuenta === 1 ? 'producto' : 'productos'}`}
-              </span>
-            </Link>
+            <section className="cat-bloque" key={slug}>
+              <Link href={`/categoria/${slug}`} className="cat-bloque-head">
+                <span className="categoria-circulo">
+                  <Icono size={24} strokeWidth={1.75} aria-hidden="true" />
+                </span>
+                <span>
+                  <span className="cat-card-nombre">{nombre}</span>
+                  <span className="cat-card-cuenta">
+                    {cuenta === 0 ? 'Próximamente' : `${cuenta} ${cuenta === 1 ? 'producto' : 'productos'}`}
+                  </span>
+                </span>
+              </Link>
+
+              {sub.length > 0 && (
+                <ul className="subrubros">
+                  {sub.map((s) => (
+                    <li key={s}>
+                      {/* Los subrubros todavia no filtran solos: llevan al rubro
+                          hasta que los productos tengan subrubro cargado. */}
+                      <Link href={`/categoria/${slug}`}>{s}</Link>
+                    </li>
+                  ))}
+                </ul>
+              )}
+
+              {nota && <p className="cat-nota">{nota}</p>}
+            </section>
           );
         })}
       </div>

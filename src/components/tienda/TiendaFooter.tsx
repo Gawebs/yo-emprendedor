@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { Instagram, Facebook, Youtube, Mail, Phone, MapPin } from 'lucide-react';
+import { Instagram, Facebook, Youtube, Mail, Phone, MapPin, RotateCcw } from 'lucide-react';
 import { IconoWhatsapp } from '@/components/landing/IconoWhatsapp';
 import { CONTACTO } from './data';
 
@@ -28,6 +28,8 @@ const INSTITUCIONAL = [
   { href: '/terminos', label: 'Términos y condiciones' },
   { href: '/privacidad', label: 'Política de privacidad' },
   { href: '/cambios', label: 'Cambios y devoluciones' },
+  { href: '/envios', label: 'Envíos y entregas' },
+  { href: '/formas-de-pago', label: 'Formas de pago' },
 ];
 
 export function TiendaFooter() {
@@ -89,6 +91,18 @@ export function TiendaFooter() {
               <button type="submit" className="pie-btn">Sumarme</button>
             </form>
           </div>
+        </div>
+
+        {/* La Resolucion 424/2020 exige que el boton de arrepentimiento este
+            accesible desde la home, destacado en visibilidad y tamaño. */}
+        <div className="pie-arrepentimiento">
+          <Link href="/arrepentimiento" className="btn-arrepentimiento">
+            <RotateCcw size={17} aria-hidden="true" />
+            Botón de arrepentimiento
+          </Link>
+          <p className="pie-arrepentimiento-nota">
+            Cancelá tu compra dentro de los 10 días de recibida, sin costo y sin explicar el motivo.
+          </p>
         </div>
 
         <p className="pie-legal">

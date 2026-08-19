@@ -28,7 +28,7 @@ export function FichaProducto({ producto }: { producto: ProductoDetalle }) {
       slug: producto.slug,
       nombre: producto.nombre,
       precio: producto.precio,
-      categoria: producto.categoria,
+      categoria: producto.categorias[0],
       marca: producto.marca,
       detalle: detalle || undefined,
     });

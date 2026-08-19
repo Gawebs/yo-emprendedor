@@ -25,7 +25,7 @@ export function buscarProductos(consulta: string, limite?: number): Resultado[] 
   if (!palabras.length) return [];
 
   const encontrados = PRODUCTOS.filter((p) => {
-    const heno = normalizar(`${p.nombre} ${nombreCategoria(p.categoria)}`);
+    const heno = normalizar(`${p.nombre} ${p.categorias.map(nombreCategoria).join(' ')}`);
     return palabras.every((palabra) => heno.includes(palabra));
   });
 
@@ -38,7 +38,7 @@ export function buscarProductos(consulta: string, limite?: number): Resultado[] 
     return a.nombre.localeCompare(b.nombre, 'es');
   });
 
-  const conRubro = ordenados.map((p) => ({ ...p, rubro: nombreCategoria(p.categoria) }));
+  const conRubro = ordenados.map((p) => ({ ...p, rubro: nombreCategoria(p.categorias[0]) }));
   return limite ? conRubro.slice(0, limite) : conRubro;
 }
 

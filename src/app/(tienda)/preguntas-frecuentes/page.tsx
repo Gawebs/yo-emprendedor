@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import type { Metadata } from 'next';
-import { COMO_COMPRAR } from '@/components/tienda/politicas';
+import { COMO_COMPRAR, PREGUNTAS } from '@/components/tienda/politicas';
 import { CONTACTO } from '@/components/tienda/data';
 
 export const metadata: Metadata = {
@@ -9,7 +9,7 @@ export const metadata: Metadata = {
 };
 
 const ATAJOS = [
-  { href: '/formas-de-pago', titulo: 'Formas de pago', texto: 'Mercado Pago, transferencia y efectivo' },
+  { href: '/formas-de-pago', titulo: 'Formas de pago', texto: 'Mercado Pago, transferencia y efectivo en el local' },
   { href: '/envios', titulo: 'Envíos y entregas', texto: 'Modalidades, costos y plazos' },
   { href: '/cambios', titulo: 'Cambios y devoluciones', texto: 'Plazos y condiciones' },
   { href: '/gift-card', titulo: 'Gift Card', texto: 'Vigencia y cómo usarla' },
@@ -40,22 +40,18 @@ export default function PreguntasPage() {
           ))}
         </ol>
 
-        <h2 className="legal-h2">¿Necesito crear una cuenta?</h2>
-        <p className="legal-p">
-          No hace falta. Podés comprar dejando tu nombre, email y teléfono. Te avisamos por
-          email cómo sigue tu pedido.
-        </p>
+        {PREGUNTAS.map(({ q, a }) => (
+          <div key={q}>
+            <h2 className="legal-h2">{q}</h2>
+            <p className="legal-p">{a}</p>
+          </div>
+        ))}
 
-        <h2 className="legal-h2">¿Los productos son de una sola marca?</h2>
         <p className="legal-p">
-          No. Reunimos productos de distintos emprendimientos locales en un mismo catálogo.
-          Podés conocerlos en <Link href="/marcas" className="legal-link">Marcas que nos acompañan</Link>.
-        </p>
-
-        <h2 className="legal-h2">¿Puedo retirar sin pagar envío?</h2>
-        <p className="legal-p">
-          Sí. El retiro en nuestro local de {CONTACTO.direccion} es sin costo. Te avisamos
-          cuando el pedido esté preparado.
+          Podés conocer las marcas en{' '}
+          <Link href="/marcas" className="legal-link">Marcas que nos acompañan</Link>, y ejercer el
+          derecho de arrepentimiento desde el{' '}
+          <Link href="/arrepentimiento" className="legal-link">Botón de arrepentimiento</Link>.
         </p>
       </article>
 

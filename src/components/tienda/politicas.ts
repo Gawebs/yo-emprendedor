@@ -56,6 +56,50 @@ export const COMO_COMPRAR = [
   'Te mantenemos al tanto del estado de tu pedido por email.',
 ];
 
+/** Las preguntas tal como las escribio Anita en su documento de FAQ. */
+export const PREGUNTAS: { q: string; a: string }[] = [
+  {
+    q: '¿Necesito crear una cuenta para comprar?',
+    a: 'Sí. Para completar una compra es necesario estar registrado, con tu nombre, email y teléfono. El registro es gratuito y no te obliga a comprar; podés crear tu cuenta en el mismo momento de finalizar el pedido.',
+  },
+  {
+    q: '¿Es seguro comprar en Yo Emprendedor?',
+    a: 'Sí. Tus pagos se procesan a través de plataformas seguras como Mercado Pago, y no almacenamos los datos completos de tu tarjeta.',
+  },
+  {
+    q: '¿Los productos son de una sola marca?',
+    a: 'No. Reunimos productos de distintos emprendimientos locales en un mismo catálogo.',
+  },
+  {
+    q: '¿Puedo comprar productos de varias marcas en un mismo pedido?',
+    a: 'Sí. Podés agregar productos de diferentes marcas a un mismo carrito. Hacés un único pago y recibís un único pedido — nosotros coordinamos internamente con cada emprendimiento.',
+  },
+  {
+    q: '¿Voy a recibir una sola factura o varias?',
+    a: 'Depende de cómo facture cada marca sus productos. Un pago único no siempre significa un único comprobante: a veces vas a recibir más de una factura para la misma compra.',
+  },
+  {
+    q: '¿Puedo hacer seguimiento de mi pedido?',
+    a: 'Sí. Te mantenemos al tanto del estado de tu pedido por email, y cuando el envío cuente con seguimiento del operador logístico, te compartimos esa información también.',
+  },
+  {
+    q: '¿Puedo cancelar un pedido después de confirmarlo?',
+    a: 'Sí. Tenés 10 días corridos desde que recibís tu compra para ejercer el derecho de arrepentimiento, sin necesidad de justificar el motivo, a través del Botón de arrepentimiento visible en el sitio.',
+  },
+  {
+    q: '¿Puedo retirar sin pagar envío?',
+    a: 'Sí. El retiro en nuestro local de 24 de Septiembre 734, San Miguel de Tucumán, es sin costo. Te avisamos cuando el pedido esté preparado.',
+  },
+  {
+    q: '¿Qué pasa si un producto que compré ya no tiene stock?',
+    a: 'Te contactamos para contarte la situación y ver la alternativa: sustitución, cancelación o reintegro del importe.',
+  },
+  {
+    q: '¿Las fotos son exactamente iguales al producto que voy a recibir?',
+    a: 'Procuramos que sí, aunque pueden existir pequeñas diferencias de color o terminación por la iluminación, la pantalla, o por tratarse de productos artesanales con variaciones propias de su elaboración.',
+  },
+];
+
 export const ENVIOS: Politica = {
   titulo: 'Envíos y entregas',
   bajada: 'Modalidades, costos, plazos y qué pasa en cada caso.',

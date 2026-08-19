@@ -1,16 +1,12 @@
 import type { Metadata } from 'next';
-import { EnPreparacion } from '@/components/tienda/EnPreparacion';
+import { PaginaPolitica } from '@/components/tienda/PaginaPolitica';
+import { TERMINOS } from '@/components/tienda/legales';
 
 export const metadata: Metadata = {
   title: 'Términos y condiciones — Yo Emprendedor',
-  description: 'Términos y condiciones de uso de la tienda de Yo Emprendedor.',
+  description: TERMINOS.bajada,
 };
 
 export default function TerminosPage() {
-  return (
-    <EnPreparacion
-      titulo="Términos y condiciones"
-      queEs="Son las condiciones generales que rigen las compras en la tienda."
-    />
-  );
+  return <PaginaPolitica politica={TERMINOS} />;
 }

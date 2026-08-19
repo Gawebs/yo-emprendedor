@@ -55,7 +55,11 @@ Enums: `producto_estado` (activo/inactivo/descontinuado), `venta_estado` (pendie
 
 El verde de marca da 3.5:1 con texto blanco encima, así que no sirve para botones con texto: para eso está `--verde-oscuro` (`#5d6b4c`), del mismo tono pero legible. El color que se ve sigue siendo el de Anita; el oscuro aparece solo donde hay palabras.
 
-**Los 9 rubros** los fijó Anita: Belleza, Accesorios, Infantiles, Hogar, Deco, Blanquería, Té y aromas, Regalos e Indumentaria. Antes de esa corrección circulaban otras listas (11 rubros, y una de bazar/regalería); esta es la buena.
+**Los 9 rubros definitivos** (19-ago-2026), con subrubros en `CATEGORIAS`: Hogar, Deco, Belleza y cosmética, Accesorios, Aromas y Tés, Indumentaria, Infantiles, Marroquinería y Regalería. Antes circularon otras listas — la de 11 rubros y una con Blanquería — que quedaron descartadas.
+
+**Un producto puede vivir en varios rubros.** Anita lo dejó por escrito, y Regalería es directamente una selección cruzada de los demás. Por eso `Producto.categorias` es una lista; el primer elemento es el rubro de origen y define los selectores de la ficha y los relacionados.
+
+**El Botón de Arrepentimiento es obligatorio por ley** (Resolución 424/2020): tiene que estar accesible desde la home, destacado en visibilidad y tamaño. Vive en `/arrepentimiento` y se enlaza desde el footer, que aparece en todas las páginas. Al recibir una solicitud hay que responder **dentro de las 24 horas** con un código de identificación del trámite — hoy la demo solo abre WhatsApp; cuando haya backend eso debe registrarse y dispararse solo.
 
 **Qué atributos muestra cada rubro** está en `ATRIBUTOS_POR_RUBRO` (`src/components/tienda/data.ts`). Un collar no tiene talle y una vela no tiene talle pero sí aroma: la ficha arma los selectores desde ahí, no con un formulario fijo.
 

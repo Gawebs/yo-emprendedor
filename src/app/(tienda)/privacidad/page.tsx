@@ -1,16 +1,12 @@
 import type { Metadata } from 'next';
-import { EnPreparacion } from '@/components/tienda/EnPreparacion';
+import { PaginaPolitica } from '@/components/tienda/PaginaPolitica';
+import { PRIVACIDAD } from '@/components/tienda/legales';
 
 export const metadata: Metadata = {
   title: 'Política de privacidad — Yo Emprendedor',
-  description: 'Cómo tratamos los datos personales de quienes compran en Yo Emprendedor.',
+  description: PRIVACIDAD.bajada,
 };
 
 export default function PrivacidadPage() {
-  return (
-    <EnPreparacion
-      titulo="Política de privacidad"
-      queEs="Explica qué datos pedimos al comprar, para qué los usamos y cómo los guardamos."
-    />
-  );
+  return <PaginaPolitica politica={PRIVACIDAD} />;
 }

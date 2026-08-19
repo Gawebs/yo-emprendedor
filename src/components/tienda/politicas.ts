@@ -363,9 +363,22 @@ export const FORMAS_DE_PAGO: Politica = {
     { tipo: 'parrafo', texto: 'También podés pagar mediante transferencia bancaria. Una vez realizada, será necesario enviar o informar el comprobante según el procedimiento indicado. Importante: el pedido no se considera confirmado únicamente por el envío del comprobante — la compra queda confirmada una vez que verificamos la acreditación del pago.' },
 
     { tipo: 'titulo', texto: '3. Efectivo' },
-    { tipo: 'parrafo', texto: 'Podés pagar en efectivo al retirar por el local, o contra entrega cuando el pedido va a tu domicilio.' },
+    { tipo: 'parrafo', texto: 'El efectivo está disponible como medio de pago para las compras realizadas presencialmente en nuestro local. Actualmente no contemplamos el pago en efectivo para las compras realizadas a través de la tienda online.' },
 
-    { tipo: 'destacado', texto: 'Pagando por transferencia o en efectivo tenés 10% de descuento. Con tarjeta, hasta 3 cuotas sin interés.' },
+    { tipo: 'titulo', texto: '¿Se puede pagar en cuotas?' },
+    { tipo: 'parrafo', texto: 'Las opciones de financiación dependen de las condiciones ofrecidas por Mercado Pago y de las promociones vigentes. Cuando existan cuotas sin interés se comunican junto con sus condiciones, y las opciones disponibles se muestran al momento de realizar la compra.' },
+
+    { tipo: 'titulo', texto: '¿Cuándo se confirma mi compra?' },
+    { tipo: 'lista', items: [
+      'Con Mercado Pago: la compra se procesa una vez que Mercado Pago confirma y aprueba el pago.',
+      'Con transferencia: el pedido se procesa una vez que verificamos la acreditación.',
+      'En efectivo: el pago se confirma al momento de comprar presencialmente en el local.',
+    ] },
+
+    { tipo: 'titulo', texto: 'Promociones y medios de pago' },
+    { tipo: 'parrafo', texto: 'Las promociones, descuentos y planes de financiación pueden estar sujetos a un medio de pago determinado, una tarjeta específica, una cantidad de cuotas, un período de vigencia, un monto mínimo u otras condiciones particulares, que se informan junto con cada promoción.' },
+
+    { tipo: 'destacado', texto: 'Pagando por transferencia tenés 10% de descuento en la tienda online. Con tarjeta, hasta 3 cuotas sin interés.' },
   ],
 };
 

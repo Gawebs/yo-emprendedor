@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { useEffect, useMemo, useState } from 'react';
 import { Check } from 'lucide-react';
 import { useCarrito } from '@/contexts/CarritoContext';
+import { useCuenta } from '@/contexts/CuentaContext';
 import {
   MODALIDADES,
   metodosPara,
@@ -22,6 +23,7 @@ const PROVINCIAS_SIN_ENVIO_LOCAL = 'Tucumán';
 export default function CheckoutPage() {
   const router = useRouter();
   const { items, subtotal, cargado, vaciar } = useCarrito();
+  const { cuenta, cargado: cuentaCargada } = useCuenta();
 
   const [modalidad, setModalidad] = useState<Modalidad>('retiro_local');
   const [metodo, setMetodo] = useState<MetodoPago>('mercadopago');
@@ -30,6 +32,25 @@ export default function CheckoutPage() {
     direccion: '', ciudad: '', provincia: PROVINCIAS_SIN_ENVIO_LOCAL, cp: '', notas: '',
   });
   const [enviando, setEnviando] = useState(false);
+
+  // Los Terminos (seccion 5) piden registro previo para comprar: sin sesion,
+  // el checkout manda a la cuenta y despues devuelve aca.
+  useEffect(() => {
+    if (cuentaCargada && !cuenta) {
+      router.replace('/auth/login?volver=%2Fcheckout');
+    }
+  }, [cuentaCargada, cuenta, router]);
+
+  // Los datos de contacto salen de la cuenta: ya los dio al registrarse.
+  useEffect(() => {
+    if (!cuenta) return;
+    setDatos((d) => ({
+      ...d,
+      nombre: d.nombre || cuenta.nombre,
+      email: d.email || cuenta.email,
+      telefono: d.telefono || cuenta.telefono,
+    }));
+  }, [cuenta]);
 
   const [codigoGift, setCodigoGift] = useState('');
   const [giftCard, setGiftCard] = useState<GiftCard | null>(null);
@@ -55,7 +76,6 @@ export default function CheckoutPage() {
   const metodosDisponibles = useMemo(() => metodosPara(modalidad), [modalidad]);
 
   // Si cambia la modalidad y el metodo elegido deja de tener sentido
-  // (efectivo en el local con envio a domicilio), se vuelve al primero valido.
   useEffect(() => {
     if (!metodosDisponibles.some((m) => m.id === metodo)) {
       setMetodo(metodosDisponibles[0].id);
@@ -93,6 +113,14 @@ export default function CheckoutPage() {
     vaciar();
     router.push(`/pedido/${numero}`);
   };
+
+  if (cuentaCargada && !cuenta) {
+    return (
+      <div className="contenedor">
+        <p className="vacio">Necesitás iniciar sesión para completar la compra…</p>
+      </div>
+    );
+  }
 
   if (cargado && items.length === 0) {
     return (
@@ -142,7 +170,7 @@ export default function CheckoutPage() {
                        placeholder="381 214 6172" />
               </div>
             </div>
-            <p className="paso-nota">Te avisamos por email cómo sigue tu pedido. No hace falta crear una cuenta.</p>
+            <p className="paso-nota">Salen de tu cuenta; podés corregirlos si hace falta. Te avisamos por email cómo sigue tu pedido.</p>
           </section>
 
           <section className="paso">

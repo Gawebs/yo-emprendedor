@@ -8,6 +8,7 @@ import { ShoppingBag, Menu, X, Store } from 'lucide-react';
 import { PROMOS } from './data';
 import { Buscador } from './Buscador';
 import { useCarrito } from '@/contexts/CarritoContext';
+import { useCuenta } from '@/contexts/CuentaContext';
 
 const LINKS = [
   { href: '/categorias', label: 'Categorías' },
@@ -19,6 +20,7 @@ const LINKS = [
 
 export function TiendaNav() {
   const { cantidadTotal, cargado } = useCarrito();
+  const { cuenta, salir } = useCuenta();
   const [menuAbierto, setMenuAbierto] = useState(false);
   const ruta = usePathname();
 
@@ -92,7 +94,16 @@ export function TiendaNav() {
               {menuAbierto ? <X size={20} aria-hidden="true" /> : <Menu size={20} aria-hidden="true" />}
             </button>
 
-            <Link href="/auth/login" className="btn-sesion">Iniciar sesión</Link>
+            {cuenta ? (
+              <div className="sesion">
+                <span className="sesion-nombre" title={cuenta.email}>
+                  Hola, {cuenta.nombre.split(' ')[0]}
+                </span>
+                <button type="button" className="sesion-salir" onClick={salir}>Salir</button>
+              </div>
+            ) : (
+              <Link href="/auth/login" className="btn-sesion">Iniciar sesión</Link>
+            )}
           </div>
         </nav>
       </header>

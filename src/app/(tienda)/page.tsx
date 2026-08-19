@@ -13,7 +13,7 @@ import {
 
 const SERVICIOS = [
   { icono: Truck, titulo: 'Envíos', texto: 'A todo el país' },
-  { icono: CreditCard, titulo: 'Medios de pago', texto: 'Tarjetas, transferencia y efectivo' },
+  { icono: CreditCard, titulo: 'Medios de pago', texto: 'Tarjetas y transferencia' },
   { icono: Store, titulo: 'Pickup gratis', texto: 'Retirá en San Miguel de Tucumán' },
 ];
 

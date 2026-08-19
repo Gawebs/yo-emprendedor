@@ -113,9 +113,12 @@ do $$ begin
     ('nuevo', 'preparando', 'listo', 'despachado', 'entregado', 'cancelado');
 exception when duplicate_object then null; end $$;
 
+-- La tienda online no acepta efectivo: los Terminos (seccion 14) lo reservan
+-- para las compras presenciales en el local. `efectivo_local` queda para
+-- registrar esas ventas del mostrador, que no pasan por el checkout.
 do $$ begin
   create type pago_metodo as enum
-    ('mercadopago', 'transferencia', 'efectivo_local', 'efectivo_contra_entrega');
+    ('mercadopago', 'transferencia', 'efectivo_local');
 exception when duplicate_object then null; end $$;
 
 do $$ begin
@@ -160,9 +163,10 @@ create table if not exists pedidos (
   constraint direccion_si_hay_envio check (
     modalidad = 'retiro_local' or (direccion is not null and ciudad is not null)
   ),
-  -- El efectivo contra entrega no tiene sentido si el cliente retira por el local.
-  constraint efectivo_coherente check (
-    metodo_pago <> 'efectivo_contra_entrega' or modalidad <> 'retiro_local'
+  -- El efectivo solo existe en el mostrador, asi que un pedido en efectivo
+  -- tiene que ser de los que se retiran por el local.
+  constraint efectivo_solo_presencial check (
+    metodo_pago <> 'efectivo_local' or modalidad = 'retiro_local'
   )
 );
 

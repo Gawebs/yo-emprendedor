@@ -150,7 +150,7 @@ export function FichaProducto({ producto }: { producto: ProductoDetalle }) {
           </p>
           <p className="ficha-bullet">
             <CreditCard size={18} aria-hidden="true" />
-            3 cuotas sin interés · 10% off efectivo
+            3 cuotas sin interés · 10% off por transferencia
           </p>
         </div>
       </div>

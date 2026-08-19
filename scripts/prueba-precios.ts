@@ -1,4 +1,4 @@
-import { calcularResumen, metodosPara } from '../src/lib/tienda/precios';
+import { calcularResumen, metodosPara, METODOS_PAGO } from '../src/lib/tienda/precios';
 
 const casos: { nombre: string; ok: boolean; detalle: string }[] = [];
 const chequear = (nombre: string, real: unknown, esperado: unknown) => {
@@ -27,15 +27,22 @@ chequear('200.000 no paga envio', calcularResumen(200000, 'envio_local', 'mercad
 chequear('200.000 marca el envio como bonificado', calcularResumen(200000, 'envio_local', 'mercadopago').envioBonificado, true);
 chequear('retiro local no cuenta como bonificado', calcularResumen(200000, 'retiro_local', 'mercadopago').envioBonificado, false);
 
-// 4. Coherencia entre entrega y pago.
-chequear('con retiro no se ofrece contra entrega',
+// 4. La tienda online no acepta efectivo: los Terminos (seccion 14) dicen que
+//    es exclusivo de las compras presenciales en el local.
+chequear('con retiro solo hay mercadopago y transferencia',
   metodosPara('retiro_local').map(m => m.id),
-  ['mercadopago', 'transferencia', 'efectivo_local']);
-chequear('con envio no se ofrece efectivo en el local',
-  metodosPara('envio_local').map(m => m.id),
-  ['mercadopago', 'transferencia', 'efectivo_contra_entrega']);
+  ['mercadopago', 'transferencia']);
+chequear('con envio solo hay mercadopago y transferencia',
+  metodosPara('envio_nacional').map(m => m.id),
+  ['mercadopago', 'transferencia']);
+chequear('ningun medio online es en efectivo',
+  METODOS_PAGO.some(m => m.id.includes('efectivo')), false);
 
-// 5. El total nunca queda negativo.
+// 5. El 10% queda atado a la transferencia, no al efectivo.
+chequear('transferencia descuenta 10%', calcularResumen(100000, 'retiro_local', 'transferencia').descuentoPago, 10000);
+chequear('mercadopago no descuenta', calcularResumen(100000, 'retiro_local', 'mercadopago').descuentoPago, 0);
+
+// 6. El total nunca queda negativo.
 chequear('gift card mayor al total no da negativo',
   calcularResumen(10000, 'retiro_local', 'mercadopago', 999999).total, 0);
 

@@ -11,7 +11,15 @@ export const DESCUENTO_EFECTIVO = 0.10;
 export const CUOTAS_SIN_INTERES = 3;
 
 export type Modalidad = 'retiro_local' | 'envio_local' | 'envio_interior' | 'envio_nacional';
-export type MetodoPago = 'mercadopago' | 'transferencia' | 'efectivo_local' | 'efectivo_contra_entrega';
+
+/**
+ * La tienda online NO acepta efectivo. Los Terminos y Condiciones (seccion 14)
+ * y el checklist de Formas de Pago lo dicen expresamente: el efectivo es
+ * exclusivamente para compras presenciales en el local. Antes el checkout
+ * ofrecia efectivo al retirar y contra entrega, prometiendo algo que los
+ * propios terminos niegan.
+ */
+export type MetodoPago = 'mercadopago' | 'transferencia';
 
 export const MODALIDADES: {
   id: Modalidad; nombre: string; detalle: string; costo: number; demora: string;
@@ -25,23 +33,16 @@ export const MODALIDADES: {
 export const METODOS_PAGO: {
   id: MetodoPago; nombre: string; detalle: string; conDescuento: boolean;
 }[] = [
-  { id: 'mercadopago',            nombre: 'Mercado Pago',        detalle: `Tarjeta de crédito, débito o dinero en cuenta. Hasta ${CUOTAS_SIN_INTERES} cuotas sin interés`, conDescuento: false },
-  { id: 'transferencia',          nombre: 'Transferencia',       detalle: 'Te pasamos los datos para transferir',        conDescuento: true },
-  { id: 'efectivo_local',         nombre: 'Efectivo en el local', detalle: 'Pagás cuando retirás por la tienda',         conDescuento: true },
-  { id: 'efectivo_contra_entrega', nombre: 'Efectivo contra entrega', detalle: 'Le pagás al repartidor al recibirlo',    conDescuento: true },
+  { id: 'mercadopago',   nombre: 'Mercado Pago',  detalle: `Tarjeta de crédito, débito o dinero en cuenta. Hasta ${CUOTAS_SIN_INTERES} cuotas sin interés`, conDescuento: false },
+  { id: 'transferencia', nombre: 'Transferencia', detalle: 'Te pasamos los datos para transferir. El pedido se confirma cuando se acredita', conDescuento: true },
 ];
 
 /**
- * El efectivo en el local solo tiene sentido si el cliente retira, y el
- * contra entrega solo si hay envio. Misma regla que el constraint
- * `efectivo_coherente` de la tabla pedidos.
+ * Los dos medios sirven para cualquier modalidad de entrega: al no haber
+ * efectivo online, ya no hay combinaciones imposibles que filtrar.
  */
-export function metodosPara(modalidad: Modalidad) {
-  return METODOS_PAGO.filter((m) => {
-    if (m.id === 'efectivo_local') return modalidad === 'retiro_local';
-    if (m.id === 'efectivo_contra_entrega') return modalidad !== 'retiro_local';
-    return true;
-  });
+export function metodosPara(_modalidad: Modalidad) {
+  return METODOS_PAGO;
 }
 
 export function costoEnvio(modalidad: Modalidad, subtotal: number) {

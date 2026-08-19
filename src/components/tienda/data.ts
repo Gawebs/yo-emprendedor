@@ -7,7 +7,7 @@ import { Sparkles, Gem, Baby, Home, Lamp, Leaf, Gift, Shirt, Briefcase, type Luc
  */
 
 export const PROMOS = [
-  '10% off transferencia/efectivo',
+  '10% off pagando por transferencia',
   '3 cuotas sin interés',
   'Envío gratis primera compra',
 ];

@@ -34,6 +34,21 @@ De ahí salieron dos correcciones que conviene no revertir sin leerlos:
 - **La tienda online no acepta efectivo** (Términos, sección 14). El efectivo es solo para compras presenciales en el local. Por eso el 10% de descuento quedó atado a la transferencia.
 - **Hay que registrarse para comprar** (Términos, sección 5). El checkout redirige a `/auth/login?volver=/checkout` y al volver prellena los datos de la cuenta.
 
+## Medidas de las imágenes
+
+Lo que hay que pedirle a las marcas, ya al doble para pantallas de alta densidad:
+
+| Pieza | Medida | Formato |
+|---|---|---|
+| Producto | 1200 × 1200 | JPG, o PNG si va con fondo transparente |
+| Logo de marca | 300 × 300 | PNG transparente, centrado y con aire — se recorta en círculo |
+| Fachada del local (hero de `/quiero-vender`) | 2400 × 1350 | JPG, con el lado izquierdo despejado |
+| Interior del local | 1200 × 900 | JPG |
+
+**Una sola foto cuadrada por producto** alcanza para la grilla, el carrusel, la ficha y la miniatura: todas son 1:1 desde el 19-ago-2026, justamente para no pedir dos recortes de lo mismo.
+
+**Pendiente de definir:** el banner de la home es hoy un bloque de color con texto rotativo, no una imagen. El wireframe hablaba de "3 a 5 piezas con ofertas activas", que suena a imágenes. Si van imágenes hay que modificar `BannerCarrusel`, y la medida sería 2400 × 600 — con el texto puesto por el sitio y no quemado en la imagen, o en celular se recorta.
+
 ## Verificaciones
 
 ```bash

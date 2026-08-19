@@ -272,8 +272,11 @@
 }
 .ye-tienda .galeria-principal img { width: 100%; height: 100%; object-fit: cover; }
 .ye-tienda .galeria-minis { display: grid; grid-template-columns: repeat(3, 1fr); gap: .85rem; }
+/* Cuadradas como el resto de las fotos de producto: asi una sola imagen por
+   producto sirve para la grilla, el carrusel, la ficha y la miniatura, sin
+   pedirle a la marca dos recortes distintos de lo mismo. */
 .ye-tienda .galeria-mini {
-  aspect-ratio: 4/3; background: var(--gris-card); border-radius: 6px;
+  aspect-ratio: 1; background: var(--gris-card); border-radius: 6px;
   border: 2px solid transparent; cursor: pointer; padding: 0; overflow: hidden;
 }
 .ye-tienda .galeria-mini[aria-current='true'] { border-color: var(--verde); }

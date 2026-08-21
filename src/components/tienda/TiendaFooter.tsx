@@ -23,6 +23,12 @@ const REDES = [
 
 /** El ultimo va destacado: la Resolucion 424/2020 pide que el boton de
  *  arrepentimiento se distinga del resto, no que ocupe media pantalla. */
+/** La consulta mayorista no tiene pagina propia: arranca por WhatsApp, ya
+ *  identificada para que del otro lado sepan de donde viene. */
+const MAYORISTA = encodeURIComponent(
+  'Hola! Quiero hacer una consulta por venta mayorista.'
+);
+
 const INSTITUCIONAL = [
   { href: '/', label: 'Inicio' },
   { href: '/nosotros', label: 'Nosotros' },
@@ -73,10 +79,19 @@ export function TiendaFooter() {
           </div>
 
           <div>
-            <h2 className="pie-titulo">Consultas por mayor</h2>
+            <h2 className="pie-titulo">Consultas</h2>
             <ul className="pie-lista">
-              <li><a href={CONTACTO.telefonoLink}>{CONTACTO.telefono}</a></li>
+              <li>
+                <a href={`https://wa.me/${CONTACTO.whatsappNumero}?text=${MAYORISTA}`}
+                   target="_blank" rel="noopener noreferrer">
+                  Venta por mayor
+                </a>
+              </li>
               <li><Link href="/trabajos-a-medida">Trabajos a medida</Link></li>
+              <li style={{ display: 'flex', gap: '.45rem', alignItems: 'center' }}>
+                <Phone size={15} style={{ flexShrink: 0 }} aria-hidden="true" />
+                <a href={CONTACTO.telefonoLink}>{CONTACTO.telefono}</a>
+              </li>
             </ul>
           </div>
 

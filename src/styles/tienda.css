@@ -187,13 +187,39 @@
 .ye-tienda .prod-precio { font-size: 1.05rem; font-weight: 700; font-family: var(--font-spartan), sans-serif; }
 
 /* ── SERVICIOS ──────────────────────────────────────────────────────────── */
+/* Dos tarjetas con la informacion desplegada, no tres iconos con una linea:
+   el comprador decide con estos datos y no deberia tener que ir a buscarlos.
+   Alineado a la izquierda porque son listas, y una lista centrada no se lee. */
 .ye-tienda .servicios {
-  display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem;
-  padding: 3rem 0; text-align: center;
+  display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; padding: 3rem 0;
 }
-.ye-tienda .servicio-icono { color: var(--verde); margin-bottom: .6rem; display: flex; justify-content: center; }
-.ye-tienda .servicio-titulo { font-family: var(--font-spartan), sans-serif; font-weight: 700; font-size: .95rem; }
-.ye-tienda .servicio-texto { font-size: .82rem; color: var(--negro-soft); }
+.ye-tienda .servicio {
+  border: 1px solid var(--border); border-radius: 10px; padding: 1.6rem 1.75rem;
+  background: var(--blanco); display: flex; flex-direction: column; gap: 1rem;
+}
+.ye-tienda .servicio-head { display: flex; align-items: center; gap: .7rem; }
+.ye-tienda .servicio-icono {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 40px; height: 40px; border-radius: 50%; flex-shrink: 0;
+  background: var(--verde-light); color: var(--verde-oscuro);
+}
+.ye-tienda .servicio-titulo {
+  font-family: var(--font-spartan), sans-serif; font-weight: 700; font-size: 1.05rem;
+}
+.ye-tienda .servicio-lista { display: flex; flex-direction: column; gap: .6rem; }
+.ye-tienda .servicio-lista li {
+  font-size: .87rem; color: var(--negro-soft); line-height: 1.5;
+  padding-left: 1.1rem; position: relative;
+}
+.ye-tienda .servicio-lista li::before {
+  content: ''; position: absolute; left: 0; top: .55rem;
+  width: 5px; height: 5px; border-radius: 50%; background: var(--verde-oscuro);
+}
+.ye-tienda .servicio-lista strong { color: var(--negro-fuerte); font-weight: 700; }
+.ye-tienda .servicio-mas {
+  margin-top: auto; font-size: .83rem; font-weight: 700; color: var(--verde-oscuro);
+}
+.ye-tienda .servicio-mas:hover { text-decoration: underline; }
 
 /* ── CTAS FINALES ───────────────────────────────────────────────────────── */
 .ye-tienda .ctas { display: grid; grid-template-columns: 1fr 1fr; }
@@ -246,7 +272,7 @@
   .ye-tienda .nav-links { display: none; }
   .ye-tienda .nav-hamburguesa { display: flex; }
   .ye-tienda .pie-grid { grid-template-columns: 1fr 1fr; }
-  .ye-tienda .servicios { grid-template-columns: 1fr; gap: 2rem; }
+  .ye-tienda .servicios { grid-template-columns: 1fr; gap: 1.25rem; }
   .ye-tienda .categorias-fila { justify-content: flex-start; }
 }
 @media (max-width: 600px) {

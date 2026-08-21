@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { Truck, CreditCard, Store } from 'lucide-react';
+import { Truck, CreditCard } from 'lucide-react';
 import { ProductoCard } from '@/components/tienda/ProductoCard';
 import { BannerCarrusel } from '@/components/tienda/BannerCarrusel';
 import { Carril } from '@/components/tienda/Carril';
@@ -9,12 +9,44 @@ import {
   FILAS_HOME,
   productosDe,
   nombreCategoria,
+  CONTACTO,
+  ENVIO_GRATIS_DESDE,
+  formatearPrecio,
 } from '@/components/tienda/data';
 
+/**
+ * Antes eran tres bloques de una linea, y el tercero repetia el retiro en el
+ * local que ya anuncia el banner de arriba. Ahora son dos, con los datos que
+ * el comprador necesita antes de decidir: cuanto cuesta el envio, cuando
+ * llega, con que puede pagar. Todo a la vista, sin obligar a entrar a la
+ * politica — el enlace queda para el que quiera el detalle completo.
+ *
+ * Cada dato sale de las politicas que redacto Anita: no agregar puntos aca
+ * sin que esten escritos en `politicas.ts`.
+ */
 const SERVICIOS = [
-  { icono: Truck, titulo: 'Envíos', texto: 'A todo el país' },
-  { icono: CreditCard, titulo: 'Medios de pago', texto: 'Tarjetas y transferencia' },
-  { icono: Store, titulo: 'Pickup gratis', texto: 'Retirá en San Miguel de Tucumán' },
+  {
+    icono: Truck,
+    titulo: 'Envíos y retiro',
+    href: '/envios',
+    puntos: [
+      { fuerte: 'Envío gratis', resto: `en compras de más de ${formatearPrecio(ENVIO_GRATIS_DESDE)}` },
+      { fuerte: 'Retiro gratis en el local', resto: `de ${CONTACTO.direccion}` },
+      { fuerte: 'De 24 a 48 hs hábiles', resto: 'en San Miguel de Tucumán y alrededores' },
+      { fuerte: 'Enviamos a todo el país', resto: 'con el costo calculado antes de confirmar' },
+    ],
+  },
+  {
+    icono: CreditCard,
+    titulo: 'Medios de pago',
+    href: '/formas-de-pago',
+    puntos: [
+      { fuerte: '10% de descuento', resto: 'pagando por transferencia' },
+      { fuerte: 'Hasta 3 cuotas sin interés', resto: 'con tarjeta de crédito' },
+      { fuerte: 'Débito y dinero en cuenta', resto: 'a través de Mercado Pago' },
+      { fuerte: 'Efectivo', resto: 'solo para compras en el local' },
+    ],
+  },
 ];
 
 export default function TiendaHome() {
@@ -79,14 +111,23 @@ export default function TiendaHome() {
 
       <div className="contenedor">
         <div className="servicios">
-          {SERVICIOS.map(({ icono: Icono, titulo, texto }) => (
-            <div key={titulo}>
-              <div className="servicio-icono">
-                <Icono size={28} strokeWidth={1.5} aria-hidden="true" />
+          {SERVICIOS.map(({ icono: Icono, titulo, href, puntos }) => (
+            <section className="servicio" key={titulo} aria-labelledby={`serv-${href}`}>
+              <div className="servicio-head">
+                <span className="servicio-icono">
+                  <Icono size={22} strokeWidth={1.75} aria-hidden="true" />
+                </span>
+                <h2 className="servicio-titulo" id={`serv-${href}`}>{titulo}</h2>
               </div>
-              <p className="servicio-titulo">{titulo}</p>
-              <p className="servicio-texto">{texto}</p>
-            </div>
+              <ul className="servicio-lista">
+                {puntos.map(({ fuerte, resto }) => (
+                  <li key={fuerte}>
+                    <strong>{fuerte}</strong> {resto}
+                  </li>
+                ))}
+              </ul>
+              <Link href={href} className="servicio-mas">Ver todos los detalles</Link>
+            </section>
           ))}
         </div>
       </div>

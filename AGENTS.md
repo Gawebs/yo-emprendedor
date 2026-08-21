@@ -103,6 +103,10 @@ Desde el 20-ago-2026 es **un enlace más de la lista del pie**, no el recuadro c
 
 Al recibir una solicitud hay que responder **dentro de las 24 horas** con un código de identificación del trámite — hoy la demo solo abre WhatsApp. Eso necesita base de datos (para registrar el trámite y numerarlo) y correo institucional (para notificar), así que queda para cuando el proyecto salga del demo.
 
+**La franja de servicios de la home son dos tarjetas, no tres iconos** (20-ago-2026). Antes eran Envios / Medios de pago / Pickup, con una linea cada uno; el tercero repetia el retiro en el local que ya anuncia el banner de arriba. Ahora son dos tarjetas con cuatro datos concretos cada una — monto de envio gratis, plazo, descuento por transferencia, cuotas — porque son los datos con los que el comprador decide y no deberia tener que entrar a la politica para verlos. El enlace "Ver todos los detalles" queda para el detalle completo.
+
+Los puntos salen de `politicas.ts`: **no agregar ninguno que no este escrito ahi**. Los montos y la direccion se leen de `ENVIO_GRATIS_DESDE` y `CONTACTO`, no van quemados.
+
 **Qué atributos muestra cada rubro** está en `ATRIBUTOS_POR_RUBRO` (`src/components/tienda/data.ts`). Un collar no tiene talle y una vela no tiene talle pero sí aroma: la ficha arma los selectores desde ahí, no con un formulario fijo.
 
 **El comprador nunca ve de qué marca es un producto** — ni en la home, ni en la categoría, ni en la ficha, ni en el carrito. Anita lo decidió porque si el cliente identifica la marca, la busca en Instagram y la próxima vez le compra directo, salteándose la plataforma. La marca sí puede aparecer en la confirmación del pedido ("Preparado por…"), donde la venta ya está cerrada. `pedido_items.emprendedor_id` se guarda igual, para liquidar.

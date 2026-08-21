@@ -97,7 +97,11 @@ El verde de marca da 3.5:1 con texto blanco encima, así que no sirve para boton
 
 **Un producto puede vivir en varios rubros.** Anita lo dejó por escrito, y Regalería es directamente una selección cruzada de los demás. Por eso `Producto.categorias` es una lista; el primer elemento es el rubro de origen y define los selectores de la ficha y los relacionados.
 
-**El Botón de Arrepentimiento es obligatorio por ley** (Resolución 424/2020): tiene que estar accesible desde la home, destacado en visibilidad y tamaño. Vive en `/arrepentimiento` y se enlaza desde el footer, que aparece en todas las páginas. Al recibir una solicitud hay que responder **dentro de las 24 horas** con un código de identificación del trámite — hoy la demo solo abre WhatsApp; cuando haya backend eso debe registrarse y dispararse solo.
+**El Botón de Arrepentimiento es obligatorio por ley** (Resolución 424/2020): tiene que estar accesible desde la home y distinguirse del resto. Vive en `/arrepentimiento` y se enlaza desde el footer, que aparece en todas las páginas.
+
+Desde el 20-ago-2026 es **un enlace más de la lista del pie**, no el recuadro centrado que era antes: Anita pidió bajarle el protagonismo. Se distingue por peso (700), color fuerte e ícono, que es lo que pide la norma — no exige tamaño desmedido, y las tiendas grandes del país lo resuelven igual. La bajada de los 10 días se sacó del pie porque el plazo ya está en Preguntas frecuentes y el derecho en Cambios y devoluciones, sección 12. **No volver a agrandarlo sin hablarlo.**
+
+Al recibir una solicitud hay que responder **dentro de las 24 horas** con un código de identificación del trámite — hoy la demo solo abre WhatsApp. Eso necesita base de datos (para registrar el trámite y numerarlo) y correo institucional (para notificar), así que queda para cuando el proyecto salga del demo.
 
 **Qué atributos muestra cada rubro** está en `ATRIBUTOS_POR_RUBRO` (`src/components/tienda/data.ts`). Un collar no tiene talle y una vela no tiene talle pero sí aroma: la ficha arma los selectores desde ahí, no con un formulario fijo.
 

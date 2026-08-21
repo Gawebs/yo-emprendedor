@@ -867,20 +867,14 @@
 .ye-tienda .cat-nota { font-size: .82rem; color: var(--negro-soft); line-height: 1.6; font-style: italic; }
 
 /* ── BOTON DE ARREPENTIMIENTO ───────────────────────────────────────────── */
-.ye-tienda .pie-arrepentimiento {
-  border-top: 1px solid var(--border); margin-top: 2rem; padding-top: 1.5rem;
-  display: flex; flex-direction: column; align-items: center; gap: .5rem; text-align: center;
+/* Vive en la lista del pie, que aparece en todas las paginas incluida la home.
+   La 424/2020 pide visible y destacado: por eso va en negrita, con icono y en
+   el color fuerte, distinto de los demas enlaces del pie. */
+.ye-tienda .pie-lista a.pie-arrep-link {
+  display: inline-flex; align-items: center; gap: .4rem;
+  color: var(--negro-fuerte); font-weight: 700;
 }
-.ye-tienda .btn-arrepentimiento {
-  display: inline-flex; align-items: center; gap: .55rem;
-  border: 2px solid var(--negro-fuerte); color: var(--negro-fuerte);
-  border-radius: 6px; padding: .8rem 1.6rem;
-  font-family: var(--font-spartan), 'League Spartan', sans-serif;
-  font-size: .95rem; font-weight: 700;
-  transition: background .15s, color .15s;
-}
-.ye-tienda .btn-arrepentimiento:hover { background: var(--negro-fuerte); color: var(--blanco); }
-.ye-tienda .pie-arrepentimiento-nota { font-size: .8rem; color: var(--negro-soft); max-width: 460px; line-height: 1.5; }
+.ye-tienda .pie-lista a.pie-arrep-link:hover { color: var(--verde-oscuro); text-decoration: underline; }
 
 .ye-tienda .arrep-form { max-width: 720px; margin-bottom: 2rem; }
 .ye-tienda .arrep-enviado {
@@ -890,7 +884,6 @@
 
 @media (max-width: 600px) {
   .ye-tienda .cat-bloque { padding: 1.15rem; }
-  .ye-tienda .btn-arrepentimiento { font-size: .88rem; padding: .7rem 1.15rem; }
 }
 
 /* ── CUENTA ─────────────────────────────────────────────────────────────── */

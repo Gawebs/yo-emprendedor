@@ -93,6 +93,26 @@ Enums: `producto_estado` (activo/inactivo/descontinuado), `venta_estado` (pendie
 
 El verde de marca da 3.5:1 con texto blanco encima, así que no sirve para botones con texto: para eso está `--verde-oscuro` (`#5d6b4c`), del mismo tono pero legible. El color que se ve sigue siendo el de Anita; el oscuro aparece solo donde hay palabras.
 
+## Supabase, conectado el 26-ago-2026
+
+Proyecto `qtjfpjyyagfvwxlttxlf` en `sa-east-1`, plan Free, bajo una cuenta propia del proyecto — no la de Gabriel. Credenciales en `.env.local` (gitignoreado).
+
+**Cuatro migraciones, y las dos ultimas nacieron de auditar las dos primeras:**
+
+- `001` panel del emprendedor · `002` canal de ventas
+- `003` los 9 rubros de Anita con subrubros, y `producto_categorias` para que un producto viva en varios rubros
+- `004` policies de admin, y cerrar el insert publico de pedidos
+
+**Dos funciones resuelven quien sos, y se usan en todas las policies:** `es_admin()` y `mi_emprendedor_id()`. Las dos son `security definer` + `stable`: definer para que consultar `profiles` desde una policy de `profiles` no entre en recursion, stable para que se evalue una vez por query y no una por fila. **No volver a escribir subqueries de tenant a mano en una policy** — antes convivian dos formas (`emprendedores.propietario_id` y `profiles.emprendedor_id`) y no siempre coincidian.
+
+**`pedidos` se escribe solo desde el servidor.** Tenia `for insert with check (true)`, y la clave publica viaja en el JavaScript de la web: cualquiera podia insertar pedidos con total cero. El checkout tiene que recalcular el total contra los precios reales del lado del server.
+
+**Deuda marcada en la base, con `comment on`:** `ventas` (modelo viejo, una fila = un producto) y `productos.stock` (el real esta en `producto_variantes`, que se agota por combinacion). Las dos siguen vivas porque hoy las usa el panel — `dashboard/ventas/page.tsx` y `actions/productos.ts`. **Se borran al reescribir el panel, no antes.**
+
+**`solicitudes_arrepentimiento`** cubre la Resolucion 424/2020: cada solicitud se numera `ARR-N` y hay 24 horas para responder. La vista `arrepentimientos_vencidos` calcula cuales pasaron el plazo — la regla vive ahi, no en el codigo.
+
+**`pedidos.reservado_hasta`** existe pero **falta que Anita defina el plazo**: cuanto tiempo se le guarda el stock a un pedido por transferencia antes de liberarlo.
+
 **Los 9 rubros definitivos** (19-ago-2026), con subrubros en `CATEGORIAS`: Hogar, Deco, Belleza y cosmética, Accesorios, Aromas y Tés, Indumentaria, Infantiles, Marroquinería y Regalería. Antes circularon otras listas — la de 11 rubros y una con Blanquería — que quedaron descartadas.
 
 **Un producto puede vivir en varios rubros.** Anita lo dejó por escrito, y Regalería es directamente una selección cruzada de los demás. Por eso `Producto.categorias` es una lista; el primer elemento es el rubro de origen y define los selectores de la ficha y los relacionados.

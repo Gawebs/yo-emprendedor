@@ -52,11 +52,31 @@
 .ye-tienda .promos {
   background: var(--negro); color: var(--amarillo-pale);
   font-size: .78rem; padding: .5rem 0;
+  overflow: hidden;
 }
+/* Las dos copias en fila; se corre media pista y vuelve al origen, que es
+   justo donde arranca la copia. Por eso el salto no se ve. */
+.ye-tienda .promos-pista {
+  display: flex; width: max-content;
+  animation: promos-correr 28s linear infinite;
+}
+.ye-tienda .promos:hover .promos-pista { animation-play-state: paused; }
+/* Cada copia ocupa como minimo el ancho de la ventana: asi, al correr media
+   pista, nunca queda un hueco a la derecha en pantallas anchas. */
 .ye-tienda .promos-inner {
-  max-width: 1200px; margin: 0 auto; padding: 0 1.5rem;
-  display: flex; justify-content: center; gap: 2.5rem; flex-wrap: wrap;
-  text-align: center;
+  display: flex; gap: 2.5rem; padding: 0 1.25rem;
+  flex-shrink: 0; white-space: nowrap;
+  min-width: 100vw; justify-content: space-around;
+}
+@keyframes promos-correr {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+/* Quien pidio menos movimiento ve la cinta quieta y centrada, como antes. */
+@media (prefers-reduced-motion: reduce) {
+  .ye-tienda .promos-pista { animation: none; width: 100%; justify-content: center; }
+  .ye-tienda .promos-inner:last-child { display: none; }
+  .ye-tienda .promos-inner { flex-wrap: wrap; justify-content: center; white-space: normal; }
 }
 
 /* ── NAV ────────────────────────────────────────────────────────────────── */
@@ -276,7 +296,8 @@
   .ye-tienda .categorias-fila { justify-content: flex-start; }
 }
 @media (max-width: 600px) {
-  .ye-tienda .promos-inner { gap: 1rem; font-size: .72rem; }
+  .ye-tienda .promos { font-size: .72rem; }
+  .ye-tienda .promos-inner { gap: 1.5rem; }
   .ye-tienda .ofertas { grid-template-columns: 1fr; }
   .ye-tienda .ctas { grid-template-columns: 1fr; }
   .ye-tienda .cta-grande + .cta-grande { border-left: none; border-top: 1px solid rgba(255, 247, 220, .15); }

@@ -282,7 +282,7 @@ export default function CheckoutPage() {
               </div>
             ) : (
               <>
-                <label className="gift-label" htmlFor="c-gift">¿Tenés una Gift Card?</label>
+                <label className="gift-label" htmlFor="c-gift">¿Tenés una Gift Card o cupón?</label>
                 <div className="gift-fila">
                   <input
                     id="c-gift" className="gift-input" value={codigoGift}

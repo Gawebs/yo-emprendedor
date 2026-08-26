@@ -47,11 +47,22 @@ export function TiendaNav() {
 
   return (
     <>
+      {/* La cinta se desliza sola, como pidio Anita. El contenido va dos veces
+          para que al terminar la primera vuelta la segunda ya este en pantalla
+          y el bucle no tenga un salto. La copia es aria-hidden: el lector de
+          pantalla lee las promos una sola vez. */}
       <div className="promos">
-        <div className="promos-inner">
-          {PROMOS.map((p) => (
-            <span key={p}>{p}</span>
-          ))}
+        <div className="promos-pista">
+          <div className="promos-inner">
+            {PROMOS.map((p) => (
+              <span key={p}>{p}</span>
+            ))}
+          </div>
+          <div className="promos-inner" aria-hidden="true">
+            {PROMOS.map((p) => (
+              <span key={p}>{p}</span>
+            ))}
+          </div>
         </div>
       </div>
 

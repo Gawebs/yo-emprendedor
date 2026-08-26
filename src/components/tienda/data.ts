@@ -146,7 +146,12 @@ export const OFERTAS_DIA = [
 ];
 
 /** Las filas que se muestran en la home, en orden. */
-export const FILAS_HOME = ['accesorios', 'belleza', 'deco'];
+/**
+ * Anita pidio que en la home aparezcan las tiras de los 9 rubros, no tres.
+ * Se derivan de CATEGORIAS para que agregar o sacar un rubro no obligue a
+ * tocar dos listas.
+ */
+export const FILAS_HOME = CATEGORIAS.map((c) => c.slug);
 
 export const MARCAS = [
   'Luna Bijou', 'Nara', 'Kai', 'Sur', 'Piel Natural',

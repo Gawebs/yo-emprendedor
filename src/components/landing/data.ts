@@ -15,7 +15,7 @@ export const CONTACTO = {
   telefonoLink: 'tel:3812146172',
   /** Formato internacional para wa.me: 54 (AR) + 9 (movil) + 381 (Tucuman). */
   whatsappNumero: '5493812146172',
-  email: 'yoemprendedortucuman@gmail.com',
+  email: 'info@yoemprendedortienda.com',
   instagram: 'https://instagram.com/yoemprendedor.tuc',
   instagramUser: '@yoemprendedor.tuc',
   whatsappLink: 'https://wa.link/ehrynl',

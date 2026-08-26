@@ -175,7 +175,7 @@ export const ENVIOS: Politica = {
     { tipo: 'parrafo', texto: 'Si recibís un paquete con daños visibles, escribinos lo antes posible y conservá el packaging y los productos hasta que podamos evaluar la situación. Podemos pedirte fotografías del paquete, el embalaje y los productos para hacer el reclamo ante el operador logístico.' },
 
     { tipo: 'titulo', texto: '20. Contacto' },
-    { tipo: 'parrafo', texto: 'Si tenés dudas sobre tu envío, escribinos a yoemprendedortucuman@gmail.com o pasá por 24 de Septiembre 734, San Miguel de Tucumán.' },
+    { tipo: 'parrafo', texto: 'Si tenés dudas sobre tu envío, escribinos a info@yoemprendedortienda.com o pasá por 24 de Septiembre 734, San Miguel de Tucumán.' },
   ],
 };
 
@@ -199,7 +199,7 @@ export const CAMBIOS: Politica = {
     { tipo: 'parrafo', texto: 'Sí. Si realizaste una compra y necesitás cambiar el producto, podés solicitar un cambio siempre que se cumplan las condiciones establecidas en esta política. Los productos deben encontrarse en las condiciones requeridas para poder ser aceptados.' },
 
     { tipo: 'titulo', texto: '2. Plazo para solicitar un cambio' },
-    { tipo: 'parrafo', texto: 'Disponés de quince días corridos desde la recepción del producto para solicitar un cambio por decisión propia. Para iniciarlo, comunicate dentro de ese plazo por WhatsApp al 3812146172 o por correo a yoemprendedortucuman@gmail.com, indicando:' },
+    { tipo: 'parrafo', texto: 'Disponés de quince días corridos desde la recepción del producto para solicitar un cambio por decisión propia. Para iniciarlo, comunicate dentro de ese plazo por WhatsApp al 3812146172 o por correo a info@yoemprendedortienda.com, indicando:' },
     { tipo: 'lista', items: ['Nombre y apellido.', 'Número de pedido.', 'Producto que querés cambiar.', 'Motivo del cambio.', 'Fotografías del producto, cuando sean necesarias.'] },
 
     { tipo: 'titulo', texto: '3. Condiciones para realizar un cambio' },
@@ -263,7 +263,7 @@ export const CAMBIOS: Politica = {
     { tipo: 'parrafo', texto: 'Yo Emprendedor trabaja con diferentes marcas y emprendimientos que comercializan sus productos a través de nuestra plataforma. La gestión de cambios se canaliza inicialmente a través de nosotros, procurando brindar una experiencia simple al cliente. Cuando resulte necesario, coordinamos la solución con la marca responsable del producto.' },
 
     { tipo: 'titulo', texto: '18. Contacto' },
-    { tipo: 'parrafo', texto: 'Para consultas o para iniciar una solicitud de cambio: yoemprendedortucuman@gmail.com, o 24 de Septiembre 734, San Miguel de Tucumán, Tucumán, Argentina. Asunto sugerido: "Solicitud de cambio – Pedido N.º [número]".' },
+    { tipo: 'parrafo', texto: 'Para consultas o para iniciar una solicitud de cambio: info@yoemprendedortienda.com, o 24 de Septiembre 734, San Miguel de Tucumán, Tucumán, Argentina. Asunto sugerido: "Solicitud de cambio – Pedido N.º [número]".' },
 
     { tipo: 'destacado', texto: 'Esta Política de Cambios forma parte de las condiciones de compra de Yo Emprendedor y podrá actualizarse cuando resulte necesario para reflejar cambios en nuestros servicios, productos o normativa aplicable. La versión vigente estará publicada en nuestro sitio web.' },
   ],
@@ -337,7 +337,7 @@ export const GIFT_CARD: Politica = {
     ] },
 
     { tipo: 'titulo', texto: '13. Contacto' },
-    { tipo: 'parrafo', texto: 'Para consultas relacionadas con una Gift Card: yoemprendedortucuman@gmail.com, o 24 de Septiembre 734, San Miguel de Tucumán, Tucumán, Argentina. Asunto sugerido: "Consulta Gift Card".' },
+    { tipo: 'parrafo', texto: 'Para consultas relacionadas con una Gift Card: info@yoemprendedortienda.com, o 24 de Septiembre 734, San Miguel de Tucumán, Tucumán, Argentina. Asunto sugerido: "Consulta Gift Card".' },
   ],
 };
 

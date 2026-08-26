@@ -2,7 +2,7 @@
 export const CONTACTO = {
   nombre: 'Yo Emprendedor',
   direccion: '24 de Septiembre 734, San Miguel de Tucumán',
-  email: 'yoemprendedortucuman@gmail.com',
+  email: 'info@yoemprendedortienda.com',
   telefono: '+54 381 214-6172',
   whatsapp: '+5438121461172', // Sin espacios ni caracteres especiales para URL
   instagram: 'https://instagram.com', // TODO: actualizar

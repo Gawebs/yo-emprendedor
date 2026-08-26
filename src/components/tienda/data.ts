@@ -163,7 +163,7 @@ export const CONTACTO = {
   telefono: '381 214-6172',
   telefonoLink: 'tel:3812146172',
   whatsappNumero: '5493812146172',
-  email: 'yoemprendedortucuman@gmail.com',
+  email: 'info@yoemprendedortienda.com',
 
   /**
    * Yo Emprendedor maneja DOS Instagram: uno de la tienda, para compradores, y

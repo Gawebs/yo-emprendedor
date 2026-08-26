@@ -171,7 +171,7 @@ export const TERMINOS: Politica = {
     { tipo: 'parrafo', texto: 'Si alguna disposición fuera declarada inválida, ilegal o inaplicable por autoridad competente, se tendrá por no escrita sin afectar la validez del resto.' },
 
     { tipo: 'titulo', texto: '36. Contacto' },
-    { tipo: 'parrafo', texto: 'Yo Emprendedor — 24 de Septiembre 734, San Miguel de Tucumán, Tucumán, Argentina. yoemprendedortucuman@gmail.com. WhatsApp: 381 214-6172.' },
+    { tipo: 'parrafo', texto: 'Yo Emprendedor — 24 de Septiembre 734, San Miguel de Tucumán, Tucumán, Argentina. info@yoemprendedortienda.com. WhatsApp: 381 214-6172.' },
   ],
 };
 
@@ -184,7 +184,7 @@ export const PRIVACIDAD: Politica = {
     { tipo: 'parrafo', texto: 'Esta política explica qué datos personales podemos recopilar, para qué los utilizamos, con quién podemos compartirlos, cómo los protegemos y qué derechos pueden ejercer las personas titulares. El tratamiento se realiza de acuerdo con la Ley N.º 25.326 de Protección de Datos Personales y su normativa complementaria.' },
 
     { tipo: 'titulo', texto: '1. Responsable del tratamiento' },
-    { tipo: 'parrafo', texto: 'Yo Emprendedor — yoemprendedortucuman@gmail.com — 24 de Septiembre 734, San Miguel de Tucumán, Tucumán, Argentina. Para consultas sobre privacidad y protección de datos, escribinos a ese correo.' },
+    { tipo: 'parrafo', texto: 'Yo Emprendedor — info@yoemprendedortienda.com — 24 de Septiembre 734, San Miguel de Tucumán, Tucumán, Argentina. Para consultas sobre privacidad y protección de datos, escribinos a ese correo.' },
 
     { tipo: 'titulo', texto: '2. ¿Qué datos personales recopilamos?' },
     { tipo: 'parrafo', texto: 'Datos de contacto y perfil: nombre y apellido, teléfono, correo electrónico, datos necesarios para identificar una cuenta o usuario, y el nombre de usuario o información pública del perfil desde el cual nos contactás.' },
@@ -228,11 +228,11 @@ export const PRIVACIDAD: Politica = {
     { tipo: 'parrafo', texto: 'Podés configurar las opciones de cookies desde tu navegador. La desactivación de determinadas cookies podría afectar algunas funcionalidades del sitio.' },
 
     { tipo: 'titulo', texto: '7. ¿Cómo podés solicitar la eliminación de tus datos?' },
-    { tipo: 'parrafo', texto: 'Escribinos a yoemprendedortucuman@gmail.com con el asunto "Solicitud de eliminación de datos personales". Para poder identificar correctamente la información, indicá tu nombre y apellido, correo electrónico, teléfono o usuario asociado, el canal por el que te contactaste y la información que permita identificar la cuenta, consulta o compra.' },
+    { tipo: 'parrafo', texto: 'Escribinos a info@yoemprendedortienda.com con el asunto "Solicitud de eliminación de datos personales". Para poder identificar correctamente la información, indicá tu nombre y apellido, correo electrónico, teléfono o usuario asociado, el canal por el que te contactaste y la información que permita identificar la cuenta, consulta o compra.' },
     { tipo: 'parrafo', texto: 'La solicitud será evaluada y procesada dentro de los plazos establecidos por la normativa. La eliminación puede estar limitada cuando exista una obligación legal, fiscal, contable, contractual o judicial de conservar determinada información.' },
 
     { tipo: 'titulo', texto: '8. Tus derechos' },
-    { tipo: 'parrafo', texto: 'De acuerdo con la normativa argentina de protección de datos personales, podés ejercer tus derechos de información, acceso, rectificación, actualización y supresión escribiendo a yoemprendedortucuman@gmail.com. La Agencia de Acceso a la Información Pública (AAIP) es el organismo de control y dispone de mecanismos para realizar reclamos.' },
+    { tipo: 'parrafo', texto: 'De acuerdo con la normativa argentina de protección de datos personales, podés ejercer tus derechos de información, acceso, rectificación, actualización y supresión escribiendo a info@yoemprendedortienda.com. La Agencia de Acceso a la Información Pública (AAIP) es el organismo de control y dispone de mecanismos para realizar reclamos.' },
 
     { tipo: 'titulo', texto: '9. Seguridad de la información' },
     { tipo: 'parrafo', texto: 'Adoptamos medidas técnicas y organizativas razonables para proteger los datos contra pérdida, acceso, modificación, divulgación o tratamiento no autorizado. El acceso se limita a las personas y proveedores que necesitan utilizarlos. Ningún sistema de almacenamiento o transmisión por Internet puede garantizar una seguridad absoluta.' },
@@ -247,6 +247,6 @@ export const PRIVACIDAD: Politica = {
     { tipo: 'parrafo', texto: 'Podemos actualizarla cuando resulte necesario para reflejar cambios en nuestros servicios, tecnologías, proveedores o normativa. La versión vigente estará disponible en el sitio e indicará la fecha de su última actualización.' },
 
     { tipo: 'titulo', texto: '13. Contacto' },
-    { tipo: 'parrafo', texto: 'Yo Emprendedor — yoemprendedortucuman@gmail.com — 24 de Septiembre 734, San Miguel de Tucumán, Tucumán, Argentina. Asunto sugerido: "Protección de datos personales".' },
+    { tipo: 'parrafo', texto: 'Yo Emprendedor — info@yoemprendedortienda.com — 24 de Septiembre 734, San Miguel de Tucumán, Tucumán, Argentina. Asunto sugerido: "Protección de datos personales".' },
   ],
 };

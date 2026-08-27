@@ -918,6 +918,37 @@
 .ye-tienda .subrubros a:hover { border-color: var(--verde-oscuro); color: var(--verde-oscuro); }
 .ye-tienda .cat-nota { font-size: .82rem; color: var(--negro-soft); line-height: 1.6; font-style: italic; }
 
+/* ── STOCK POR COLOR ────────────────────────────────────────────────────── */
+/* El aviso va debajo del selector de color, no arriba del boton: el cliente
+   mira el color y ahi mismo se entera de si hay o no. */
+.ye-tienda .stock-aviso {
+  font-size: .82rem; color: var(--negro-soft); margin-top: .5rem;
+  display: flex; align-items: center; gap: .4rem;
+}
+.ye-tienda .stock-aviso::before {
+  content: ''; width: 7px; height: 7px; border-radius: 50%;
+  background: var(--verde-oscuro); flex-shrink: 0;
+}
+.ye-tienda .stock-poco { color: #9a5f1f; font-weight: 700; }
+.ye-tienda .stock-poco::before { background: #c47d28; }
+.ye-tienda .stock-sin { color: #9c3a2f; font-weight: 700; }
+.ye-tienda .stock-sin::before { background: #9c3a2f; }
+
+/* El color agotado se sigue viendo, atenuado y con una barra cruzada: si se
+   ocultara, el cliente no sabria que ese color existe. */
+.ye-tienda .color-btn.color-agotado { opacity: .45; position: relative; }
+.ye-tienda .color-btn.color-agotado::after {
+  content: ''; position: absolute; inset: 0;
+  background: linear-gradient(to bottom right,
+    transparent calc(50% - 1px), var(--negro-fuerte) calc(50% - 1px),
+    var(--negro-fuerte) calc(50% + 1px), transparent calc(50% + 1px));
+  border-radius: 50%;
+}
+
+.ye-tienda .btn-carrito:disabled {
+  opacity: .5; cursor: not-allowed; background: var(--negro-soft);
+}
+
 /* ── BOTON DE ARREPENTIMIENTO ───────────────────────────────────────────── */
 /* Vive en la lista del pie, que aparece en todas las paginas incluida la home.
    La 424/2020 pide visible y destacado: por eso va en negrita, con icono y en

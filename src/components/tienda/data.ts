@@ -96,17 +96,39 @@ export type Producto = {
 export const FOTOS =
   `${process.env.NEXT_PUBLIC_SUPABASE_URL ?? ''}/storage/v1/object/public/productos`;
 
+/**
+ * Los cuatro colores del set de bano, con la foto de cada uno. Es el primer
+ * producto con fotos reales y sirve de molde para los que vengan.
+ *
+ * El stock es de prueba hasta que Anita cargue el real. El negro esta en 0 a
+ * proposito, para ver como se comporta un color agotado.
+ */
+export const SET_BANO_MOON: Color[] = [
+  { nombre: 'Gris',   hex: '#9a9a9a', stock: 12,
+    foto: `${FOTOS}/muestras/set-bano-moon-jean-cartier/set-bano-moon-jean-cartier-gris-1.webp` },
+  { nombre: 'Visón',  hex: '#c9b4a0', stock: 3,
+    foto: `${FOTOS}/muestras/set-bano-moon-jean-cartier/set-bano-moon-jean-cartier-vison-2.webp` },
+  { nombre: 'Blanco', hex: '#f2f2f0', stock: 54,
+    foto: `${FOTOS}/muestras/set-bano-moon-jean-cartier/set-bano-moon-jean-cartier-blanco-3.webp` },
+  { nombre: 'Negro',  hex: '#2f2f2f', stock: 0,
+    foto: `${FOTOS}/muestras/set-bano-moon-jean-cartier/set-bano-moon-jean-cartier-negro-4.webp` },
+];
+
+/**
+ * Colores propios de un producto. Lo que no figura aca usa la paleta generica
+ * de muestra, que no tiene ni foto ni stock: son los 55 productos inventados
+ * que quedan del demo.
+ */
+export const COLORES_POR_PRODUCTO: Record<string, Color[]> = {
+  'set-bano-moon': SET_BANO_MOON,
+};
+
 export const PRODUCTOS: Producto[] = [
   // Primer producto con fotos reales (26-ago-2026). Las cuatro son del mismo
   // set en distintos colores; ver la nota sobre variantes en AGENTS.md.
   { slug: 'set-bano-moon', nombre: 'Set de baño Moon', precio: 18900,
     categorias: ['hogar'], marca: 'Jean Cartier',
-    fotos: [
-      `${FOTOS}/muestras/set-bano-moon-jean-cartier/set-bano-moon-jean-cartier-gris-1.webp`,
-      `${FOTOS}/muestras/set-bano-moon-jean-cartier/set-bano-moon-jean-cartier-vison-2.webp`,
-      `${FOTOS}/muestras/set-bano-moon-jean-cartier/set-bano-moon-jean-cartier-blanco-3.webp`,
-      `${FOTOS}/muestras/set-bano-moon-jean-cartier/set-bano-moon-jean-cartier-negro-4.webp`,
-    ] },
+    fotos: SET_BANO_MOON.map((c) => c.foto!) },
   { slug: 'aros-dorados', nombre: 'Aros dorados', precio: 8500, categorias: ['accesorios'], masVendido: true, marca: 'Luna Bijou' },
   { slug: 'collar-plateado', nombre: 'Collar plateado', precio: 6200, categorias: ['accesorios'], marca: 'Nara' },
   { slug: 'pulsera-trenzada', nombre: 'Pulsera trenzada', precio: 4900, precioAntes: 6500, categorias: ['accesorios'], oferta: true, masVendido: true, marca: 'Kai' },
@@ -223,10 +245,32 @@ export const rubroPrincipal = (p: Producto) => p.categorias[0];
  *  variante como "si aplica al producto". */
 export type Variantes = {
   talles?: string[];
-  colores?: { nombre: string; hex: string }[];
+  colores?: Color[];
   aromas?: string[];
   variantes?: string[];
 };
+
+/**
+ * Un color no es solo un circulito: tiene su propia foto y su propio stock.
+ * Espejo de `producto_variantes` en la base.
+ *
+ * `foto` — al elegir el color, la imagen principal cambia a esta. Sin eso el
+ * cliente tiene que adivinar cual de las miniaturas es el color que eligio.
+ *
+ * `stock` — undefined significa "no lo sabemos todavia" y no muestra cartel;
+ * es el caso de los productos de muestra. Un 0 sí muestra "Sin stock" y
+ * bloquea la compra: vender algo que no hay es peor que no mostrarlo.
+ */
+export type Color = {
+  nombre: string;
+  hex: string;
+  foto?: string;
+  stock?: number;
+};
+
+/** Debajo de esto se avisa que quedan pocas. Igual que la vista
+ *  `variantes_disponibles` en la base: si cambia uno, cambia el otro. */
+export const POCAS_UNIDADES = 5;
 
 export type ProductoDetalle = Producto & {
   codigo: string;
@@ -283,7 +327,8 @@ export function productoDetalle(slug: string): ProductoDetalle | null {
 
   const opciones: Variantes = {};
   if (atributos.includes('talles')) opciones.talles = CATALOGO_OPCIONES.talles;
-  if (atributos.includes('colores')) opciones.colores = CATALOGO_OPCIONES.colores;
+  if (atributos.includes('colores'))
+    opciones.colores = COLORES_POR_PRODUCTO[slug] ?? CATALOGO_OPCIONES.colores;
   if (atributos.includes('aromas')) opciones.aromas = CATALOGO_OPCIONES.aromas;
   if (atributos.includes('variantes')) opciones.variantes = CATALOGO_OPCIONES.variantes;
 

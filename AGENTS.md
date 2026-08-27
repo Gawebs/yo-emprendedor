@@ -12,18 +12,18 @@ This block is written and re-added by `next dev` — verify at `node_modules/nex
 
 Marketplace B2C más dashboard para emprendedores, para **Anita** (pareja de Ale). Local físico en 24 de Septiembre 734, San Miguel de Tucumán. Contacto: yoemprendedortucuman@gmail.com, +54 381 214-6172.
 
-## Estado real (19-ago-2026)
+## Estado real (26-ago-2026)
 
-Deployado en **yo-emprendedor.vercel.app**. Repo: `Gawebs/yo-emprendedor`.
+Deployado en **https://yoemprendedortienda.com**. Repo: `Gawebs/yo-emprendedor`.
 
 El sitio tiene **dos secciones**, y esa división es la clave para entenderlo:
 
 1. **La tienda**, en la raíz (`/`). Es el canal de ventas y la puerta de entrada.
 2. **La sección de emprendedoras**, en `/quiero-vender`. Vende los planes.
 
-Está **todo con datos mock**: no hay `.env.local`, Supabase no está conectado y no cobra. Los pedidos y las cuentas se guardan en `localStorage`, así que solo existen en el navegador de quien los creó — decisión consciente mientras sea demo.
+**Supabase ya esta conectado** (ver mas abajo) y las fotos se sirven desde su Storage, pero **el catalogo sigue leyendose de `data.ts`**: los productos, los pedidos y las cuentas todavia viven en el codigo y en `localStorage`. Cablear las paginas a la base es el trabajo que sigue.
 
-Lo que falta para producción: crear el proyecto de Supabase, correr las migraciones, reemplazar `CuentaContext` por Supabase Auth, cablear las páginas a datos reales e integrar Mercado Pago.
+Lo que falta para produccion: reescribir el panel, reemplazar `CuentaContext` por Supabase Auth, leer el catalogo de la base, e integrar Mercado Pago al final.
 
 ## Fuente de verdad del contenido
 
@@ -140,6 +140,18 @@ Topes: 5 MB por foto de producto, 2 MB por logo. Cortan a proposito las subidas 
 **Auth apunta a `https://yoemprendedortienda.com`.** Estaba en `localhost:3000`, con lo cual los links de confirmar cuenta y recuperar contrasena hubieran llegado rotos. **Falta SMTP propio**: el plan gratuito de Supabase manda unos pocos mails por hora, que no alcanza para una tienda. Se resuelve enchufando Zoho con una contrasena de aplicacion, y de paso los mails salen desde `info@yoemprendedortienda.com`.
 
 **Qué atributos muestra cada rubro** está en `ATRIBUTOS_POR_RUBRO` (`src/components/tienda/data.ts`). Un collar no tiene talle y una vela no tiene talle pero sí aroma: la ficha arma los selectores desde ahí, no con un formulario fijo.
+
+**Cada color tiene su foto y su stock** (26-ago-2026). Las primeras fotos reales fueron un set de bano en cuatro colores, y se estaban usando como galeria: el selector de color no cambiaba la imagen, asi que el cliente elegia "negro" y seguia viendo el gris.
+
+Ahora `Color` lleva `foto` y `stock` (`producto_variantes.foto_url` en la base, migracion `006`). Al elegir un color cambia la foto principal, se avisa cuanto queda, y si esta agotado el boton de comprar se apaga.
+
+Tres decisiones sobre como se muestra:
+
+- **El color agotado se sigue viendo**, atenuado y con una barra cruzada. Ocultarlo haria que el cliente ni se entere de que ese color existe.
+- **`stock: undefined` no muestra cartel**, `stock: 0` sí. Undefined significa "todavia no lo cargamos" — es el caso de los 55 productos de muestra. Cero es informacion real.
+- **Debajo de `POCAS_UNIDADES` (5) el aviso cambia** a "Ultimas N unidades". El mismo umbral vive en la vista `variantes_disponibles`, para que la tienda y el panel digan lo mismo.
+
+La ficha **abre en el primer color disponible**, no en el primero de la lista: entrar y encontrar el boton deshabilitado sin entender por que es la peor primera impresion.
 
 **El comprador nunca ve de qué marca es un producto** — ni en la home, ni en la categoría, ni en la ficha, ni en el carrito. Anita lo decidió porque si el cliente identifica la marca, la busca en Instagram y la próxima vez le compra directo, salteándose la plataforma. La marca sí puede aparecer en la confirmación del pedido ("Preparado por…"), donde la venta ya está cerrada. `pedido_items.emprendedor_id` se guarda igual, para liquidar.
 

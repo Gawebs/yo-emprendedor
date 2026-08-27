@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { Truck, Store, CreditCard } from 'lucide-react';
-import { formatearPrecio, type ProductoDetalle } from './data';
+import { formatearPrecio, POCAS_UNIDADES, type ProductoDetalle } from './data';
 import { useCarrito } from '@/contexts/CarritoContext';
 
 
@@ -13,10 +13,29 @@ export function FichaProducto({ producto }: { producto: ProductoDetalle }) {
   const [foto, setFoto] = useState(0);
   const fotos = producto.fotos ?? [];
   const [talle, setTalle] = useState(opciones.talles?.[0]);
-  const [color, setColor] = useState(opciones.colores?.[0]?.nombre);
+  // Arranca en el primer color que se pueda comprar: abrir la ficha en uno
+  // agotado deja al cliente mirando un boton deshabilitado sin entender por que.
+  const colores = opciones.colores ?? [];
+  const [color, setColor] = useState(
+    (colores.find((c) => c.stock === undefined || c.stock > 0) ?? colores[0])?.nombre,
+  );
   const [aroma, setAroma] = useState(opciones.aromas?.[0]);
   const [variante, setVariante] = useState(opciones.variantes?.[0]);
   const [agregado, setAgregado] = useState(false);
+
+  const colorElegido = colores.find((c) => c.nombre === color);
+
+  /**
+   * Un color puede tener su propia foto. Al elegirlo, la imagen principal
+   * cambia sola: si no, el cliente elige "negro" y sigue viendo el gris.
+   */
+  const fotoDelColor = colorElegido?.foto ? fotos.indexOf(colorElegido.foto) : -1;
+  const fotoVisible = fotoDelColor >= 0 ? fotoDelColor : foto;
+
+  // undefined = todavia no se cargo el stock, y entonces no se muestra cartel.
+  // Cero sí se muestra, y bloquea la compra.
+  const stock = colorElegido?.stock;
+  const hayStock = stock === undefined || stock > 0;
 
   /** "Talle M · Arena · Cítrico" — solo lo que el producto realmente ofrece. */
   const detalle = [talle && `Talle ${talle}`, color, aroma, variante]
@@ -46,8 +65,8 @@ export function FichaProducto({ producto }: { producto: ProductoDetalle }) {
               {producto.masVendido && <span className="prod-badge badge-vendido">Más vendido</span>}
             </div>
           )}
-          {fotos[foto] && (
-            <img src={fotos[foto]} alt={producto.nombre} width={640} height={640} />
+          {fotos[fotoVisible] && (
+            <img src={fotos[fotoVisible]} alt={producto.nombre} width={640} height={640} />
           )}
         </div>
         {/* Tantas miniaturas como fotos haya. Antes eran tres fijas, aunque
@@ -60,7 +79,7 @@ export function FichaProducto({ producto }: { producto: ProductoDetalle }) {
                 key={url}
                 type="button"
                 className="galeria-mini"
-                aria-current={i === foto}
+                aria-current={i === fotoVisible}
                 aria-label={`Ver foto ${i + 1} de ${producto.nombre}`}
                 onClick={() => setFoto(i)}
               >
@@ -101,12 +120,34 @@ export function FichaProducto({ producto }: { producto: ProductoDetalle }) {
               Color {color && <span className="opcion-nota">— {color}</span>}
             </span>
             <div className="colores" role="group" aria-labelledby="lbl-color">
-              {opciones.colores.map((c) => (
-                <button key={c.nombre} type="button" className="color-btn"
-                        style={{ background: c.hex }} aria-pressed={color === c.nombre}
-                        aria-label={c.nombre} onClick={() => setColor(c.nombre)} />
-              ))}
+              {opciones.colores.map((c) => {
+                const agotado = c.stock === 0;
+                return (
+                  <button
+                    key={c.nombre}
+                    type="button"
+                    className={`color-btn${agotado ? ' color-agotado' : ''}`}
+                    style={{ background: c.hex }}
+                    aria-pressed={color === c.nombre}
+                    aria-label={agotado ? `${c.nombre}, sin stock` : c.nombre}
+                    title={agotado ? `${c.nombre} — sin stock` : c.nombre}
+                    onClick={() => setColor(c.nombre)}
+                  />
+                );
+              })}
             </div>
+            {/* El cartel aparece solo si el stock se conoce. Se muestra igual
+                cuando esta agotado en vez de ocultar el color: si el cliente
+                no ve que existe, no vuelve a fijarse mas adelante. */}
+            {stock !== undefined && (
+              <p className={`stock-aviso${!hayStock ? ' stock-sin' : stock <= POCAS_UNIDADES ? ' stock-poco' : ''}`}>
+                {!hayStock
+                  ? 'Sin stock en este color'
+                  : stock <= POCAS_UNIDADES
+                    ? `¡Últimas ${stock} unidades!`
+                    : `${stock} unidades disponibles`}
+              </p>
+            )}
           </div>
         )}
 
@@ -142,8 +183,10 @@ export function FichaProducto({ producto }: { producto: ProductoDetalle }) {
           </div>
         )}
 
-        <button type="button" className="btn-carrito" onClick={agregar}>
-          {agregado ? 'Agregado ✓' : 'Agregar al carrito'}
+        {/* Sin stock el boton se apaga: dejar comprar algo que no hay solo
+            traslada el problema al momento de preparar el pedido. */}
+        <button type="button" className="btn-carrito" onClick={agregar} disabled={!hayStock}>
+          {!hayStock ? 'Sin stock' : agregado ? 'Agregado ✓' : 'Agregar al carrito'}
         </button>
         <p aria-live="polite" className="sr-only">
           {agregado ? `${producto.nombre} agregado al carrito` : ''}

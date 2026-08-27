@@ -230,8 +230,30 @@ export const formatearPrecio = (n: number) =>
   '$' + n.toLocaleString('es-AR', { maximumFractionDigits: 0 });
 
 /** Un producto entra si el rubro figura en su lista, no solo si es el primero. */
+/**
+ * Un producto esta agotado cuando NINGUNA de sus combinaciones tiene stock.
+ * Con un solo color agotado sigue disponible: se compra en los otros.
+ *
+ * Si el stock todavia no se cargo (los 55 productos de muestra), no esta
+ * agotado — es distinto "no hay" que "no sabemos".
+ */
+export const estaAgotado = (slug: string): boolean => {
+  const colores = COLORES_POR_PRODUCTO[slug];
+  if (!colores?.length) return false;
+  const conocidos = colores.filter((c) => c.stock !== undefined);
+  return conocidos.length > 0 && conocidos.every((c) => c.stock === 0);
+};
+
+/**
+ * Los agotados van al final. No se ocultan: el cliente que lo busca creeria
+ * que no se vende mas, y el buscador perderia la pagina que ya tiene
+ * posicionada. Pero tampoco pueden ocupar el primer lugar de la fila, que es
+ * el mas valioso de la tienda.
+ */
 export const productosDe = (categoria: string) =>
-  PRODUCTOS.filter((p) => p.categorias.includes(categoria));
+  PRODUCTOS.filter((p) => p.categorias.includes(categoria)).sort(
+    (a, b) => Number(estaAgotado(a.slug)) - Number(estaAgotado(b.slug)),
+  );
 
 export const nombreCategoria = (slug: string) =>
   CATEGORIAS.find((c) => c.slug === slug)?.nombre ?? slug;

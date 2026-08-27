@@ -1,10 +1,16 @@
 import Link from 'next/link';
-import { formatearPrecio, type Producto } from './data';
+import { estaAgotado, formatearPrecio, type Producto } from './data';
 
 export function ProductoCard({ producto }: { producto: Producto }) {
+  const agotado = estaAgotado(producto.slug);
+
   return (
-    <Link href={`/producto/${producto.slug}`} className="prod">
+    <Link href={`/producto/${producto.slug}`} className={`prod${agotado ? ' prod-agotado' : ''}`}>
       <div className="prod-foto">
+        {/* Se sigue pudiendo entrar a la ficha: ahi se ve de que se trata y
+            cuando vuelva a haber. Ocultarlo haria que el cliente creyera que
+            no se vende mas. */}
+        {agotado && <span className="prod-cinta-agotado">Agotado</span>}
         {/* Un producto puede llevar las dos etiquetas, una o ninguna. */}
         {(producto.oferta || producto.masVendido) && (
           <div className="prod-badges">

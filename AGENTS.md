@@ -155,6 +155,12 @@ Tres decisiones sobre como se muestra:
 - **`stock: undefined` no muestra cartel**, `stock: 0` sí. Undefined significa "todavia no lo cargamos" — es el caso de los 55 productos de muestra. Cero es informacion real.
 - **Debajo de `POCAS_UNIDADES` (5) el aviso cambia** a "Ultimas N unidades". El mismo umbral vive en la vista `variantes_disponibles`, para que la tienda y el panel digan lo mismo.
 
+**En la grilla, el producto agotado se marca y se manda al final** — no se oculta. `estaAgotado()` en `data.ts` lo resuelve, y solo da true cuando **ninguna** combinacion tiene stock: con un color agotado y tres disponibles el producto sigue normal.
+
+El criterio detras: ocultarlo haria que el cliente que lo busca crea que no se vende mas, y el buscador perderia una pagina que ya tiene posicionada — pero un agotado tampoco puede quedarse con el primer lugar de la fila, que es el mas valioso. La tarjeta sigue siendo un enlace: desde la ficha se ve el producto y a que color volver.
+
+**`stock: undefined` no es agotado.** "No hay" y "no sabemos" son cosas distintas, y los 55 productos de muestra estan en el segundo caso.
+
 La ficha **abre en el primer color disponible**, no en el primero de la lista: entrar y encontrar el boton deshabilitado sin entender por que es la peor primera impresion.
 
 **El comprador nunca ve de qué marca es un producto** — ni en la home, ni en la categoría, ni en la ficha, ni en el carrito. Anita lo decidió porque si el cliente identifica la marca, la busca en Instagram y la próxima vez le compra directo, salteándose la plataforma. La marca sí puede aparecer en la confirmación del pedido ("Preparado por…"), donde la venta ya está cerrada. `pedido_items.emprendedor_id` se guarda igual, para liquidar.

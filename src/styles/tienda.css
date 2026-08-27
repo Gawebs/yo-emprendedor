@@ -923,6 +923,20 @@
 }
 .ye-tienda .carrito-cantidad button:disabled { opacity: .35; cursor: not-allowed; }
 
+/* ── PRODUCTO AGOTADO EN LA GRILLA ──────────────────────────────────────── */
+/* La foto se atenua pero la tarjeta sigue siendo un enlace: desde la ficha el
+   cliente ve el producto y a que color puede volver. */
+.ye-tienda .prod-agotado .prod-foto img { opacity: .45; }
+.ye-tienda .prod-agotado .prod-nombre,
+.ye-tienda .prod-agotado .prod-precio { color: var(--negro-soft); }
+.ye-tienda .prod-cinta-agotado {
+  position: absolute; top: 50%; left: 0; right: 0; transform: translateY(-50%);
+  background: rgba(70, 66, 61, .88); color: var(--blanco);
+  font-family: var(--font-spartan), sans-serif; font-weight: 700;
+  font-size: .78rem; text-transform: uppercase; letter-spacing: .08em;
+  text-align: center; padding: .35rem 0; z-index: 2;
+}
+
 /* ── STOCK POR COLOR ────────────────────────────────────────────────────── */
 /* El aviso va debajo del selector de color, no arriba del boton: el cliente
    mira el color y ahi mismo se entera de si hay o no. */

@@ -2,7 +2,17 @@
 
 import { useEffect, useState } from 'react';
 
-type Pieza = { titulo: string; sub: string };
+type Pieza = {
+  titulo: string;
+  sub: string;
+  /**
+   * Foto de fondo, opcional. Va con `object-fit: cover`, asi que no hace
+   * falta recortarla a la medida del banner: el navegador la ajusta segun la
+   * pantalla, que es lo que se necesita cuando el mismo banner pasa de muy
+   * apaisado en escritorio a casi cuadrado en celular.
+   */
+  foto?: string;
+};
 
 const INTERVALO = 6000;
 
@@ -27,13 +37,23 @@ export function BannerCarrusel({ piezas }: { piezas: Pieza[] }) {
 
   return (
     <section
-      className="banner"
+      className={`banner${pieza.foto ? " banner-con-foto" : ""}`}
       aria-roledescription="carrusel"
       aria-label="Destacados"
       onMouseEnter={() => setPausado(true)}
       onMouseLeave={() => setPausado(false)}
     >
-      <div aria-live="polite" aria-atomic="true">
+      {/* La cortina del amarillo de marca sobre la foto: sin ella el texto,
+          que es oscuro, no se lee sobre una foto nocturna. Y de paso disimula
+          que la foto no llega al ancho de un monitor grande. */}
+      {pieza.foto && (
+        <>
+          <img className="banner-foto" src={pieza.foto} alt="" aria-hidden="true" />
+          <span className="banner-cortina" aria-hidden="true" />
+        </>
+      )}
+
+      <div className="banner-texto" aria-live="polite" aria-atomic="true">
         <h2 className="banner-titulo">{pieza.titulo}</h2>
         <p className="banner-sub">{pieza.sub}</p>
       </div>

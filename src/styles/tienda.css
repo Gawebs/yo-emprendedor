@@ -126,6 +126,31 @@
   background: var(--amarillo); padding: 3.5rem 1.5rem; text-align: center;
   position: relative; overflow: hidden;
 }
+/* La foto cubre el banner y se recorta sola: la misma imagen sirve para el
+   escritorio, que es muy apaisado, y para el celular, que es casi cuadrado.
+   Por eso no se pide un recorte por tamano de pantalla. */
+.ye-tienda .banner-foto {
+  position: absolute; inset: 0; width: 100%; height: 100%;
+  object-fit: cover; object-position: center;
+}
+/* La cortina es el amarillo de marca, no un gris: tine la foto en vez de solo
+   apagarla, y el banner sigue leyendose como parte de la identidad. */
+.ye-tienda .banner-cortina {
+  position: absolute; inset: 0;
+  background: var(--amarillo); opacity: .78;
+}
+.ye-tienda .banner-texto { position: relative; z-index: 1; }
+.ye-tienda .banner-con-foto .banner-puntos { position: relative; z-index: 1; }
+/* Con foto detras, el titulo pasa al gris fuerte: sobre el amarillo liso el
+   tono normal da 3.2:1 —justo el minimo para texto grande— y una foto abajo
+   deja ese margen en nada. Con el fuerte sube a 6:1.
+   La sombra clara cubre el caso peor: la zona mas oscura de la foto cayendo
+   justo debajo de una letra. */
+.ye-tienda .banner-con-foto .banner-titulo { color: var(--negro-fuerte); }
+.ye-tienda .banner-con-foto .banner-titulo,
+.ye-tienda .banner-con-foto .banner-sub {
+  text-shadow: 0 1px 12px rgba(255, 247, 220, .75);
+}
 .ye-tienda .banner-titulo {
   font-size: clamp(1.4rem, 3vw, 2rem); font-weight: 900; color: var(--negro);
   margin-bottom: .5rem;

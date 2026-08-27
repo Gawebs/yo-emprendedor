@@ -5,13 +5,13 @@ import { Truck, Store, CreditCard } from 'lucide-react';
 import { formatearPrecio, type ProductoDetalle } from './data';
 import { useCarrito } from '@/contexts/CarritoContext';
 
-const FOTOS_MINIATURA = 3;
 
 export function FichaProducto({ producto }: { producto: ProductoDetalle }) {
   const { opciones } = producto;
   const { agregar: agregarAlCarrito } = useCarrito();
 
   const [foto, setFoto] = useState(0);
+  const fotos = producto.fotos ?? [];
   const [talle, setTalle] = useState(opciones.talles?.[0]);
   const [color, setColor] = useState(opciones.colores?.[0]?.nombre);
   const [aroma, setAroma] = useState(opciones.aromas?.[0]);
@@ -46,19 +46,29 @@ export function FichaProducto({ producto }: { producto: ProductoDetalle }) {
               {producto.masVendido && <span className="prod-badge badge-vendido">Más vendido</span>}
             </div>
           )}
+          {fotos[foto] && (
+            <img src={fotos[foto]} alt={producto.nombre} width={640} height={640} />
+          )}
         </div>
-        <div className="galeria-minis">
-          {Array.from({ length: FOTOS_MINIATURA }, (_, i) => (
-            <button
-              key={i}
-              type="button"
-              className="galeria-mini"
-              aria-current={i === foto}
-              aria-label={`Ver foto ${i + 1} de ${producto.nombre}`}
-              onClick={() => setFoto(i)}
-            />
-          ))}
-        </div>
+        {/* Tantas miniaturas como fotos haya. Antes eran tres fijas, aunque
+            no hubiera ninguna imagen: ahora la fila se arma sola y con dos o
+            con cinco fotos queda igual de prolija. */}
+        {fotos.length > 1 && (
+          <div className="galeria-minis">
+            {fotos.map((url, i) => (
+              <button
+                key={url}
+                type="button"
+                className="galeria-mini"
+                aria-current={i === foto}
+                aria-label={`Ver foto ${i + 1} de ${producto.nombre}`}
+                onClick={() => setFoto(i)}
+              >
+                <img src={url} alt="" width={640} height={640} loading="lazy" />
+              </button>
+            ))}
+          </div>
+        )}
       </div>
 
       <div>

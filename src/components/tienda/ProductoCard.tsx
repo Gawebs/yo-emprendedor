@@ -12,7 +12,21 @@ export function ProductoCard({ producto }: { producto: Producto }) {
             {producto.masVendido && <span className="prod-badge badge-vendido">Más vendido</span>}
           </div>
         )}
-        {/* Sin foto todavia: el bloque gris hace de marcador hasta que haya imagenes reales. */}
+        {/* Las fotos llegan ya optimizadas (webp de ~14 KB) y el bucket de
+            Supabase las sirve por CDN, asi que van con <img> plano en vez de
+            next/image: la optimizacion no ganaria nada y en el plan Hobby
+            tiene cupo mensual. width y height evitan que la pagina salte
+            mientras cargan. */}
+        {producto.fotos?.[0] && (
+          <img
+            src={producto.fotos[0]}
+            alt={producto.nombre}
+            width={640}
+            height={640}
+            loading="lazy"
+            decoding="async"
+          />
+        )}
       </div>
       <div className="prod-cuerpo">
         <p className="prod-nombre">{producto.nombre}</p>

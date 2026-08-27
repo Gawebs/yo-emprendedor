@@ -45,6 +45,12 @@ Lo que hay que pedirle a las marcas, ya al doble para pantallas de alta densidad
 | Fachada del local (hero de `/quiero-vender`) | 2400 × 1350 | JPG, con el lado izquierdo despejado |
 | Interior del local | 1200 × 900 | JPG |
 
+**Las fotos van con `<img>` plano, no con `next/image`** (26-ago-2026). Llegan ya optimizadas desde Anita —webp de 11 a 15 KB— y el bucket de Supabase las sirve por CDN: optimizarlas de nuevo no gana nada y en el plan Hobby de Vercel la optimizacion de imagenes tiene cupo mensual. Van con `width`/`height` explicitos para que la pagina no salte mientras cargan, y `loading="lazy"` salvo la primera.
+
+**Si el original mide menos de 1200, se deja como esta.** Las primeras fotos reales vinieron en 640 x 640 y no hay originales mas grandes. Alcanza: en la grilla se ven a 198 px y en la ficha a 552 px, asi que en pantalla comun sobra resolucion. Solo en pantallas de alta densidad la foto grande queda algo menos nitida. **Agrandarlas a 1200 se veria peor** — nunca hacer upscale.
+
+**Tampoco convertir de webp a jpg.** Webp pesa entre 25% y 35% menos con la misma calidad, el bucket lo acepta, y convertir es recomprimir con perdida.
+
 **Una sola foto cuadrada por producto** alcanza para la grilla, el carrusel, la ficha y la miniatura: todas son 1:1 desde el 19-ago-2026, justamente para no pedir dos recortes de lo mismo.
 
 **Pendiente de definir:** el banner de la home es hoy un bloque de color con texto rotativo, no una imagen. El wireframe hablaba de "3 a 5 piezas con ofertas activas", que suena a imágenes. Si van imágenes hay que modificar `BannerCarrusel`, y la medida sería 2400 × 600 — con el texto puesto por el sitio y no quemado en la imagen, o en celular se recorta.

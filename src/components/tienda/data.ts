@@ -82,9 +82,31 @@ export type Producto = {
    * y sirve para saber quien prepara cada cosa y a quien liquidarle.
    */
   marca: string;
+  /**
+   * URLs de Supabase Storage. La primera es la que se ve en la grilla y en
+   * los carruseles; el resto son las miniaturas de la ficha.
+   *
+   * Un producto sin fotos no rompe nada: queda el bloque gris, que es lo que
+   * hubo hasta que llegaron las primeras imagenes de Anita.
+   */
+  fotos?: string[];
 };
 
+/** Prefijo del bucket publico de fotos, para no repetirlo producto por producto. */
+export const FOTOS =
+  `${process.env.NEXT_PUBLIC_SUPABASE_URL ?? ''}/storage/v1/object/public/productos`;
+
 export const PRODUCTOS: Producto[] = [
+  // Primer producto con fotos reales (26-ago-2026). Las cuatro son del mismo
+  // set en distintos colores; ver la nota sobre variantes en AGENTS.md.
+  { slug: 'set-bano-moon', nombre: 'Set de baño Moon', precio: 18900,
+    categorias: ['hogar'], marca: 'Jean Cartier',
+    fotos: [
+      `${FOTOS}/muestras/set-bano-moon-jean-cartier/set-bano-moon-jean-cartier-gris-1.webp`,
+      `${FOTOS}/muestras/set-bano-moon-jean-cartier/set-bano-moon-jean-cartier-vison-2.webp`,
+      `${FOTOS}/muestras/set-bano-moon-jean-cartier/set-bano-moon-jean-cartier-blanco-3.webp`,
+      `${FOTOS}/muestras/set-bano-moon-jean-cartier/set-bano-moon-jean-cartier-negro-4.webp`,
+    ] },
   { slug: 'aros-dorados', nombre: 'Aros dorados', precio: 8500, categorias: ['accesorios'], masVendido: true, marca: 'Luna Bijou' },
   { slug: 'collar-plateado', nombre: 'Collar plateado', precio: 6200, categorias: ['accesorios'], marca: 'Nara' },
   { slug: 'pulsera-trenzada', nombre: 'Pulsera trenzada', precio: 4900, precioAntes: 6500, categorias: ['accesorios'], oferta: true, masVendido: true, marca: 'Kai' },

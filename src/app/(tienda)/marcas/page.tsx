@@ -6,7 +6,7 @@ export const metadata: Metadata = {
   description: 'Emprendedoras que forman parte de Yo Emprendedor en San Miguel de Tucumán.',
 };
 
-/** Iniciales para el circulo, hasta que haya logos reales de cada marca. */
+/** Iniciales para las marcas que todavia no mandaron su logo. */
 const iniciales = (nombre: string) =>
   nombre.split(' ').map((p) => p[0]).join('').slice(0, 2).toUpperCase();
 
@@ -19,10 +19,12 @@ export default function MarcasPage() {
       </header>
 
       <div className="marcas-grid">
-        {MARCAS.map((marca) => (
-          <article className="marca" key={marca}>
-            <div className="marca-logo" aria-hidden="true">{iniciales(marca)}</div>
-            <p className="marca-nombre">{marca}</p>
+        {MARCAS.map(({ nombre, logo }) => (
+          <article className="marca" key={nombre}>
+            <div className="marca-logo" aria-hidden="true">
+              {logo ? <img src={logo} alt="" width={300} height={300} loading="lazy" /> : iniciales(nombre)}
+            </div>
+            <p className="marca-nombre">{nombre}</p>
           </article>
         ))}
       </div>

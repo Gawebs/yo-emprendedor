@@ -197,9 +197,30 @@ export const OFERTAS_DIA = [
  */
 export const FILAS_HOME = CATEGORIAS.map((c) => c.slug);
 
-export const MARCAS = [
-  'Luna Bijou', 'Nara', 'Kai', 'Sur', 'Piel Natural',
-  'Bloom', 'Aroma', 'Tierra', 'Hilo',
+/** Prefijo del bucket de logos. */
+export const LOGOS =
+  `${process.env.NEXT_PUBLIC_SUPABASE_URL ?? ''}/storage/v1/object/public/marcas`;
+
+/**
+ * Las marcas reales que vende Anita, con sus logos (27-ago-2026). Reemplazan
+ * a las inventadas del demo (Luna Bijou, Nara, Kai...).
+ *
+ * Sin `logo` se muestran las iniciales en el circulo, que es lo que habia
+ * antes: una marca nueva no rompe la grilla mientras no llegue su logo.
+ *
+ * Ojo: esta pagina es institucional. El comprador **no** ve la marca de cada
+ * producto mientras compra —decision de Anita, para que no le compren directo
+ * por Instagram— asi que estos nombres no se cruzan con el catalogo.
+ */
+export const MARCAS: { nombre: string; logo?: string }[] = [
+  { nombre: 'Arenna',                  logo: `${LOGOS}/logo-arenna.png` },
+  { nombre: 'Essential Soul Lingerie', logo: `${LOGOS}/logo-essential-soul-lingerie.png` },
+  { nombre: 'Flora Moda',              logo: `${LOGOS}/logo-flora-moda.png` },
+  { nombre: 'Meraki',                  logo: `${LOGOS}/logo-meraki.png` },
+  { nombre: 'Mitoba',                  logo: `${LOGOS}/logo-mitoba.png` },
+  { nombre: 'Tau Pet à Porter',        logo: `${LOGOS}/logo-tau-pet-a-porter.png` },
+  { nombre: 'The Archer',              logo: `${LOGOS}/logo-the-archer.png` },
+  { nombre: 'Jean Cartier' },
 ];
 
 export const CONTACTO = {

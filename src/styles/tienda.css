@@ -446,6 +446,11 @@
   font-family: var(--font-spartan), sans-serif; font-weight: 900; font-size: 1.4rem;
   color: var(--negro-soft);
 }
+/* El logo llena el circulo. `overflow: hidden` en .marca-logo lo recorta;
+   los logos llegan cuadrados de 300x300 y las esquinas se pierden, por eso se
+   pide que el dibujo entre dentro del circulo inscrito. */
+.ye-tienda .marca-logo { overflow: hidden; }
+.ye-tienda .marca-logo img { width: 100%; height: 100%; object-fit: cover; display: block; }
 .ye-tienda .marca-nombre { font-size: .92rem; color: var(--negro); }
 
 /* ── GRILLA DE CATEGORIA ────────────────────────────────────────────────── */

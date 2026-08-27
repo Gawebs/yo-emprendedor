@@ -127,6 +127,12 @@ Al recibir una solicitud hay que responder **dentro de las 24 horas** con un có
 
 Los puntos salen de `politicas.ts`: **no agregar ninguno que no este escrito ahi**. Los montos y la direccion se leen de `ENVIO_GRATIS_DESDE` y `CONTACTO`, no van quemados.
 
+**Storage: dos buckets publicos, `productos` y `marcas`** (26-ago-2026). Publicos para LEER, porque el catalogo se navega sin cuenta; la escritura la controla la `005`. La convencion de rutas es **`productos/<producto_id>/<archivo>`**: el primer tramo de la ruta es lo que decide de quien es la foto, via `puede_tocar_foto()`. **Si se cambia esa convencion hay que cambiar la funcion**, o cualquiera puede borrar fotos ajenas. Los logos de `marcas` los sube solo el admin: son identidad de la plataforma.
+
+Topes: 5 MB por foto de producto, 2 MB por logo. Cortan a proposito las subidas sin optimizar, que son las que despues hacen lenta la tienda.
+
+**Auth apunta a `https://yoemprendedortienda.com`.** Estaba en `localhost:3000`, con lo cual los links de confirmar cuenta y recuperar contrasena hubieran llegado rotos. **Falta SMTP propio**: el plan gratuito de Supabase manda unos pocos mails por hora, que no alcanza para una tienda. Se resuelve enchufando Zoho con una contrasena de aplicacion, y de paso los mails salen desde `info@yoemprendedortienda.com`.
+
 **Qué atributos muestra cada rubro** está en `ATRIBUTOS_POR_RUBRO` (`src/components/tienda/data.ts`). Un collar no tiene talle y una vela no tiene talle pero sí aroma: la ficha arma los selectores desde ahí, no con un formulario fijo.
 
 **El comprador nunca ve de qué marca es un producto** — ni en la home, ni en la categoría, ni en la ficha, ni en el carrito. Anita lo decidió porque si el cliente identifica la marca, la busca en Instagram y la próxima vez le compra directo, salteándose la plataforma. La marca sí puede aparecer en la confirmación del pedido ("Preparado por…"), donde la venta ya está cerrada. `pedido_items.emprendedor_id` se guarda igual, para liquidar.

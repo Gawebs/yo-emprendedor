@@ -132,7 +132,7 @@
 /* `width: 100%` no sobra: al pasar el banner a flex, el <main> que lo
    contiene se dimensiona por el contenido y el banner colapsa a 40 px. */
 .ye-tienda .banner-con-foto {
-  min-height: 460px; width: 100%;
+  min-height: 560px; width: 100%;
   display: flex; flex-direction: column;
   align-items: center; justify-content: center;
 }
@@ -142,9 +142,15 @@
    `center 42%` en vez de centro exacto porque lo que interesa —el cartel y
    las vidrieras— esta en la mitad de arriba; centrado se comia el cartel y
    mostraba vereda. */
+/* `center 30%` porque el cartel esta entre el 12% y el 30% del alto de la
+   foto: mas abajo se lo come. En una pantalla de 1900 px la foto se estira a
+   1267 px de alto, asi que un banner de 700 px muestra el 55% — alcanza para
+   el cartel y las vidrieras, y deja afuera la vereda, que no aporta.
+   Ver la foto completa exigiria un banner de 1267 px, que se comeria la
+   pantalla entera. */
 .ye-tienda .banner-foto {
   position: absolute; inset: 0; width: 100%; height: 100%;
-  object-fit: cover; object-position: center 42%;
+  object-fit: cover; object-position: center 30%;
 }
 /* La cortina es el amarillo de marca, no un gris: tine la foto en vez de solo
    apagarla, y el banner sigue leyendose como parte de la identidad. */
@@ -689,7 +695,7 @@
 
 /* Banner y ofertas: media medida mas de alto (cambios 1 y 2). */
 .ye-tienda .banner { padding: 5.25rem 1.5rem; }
-  .ye-tienda .banner-con-foto { min-height: 540px; }
+  .ye-tienda .banner-con-foto { min-height: 700px; }
 .ye-tienda .oferta { padding: 2.25rem 1.5rem; }
 
 /* Carriles con flechas en ambos extremos (cambios 3 y 4). */
@@ -731,7 +737,7 @@
 
 @media (max-width: 600px) {
   .ye-tienda .banner { padding: 3.5rem 1.25rem; }
-  .ye-tienda .banner-con-foto { min-height: 380px; }
+  .ye-tienda .banner-con-foto { min-height: 420px; }
   .ye-tienda .oferta { padding: 1.5rem 1.25rem; }
   .ye-tienda .carril-flecha { width: 32px; height: 32px; }
   .ye-tienda .carril-flecha-izq { left: -6px; }

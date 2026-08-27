@@ -131,8 +131,13 @@
    padding para que el alto no dependa de cuanto texto traiga la pieza. */
 /* `width: 100%` no sobra: al pasar el banner a flex, el <main> que lo
    contiene se dimensiona por el contenido y el banner colapsa a 40 px. */
+/* El banner toma la forma exacta de la foto (1536 x 1024), asi la imagen
+   entra completa y sin franjas. El costo, elegido a conciencia: en una
+   pantalla de 1900 px son unos 1267 px de alto, mas que la pantalla util de
+   una notebook, asi que al entrar hay que scrollear para ver los productos.
+   `min-height` queda como piso por si el texto no entrara. */
 .ye-tienda .banner-con-foto {
-  min-height: 560px; width: 100%;
+  aspect-ratio: 1536 / 1024; min-height: 260px; width: 100%;
   display: flex; flex-direction: column;
   align-items: center; justify-content: center;
 }
@@ -148,9 +153,11 @@
    La alternativa era un banner con la forma de la foto, pero en una pantalla
    de 1900 px eso son 1267 px de alto: mas que la pantalla util de una
    notebook, y al entrar a la tienda no se veria un solo producto. */
+/* Vuelve `cover`: como el banner tiene la misma proporcion que la foto, no
+   recorta nada, y evita franjas por redondeos de un pixel. */
 .ye-tienda .banner-foto {
   position: absolute; inset: 0; width: 100%; height: 100%;
-  object-fit: contain; object-position: center;
+  object-fit: cover; object-position: center;
 }
 /* La cortina es el amarillo de marca, no un gris: tine la foto en vez de solo
    apagarla, y el banner sigue leyendose como parte de la identidad. */
@@ -695,7 +702,6 @@
 
 /* Banner y ofertas: media medida mas de alto (cambios 1 y 2). */
 .ye-tienda .banner { padding: 5.25rem 1.5rem; }
-  .ye-tienda .banner-con-foto { min-height: 700px; }
 .ye-tienda .oferta { padding: 2.25rem 1.5rem; }
 
 /* Carriles con flechas en ambos extremos (cambios 3 y 4). */
@@ -737,7 +743,6 @@
 
 @media (max-width: 600px) {
   .ye-tienda .banner { padding: 3.5rem 1.25rem; }
-  .ye-tienda .banner-con-foto { min-height: 420px; }
   .ye-tienda .oferta { padding: 1.5rem 1.25rem; }
   .ye-tienda .carril-flecha { width: 32px; height: 32px; }
   .ye-tienda .carril-flecha-izq { left: -6px; }

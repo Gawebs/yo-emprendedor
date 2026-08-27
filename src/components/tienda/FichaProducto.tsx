@@ -24,6 +24,8 @@ export function FichaProducto({ producto }: { producto: ProductoDetalle }) {
   const [agregado, setAgregado] = useState(false);
 
   const colorElegido = colores.find((c) => c.nombre === color);
+  /** Si cada color trae su foto, la galeria hace de selector y los circulos sobran. */
+  const colorTieneFoto = colores.some((c) => c.foto);
 
   /**
    * Un color puede tener su propia foto. Al elegirlo, la imagen principal
@@ -50,6 +52,7 @@ export function FichaProducto({ producto }: { producto: ProductoDetalle }) {
       categoria: producto.categorias[0],
       marca: producto.marca,
       detalle: detalle || undefined,
+      stock,
     });
     setAgregado(true);
     setTimeout(() => setAgregado(false), 2200);
@@ -74,18 +77,30 @@ export function FichaProducto({ producto }: { producto: ProductoDetalle }) {
             con cinco fotos queda igual de prolija. */}
         {fotos.length > 1 && (
           <div className="galeria-minis">
-            {fotos.map((url, i) => (
-              <button
-                key={url}
-                type="button"
-                className="galeria-mini"
-                aria-current={i === fotoVisible}
-                aria-label={`Ver foto ${i + 1} de ${producto.nombre}`}
-                onClick={() => setFoto(i)}
-              >
-                <img src={url} alt="" width={640} height={640} loading="lazy" />
-              </button>
-            ))}
+            {fotos.map((url, i) => {
+              // Cuando la foto pertenece a un color, tocar la miniatura elige
+              // ese color: es lo que el cliente cree que esta haciendo.
+              const suColor = colores.find((c) => c.foto === url);
+              const agotado = suColor?.stock === 0;
+              return (
+                <button
+                  key={url}
+                  type="button"
+                  className={`galeria-mini${agotado ? ' mini-agotada' : ''}`}
+                  aria-current={i === fotoVisible}
+                  aria-label={
+                    suColor
+                      ? `${suColor.nombre}${agotado ? ', sin stock' : ''}`
+                      : `Ver foto ${i + 1} de ${producto.nombre}`
+                  }
+                  title={suColor ? suColor.nombre : undefined}
+                  onClick={() => (suColor ? setColor(suColor.nombre) : setFoto(i))}
+                >
+                  <img src={url} alt="" width={640} height={640} loading="lazy" />
+                  {agotado && <span className="mini-agotada-texto">Sin stock</span>}
+                </button>
+              );
+            })}
           </div>
         )}
       </div>
@@ -119,23 +134,29 @@ export function FichaProducto({ producto }: { producto: ProductoDetalle }) {
             <span className="opcion-label" id="lbl-color">
               Color {color && <span className="opcion-nota">— {color}</span>}
             </span>
-            <div className="colores" role="group" aria-labelledby="lbl-color">
-              {opciones.colores.map((c) => {
-                const agotado = c.stock === 0;
-                return (
-                  <button
-                    key={c.nombre}
-                    type="button"
-                    className={`color-btn${agotado ? ' color-agotado' : ''}`}
-                    style={{ background: c.hex }}
-                    aria-pressed={color === c.nombre}
-                    aria-label={agotado ? `${c.nombre}, sin stock` : c.nombre}
-                    title={agotado ? `${c.nombre} — sin stock` : c.nombre}
-                    onClick={() => setColor(c.nombre)}
-                  />
-                );
-              })}
-            </div>
+            {/* Sin circulos de color: cuando cada color tiene su foto, las
+                miniaturas de la galeria ya son el selector y muestran el
+                color de verdad, no un punto aproximado. Los circulos quedan
+                solo para productos que no tienen una foto por color. */}
+            {!colorTieneFoto && (
+              <div className="colores" role="group" aria-labelledby="lbl-color">
+                {opciones.colores.map((c) => {
+                  const agotado = c.stock === 0;
+                  return (
+                    <button
+                      key={c.nombre}
+                      type="button"
+                      className={`color-btn${agotado ? ' color-agotado' : ''}`}
+                      style={{ background: c.hex }}
+                      aria-pressed={color === c.nombre}
+                      aria-label={agotado ? `${c.nombre}, sin stock` : c.nombre}
+                      title={agotado ? `${c.nombre} — sin stock` : c.nombre}
+                      onClick={() => setColor(c.nombre)}
+                    />
+                  );
+                })}
+              </div>
+            )}
             {/* El cartel aparece solo si el stock se conoce. Se muestra igual
                 cuando esta agotado en vez de ocultar el color: si el cliente
                 no ve que existe, no vuelve a fijarse mas adelante. */}

@@ -72,11 +72,17 @@ export default function CarritoPage() {
                     <Minus size={15} aria-hidden="true" />
                   </button>
                   <span aria-live="polite">{item.cantidad}</span>
+                  {/* Apagado al llegar al stock: el boton que no hace nada al
+                      apretarlo se lee como que la pagina esta rota. */}
                   <button type="button" onClick={() => cambiarCantidad(item.id, item.cantidad + 1)}
+                          disabled={item.stock !== undefined && item.cantidad >= item.stock}
                           aria-label={`Agregar uno de ${item.nombre}`}>
                     <Plus size={15} aria-hidden="true" />
                   </button>
                 </div>
+                {item.stock !== undefined && item.cantidad >= item.stock && (
+                  <p className="carrito-tope">Es todo lo que hay disponible</p>
+                )}
 
                 <p className="carrito-subtotal">{formatearPrecio(item.precio * item.cantidad)}</p>
 

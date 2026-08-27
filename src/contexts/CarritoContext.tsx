@@ -15,6 +15,16 @@ export type ItemCarrito = {
   categoria: string;
   /** Viaja con el item pero no se muestra hasta la confirmacion del pedido. */
   marca: string;
+  /**
+   * Cuantas unidades hay de ESTA combinacion. Viaja con el item para que el
+   * carrito pueda frenar cuando alguien sube la cantidad de a uno: sin esto,
+   * con tres en deposito se podian pedir diez.
+   *
+   * Es una primera barrera, no la definitiva: el stock puede cambiar mientras
+   * el carrito espera. Al confirmar el pedido, `descontar_stock` vuelve a
+   * chequear con la fila bloqueada, y esa es la que manda.
+   */
+  stock?: number;
 };
 
 type Ctx = {
@@ -60,20 +70,31 @@ export function CarritoProvider({ children }: { children: ReactNode }) {
   }, [items, cargado]);
 
   const valor = useMemo<Ctx>(() => {
+    /** Nunca por encima del stock conocido. Sin stock cargado, no limita. */
+    const acotar = (cantidad: number, stock?: number) =>
+      stock === undefined ? cantidad : Math.min(cantidad, stock);
+
     const agregar: Ctx['agregar'] = (item, cantidad = 1) => {
       const id = armarId(item.slug, item.detalle);
+      if (item.stock === 0) return;   // agotado: no entra al carrito
       setItems((prev) => {
         const existente = prev.find((i) => i.id === id);
         if (existente) {
-          return prev.map((i) => (i.id === id ? { ...i, cantidad: i.cantidad + cantidad } : i));
+          return prev.map((i) =>
+            i.id === id
+              ? { ...i, stock: item.stock, cantidad: acotar(i.cantidad + cantidad, item.stock) }
+              : i,
+          );
         }
-        return [...prev, { ...item, id, cantidad }];
+        return [...prev, { ...item, id, cantidad: acotar(cantidad, item.stock) }];
       });
     };
 
     const cambiarCantidad: Ctx['cambiarCantidad'] = (id, cantidad) => {
       if (cantidad < 1) return setItems((prev) => prev.filter((i) => i.id !== id));
-      setItems((prev) => prev.map((i) => (i.id === id ? { ...i, cantidad } : i)));
+      setItems((prev) =>
+        prev.map((i) => (i.id === id ? { ...i, cantidad: acotar(cantidad, i.stock) } : i)),
+      );
     };
 
     return {

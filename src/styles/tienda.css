@@ -918,6 +918,11 @@
 .ye-tienda .subrubros a:hover { border-color: var(--verde-oscuro); color: var(--verde-oscuro); }
 .ye-tienda .cat-nota { font-size: .82rem; color: var(--negro-soft); line-height: 1.6; font-style: italic; }
 
+.ye-tienda .carrito-tope {
+  font-size: .74rem; color: #9a5f1f; margin-top: .3rem; grid-column: 1 / -1;
+}
+.ye-tienda .carrito-cantidad button:disabled { opacity: .35; cursor: not-allowed; }
+
 /* ── STOCK POR COLOR ────────────────────────────────────────────────────── */
 /* El aviso va debajo del selector de color, no arriba del boton: el cliente
    mira el color y ahi mismo se entera de si hay o no. */
@@ -933,6 +938,19 @@
 .ye-tienda .stock-poco::before { background: #c47d28; }
 .ye-tienda .stock-sin { color: #9c3a2f; font-weight: 700; }
 .ye-tienda .stock-sin::before { background: #9c3a2f; }
+
+/* La miniatura de un color agotado se sigue viendo, atenuada y con el aviso
+   encima: si se ocultara, el cliente no sabria que ese color existe y no
+   volveria a fijarse cuando lo repongan. */
+.ye-tienda .galeria-mini { position: relative; }
+.ye-tienda .mini-agotada img { opacity: .4; }
+.ye-tienda .mini-agotada-texto {
+  position: absolute; left: 0; right: 0; bottom: 0;
+  background: rgba(70, 66, 61, .85); color: var(--blanco);
+  font-size: .62rem; font-weight: 700; text-transform: uppercase;
+  letter-spacing: .04em; padding: .18rem 0; text-align: center;
+  pointer-events: none;
+}
 
 /* El color agotado se sigue viendo, atenuado y con una barra cruzada: si se
    ocultara, el cliente no sabria que ese color existe. */

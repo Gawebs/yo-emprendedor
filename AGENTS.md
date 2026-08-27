@@ -145,6 +145,10 @@ Topes: 5 MB por foto de producto, 2 MB por logo. Cortan a proposito las subidas 
 
 Ahora `Color` lleva `foto` y `stock` (`producto_variantes.foto_url` en la base, migracion `006`). Al elegir un color cambia la foto principal, se avisa cuanto queda, y si esta agotado el boton de comprar se apaga.
 
+**Los circulos de color no se muestran si cada color tiene su foto** (26-ago-2026, pedido de Gabriel): las miniaturas de la galeria ya son el selector y muestran el color de verdad, no un punto aproximado. Tocar una miniatura elige ese color. Los circulos siguen existiendo para productos con colores pero sin una foto por color.
+
+**El stock frena la compra en tres puntos**, no en uno: el boton de la ficha se apaga, `agregar()` ignora un item con stock cero, y en el carrito el boton de sumar se bloquea al llegar al tope con el aviso "Es todo lo que hay disponible". El item lleva su `stock` para eso. **Igual eso no alcanza**: el stock puede cambiar mientras el carrito espera, asi que al confirmar el pedido manda `descontar_stock()`, que revisa con la fila bloqueada.
+
 Tres decisiones sobre como se muestra:
 
 - **El color agotado se sigue viendo**, atenuado y con una barra cruzada. Ocultarlo haria que el cliente ni se entere de que ese color existe.

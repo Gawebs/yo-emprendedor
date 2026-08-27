@@ -142,15 +142,15 @@
    `center 42%` en vez de centro exacto porque lo que interesa —el cartel y
    las vidrieras— esta en la mitad de arriba; centrado se comia el cartel y
    mostraba vereda. */
-/* `center 30%` porque el cartel esta entre el 12% y el 30% del alto de la
-   foto: mas abajo se lo come. En una pantalla de 1900 px la foto se estira a
-   1267 px de alto, asi que un banner de 700 px muestra el 55% — alcanza para
-   el cartel y las vidrieras, y deja afuera la vereda, que no aporta.
-   Ver la foto completa exigiria un banner de 1267 px, que se comeria la
-   pantalla entera. */
+/* `contain` y no `cover`: la foto entra completa, sin recortar. Al costado
+   quedan franjas del amarillo de marca, que es el mismo fondo del banner, asi
+   que se leen como parte del diseno y no como espacio sobrante.
+   La alternativa era un banner con la forma de la foto, pero en una pantalla
+   de 1900 px eso son 1267 px de alto: mas que la pantalla util de una
+   notebook, y al entrar a la tienda no se veria un solo producto. */
 .ye-tienda .banner-foto {
   position: absolute; inset: 0; width: 100%; height: 100%;
-  object-fit: cover; object-position: center 30%;
+  object-fit: contain; object-position: center;
 }
 /* La cortina es el amarillo de marca, no un gris: tine la foto en vez de solo
    apagarla, y el banner sigue leyendose como parte de la identidad. */

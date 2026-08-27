@@ -153,7 +153,7 @@ Tres decisiones sobre como se muestra:
 
 - **El color agotado se sigue viendo**, atenuado y con una barra cruzada. Ocultarlo haria que el cliente ni se entere de que ese color existe.
 - **`stock: undefined` no muestra cartel**, `stock: 0` sí. Undefined significa "todavia no lo cargamos" — es el caso de los 55 productos de muestra. Cero es informacion real.
-- **Debajo de `POCAS_UNIDADES` (5) el aviso cambia** a "Ultimas N unidades". El mismo umbral vive en la vista `variantes_disponibles`, para que la tienda y el panel digan lo mismo.
+- **La cantidad exacta no se publica** (decision de Gabriel, 26-ago-2026). Con stock holgado no se muestra ningun cartel: decirle al cliente que hay 54 no lo ayuda a decidir y le muestra a la competencia cuanto stock maneja el negocio. **Solo se avisa debajo de `POCAS_UNIDADES` (5)** — "Ultimas 3 unidades", "Ultima unidad" — que es cuando el dato mueve la decision. El mismo umbral vive en la vista `variantes_disponibles`, para que la tienda y el panel digan lo mismo.
 
 **En la grilla, el producto agotado se marca y se manda al final** — no se oculta. `estaAgotado()` en `data.ts` lo resuelve, y solo da true cuando **ninguna** combinacion tiene stock: con un color agotado y tres disponibles el producto sigue normal.
 

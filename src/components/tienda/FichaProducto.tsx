@@ -160,13 +160,17 @@ export function FichaProducto({ producto }: { producto: ProductoDetalle }) {
             {/* El cartel aparece solo si el stock se conoce. Se muestra igual
                 cuando esta agotado en vez de ocultar el color: si el cliente
                 no ve que existe, no vuelve a fijarse mas adelante. */}
-            {stock !== undefined && (
-              <p className={`stock-aviso${!hayStock ? ' stock-sin' : stock <= POCAS_UNIDADES ? ' stock-poco' : ''}`}>
+            {/* La cantidad exacta no se publica: decirle al cliente que hay 54
+                no lo ayuda a decidir, y de paso le muestra a la competencia
+                cuanto stock maneja el negocio. Solo se avisa cuando queda
+                poco, que ahi si mueve la decision. */}
+            {stock !== undefined && stock <= POCAS_UNIDADES && (
+              <p className={`stock-aviso ${hayStock ? 'stock-poco' : 'stock-sin'}`}>
                 {!hayStock
                   ? 'Sin stock en este color'
-                  : stock <= POCAS_UNIDADES
-                    ? `¡Últimas ${stock} unidades!`
-                    : `${stock} unidades disponibles`}
+                  : stock === 1
+                    ? '¡Última unidad!'
+                    : `¡Últimas ${stock} unidades!`}
               </p>
             )}
           </div>

@@ -29,11 +29,11 @@ export const QUIENES_SOMOS: Politica = {
   titulo: '¿Quiénes somos?',
   bajada: 'Un ecosistema comercial colaborativo en San Miguel de Tucumán.',
   bloques: [
-    { tipo: 'parrafo', texto: 'Somos Yo! Emprendedor Hub, una plataforma comercial colaborativa que conecta marcas, productos y personas en un mismo espacio, acercando lo mejor de los emprendimientos locales al público.' },
+    { tipo: 'parrafo', texto: 'Somos Yo Emprendedor, una plataforma comercial colaborativa que conecta marcas, productos y personas en un mismo espacio, acercando lo mejor de los emprendimientos locales al público.' },
     { tipo: 'parrafo', texto: 'Creamos un espacio donde las marcas encuentran nuevas oportunidades para comercializar y crecer, y las personas pueden descubrir, conocer y comprar productos de diferentes marcas locales de manera simple, cercana y accesible.' },
     { tipo: 'parrafo', texto: 'Integramos comercio físico y digital, visibilidad, logística, información y comunidad, construyendo una estructura que permite reunir en un mismo lugar una amplia variedad de propuestas y facilitar el encuentro entre quienes producen y quienes buscan productos diferentes, originales y locales.' },
     { tipo: 'destacado', texto: 'Porque creemos que detrás de cada producto hay una historia, una idea y una persona que decidió emprender. Y que esas marcas merecen ser conocidas.' },
-    { tipo: 'parrafo', texto: 'Por eso, Yo! Emprendedor Hub no es solamente una tienda ni un espacio donde se exhiben productos. Es un ecosistema comercial colaborativo que conecta a emprendedores con consumidores, reúne diferentes propuestas en un mismo lugar y genera oportunidades para que las marcas crezcan y para que más personas descubran lo que se produce y emprende localmente.' },
+    { tipo: 'parrafo', texto: 'Por eso, Yo Emprendedor no es solamente una tienda ni un espacio donde se exhiben productos. Es un ecosistema comercial colaborativo que conecta a emprendedores con consumidores, reúne diferentes propuestas en un mismo lugar y genera oportunidades para que las marcas crezcan y para que más personas descubran lo que se produce y emprende localmente.' },
   ],
 };
 

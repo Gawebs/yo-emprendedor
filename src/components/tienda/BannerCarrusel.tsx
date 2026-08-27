@@ -2,17 +2,7 @@
 
 import { useEffect, useState } from 'react';
 
-type Pieza = {
-  titulo: string;
-  sub: string;
-  /**
-   * Foto de fondo, opcional. Va con `object-fit: cover`, asi que no hace
-   * falta recortarla a la medida del banner: el navegador la ajusta segun la
-   * pantalla, que es lo que se necesita cuando el mismo banner pasa de muy
-   * apaisado en escritorio a casi cuadrado en celular.
-   */
-  foto?: string;
-};
+type Pieza = { titulo: string; sub: string };
 
 const INTERVALO = 6000;
 
@@ -21,7 +11,22 @@ const INTERVALO = 6000;
  * una pieza. Se detiene con prefers-reduced-motion y mientras el puntero esta
  * encima, para que no cambie de golpe mientras alguien lee.
  */
-export function BannerCarrusel({ piezas }: { piezas: Pieza[] }) {
+export function BannerCarrusel({
+  piezas,
+  foto,
+}: {
+  piezas: Pieza[];
+  /**
+   * Fondo del banner entero, no de cada pieza. Rota el texto y la imagen se
+   * queda quieta: si cambiara junto con el texto, el ojo pierde la referencia
+   * y el banner parpadea.
+   *
+   * Va con `object-fit: cover`, asi que no hace falta recortarla a medida: el
+   * banner pasa de muy apaisado en escritorio a casi cuadrado en celular y el
+   * navegador la ajusta sola.
+   */
+  foto?: string;
+}) {
   const [activa, setActiva] = useState(0);
   const [pausado, setPausado] = useState(false);
 
@@ -37,7 +42,7 @@ export function BannerCarrusel({ piezas }: { piezas: Pieza[] }) {
 
   return (
     <section
-      className={`banner${pieza.foto ? " banner-con-foto" : ""}`}
+      className={`banner${foto ? " banner-con-foto" : ""}`}
       aria-roledescription="carrusel"
       aria-label="Destacados"
       onMouseEnter={() => setPausado(true)}
@@ -46,9 +51,9 @@ export function BannerCarrusel({ piezas }: { piezas: Pieza[] }) {
       {/* La cortina del amarillo de marca sobre la foto: sin ella el texto,
           que es oscuro, no se lee sobre una foto nocturna. Y de paso disimula
           que la foto no llega al ancho de un monitor grande. */}
-      {pieza.foto && (
+      {foto && (
         <>
-          <img className="banner-foto" src={pieza.foto} alt="" aria-hidden="true" />
+          <img className="banner-foto" src={foto} alt="" aria-hidden="true" />
           <span className="banner-cortina" aria-hidden="true" />
         </>
       )}

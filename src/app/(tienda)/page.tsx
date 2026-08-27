@@ -53,9 +53,9 @@ export default function TiendaHome() {
   return (
     <>
       <BannerCarrusel
+        foto={`${process.env.NEXT_PUBLIC_SUPABASE_URL}/storage/v1/object/public/sitio/local/fachada-noche.webp`}
         piezas={[
-          { titulo: 'Marcas locales que crecen todos los días', sub: 'Descubrí productos de emprendedoras de Tucumán',
-            foto: `${process.env.NEXT_PUBLIC_SUPABASE_URL}/storage/v1/object/public/sitio/local/fachada-noche.webp` },
+          { titulo: 'Marcas locales que crecen todos los días', sub: 'Descubrí productos de emprendedoras de Tucumán' },
           { titulo: 'Envío gratis en tu primera compra', sub: 'Sumate y recibilo donde estés' },
           { titulo: '3 cuotas sin interés', sub: 'Con todas las tarjetas' },
         ]}

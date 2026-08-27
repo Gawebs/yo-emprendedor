@@ -4,7 +4,7 @@ import { COMO_COMPRAR, PREGUNTAS } from '@/components/tienda/politicas';
 import { CONTACTO } from '@/components/tienda/data';
 
 export const metadata: Metadata = {
-  title: 'Preguntas frecuentes — Yo Emprendedor',
+  title: 'Preguntas frecuentes · Yo Emprendedor',
   description: 'Cómo comprar, medios de pago, envíos y cambios en Yo Emprendedor.',
 };
 

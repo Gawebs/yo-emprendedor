@@ -3,7 +3,7 @@ import { PaginaPolitica } from '@/components/tienda/PaginaPolitica';
 import { FORMAS_DE_PAGO } from '@/components/tienda/politicas';
 
 export const metadata: Metadata = {
-  title: 'Formas de pago — Yo Emprendedor',
+  title: 'Formas de pago · Yo Emprendedor',
   description: FORMAS_DE_PAGO.bajada,
 };
 

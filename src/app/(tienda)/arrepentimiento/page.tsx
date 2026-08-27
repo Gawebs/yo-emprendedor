@@ -4,7 +4,7 @@ import { FormArrepentimiento } from '@/components/tienda/FormArrepentimiento';
 import { CONTACTO } from '@/components/tienda/data';
 
 export const metadata: Metadata = {
-  title: 'Botón de arrepentimiento — Yo Emprendedor',
+  title: 'Botón de arrepentimiento · Yo Emprendedor',
   description:
     'Cancelá tu compra dentro de los 10 días corridos desde que la recibiste, sin costo y sin explicar el motivo.',
 };

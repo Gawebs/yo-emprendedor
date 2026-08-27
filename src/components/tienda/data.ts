@@ -300,7 +300,7 @@ export type Variantes = {
  * `foto` — al elegir el color, la imagen principal cambia a esta. Sin eso el
  * cliente tiene que adivinar cual de las miniaturas es el color que eligio.
  *
- * `stock` — undefined significa "no lo sabemos todavia" y no muestra cartel;
+ * `stock` · undefined significa "no lo sabemos todavia" y no muestra cartel;
  * es el caso de los productos de muestra. Un 0 sí muestra "Sin stock" y
  * bloquea la compra: vender algo que no hay es peor que no mostrarlo.
  */
@@ -339,7 +339,7 @@ const CATALOGO_OPCIONES = {
 
 const DETALLES: Record<string, Partial<ProductoDetalle>> = {
   'remera-oversize-tejida': {
-    medidas: 'Largo 65cm — Ancho 50cm',
+    medidas: 'Largo 65cm · Ancho 50cm',
     descripcion: 'Remera de algodón tejido a mano, corte oversize. Ideal para uso diario.',
   },
   'perfume-floral': {
@@ -350,7 +350,7 @@ const DETALLES: Record<string, Partial<ProductoDetalle>> = {
     descripcion: 'Aros artesanales con baño de oro, livianos y para uso diario.',
   },
   'vela-aromatica': {
-    medidas: 'Alto 9cm — Diámetro 7cm',
+    medidas: 'Alto 9cm · Diámetro 7cm',
     descripcion: 'Vela de cera de soja con mecha de algodón, de combustión lenta.',
   },
 };

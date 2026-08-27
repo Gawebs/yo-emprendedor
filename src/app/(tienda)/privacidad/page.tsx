@@ -3,7 +3,7 @@ import { PaginaPolitica } from '@/components/tienda/PaginaPolitica';
 import { PRIVACIDAD } from '@/components/tienda/legales';
 
 export const metadata: Metadata = {
-  title: 'Política de privacidad — Yo Emprendedor',
+  title: 'Política de privacidad · Yo Emprendedor',
   description: PRIVACIDAD.bajada,
 };
 

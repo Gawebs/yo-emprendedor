@@ -3,7 +3,7 @@ import type { Metadata } from 'next';
 import { QUIENES_SOMOS, PILARES } from '@/components/tienda/politicas';
 
 export const metadata: Metadata = {
-  title: 'Nosotros — Yo Emprendedor',
+  title: 'Nosotros · Yo Emprendedor',
   description: QUIENES_SOMOS.bajada,
 };
 

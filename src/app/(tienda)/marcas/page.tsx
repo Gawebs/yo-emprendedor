@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import { MARCAS } from '@/components/tienda/data';
 
 export const metadata: Metadata = {
-  title: 'Marcas que nos acompañan — Yo Emprendedor',
+  title: 'Marcas que nos acompañan · Yo Emprendedor',
   description: 'Emprendedoras que forman parte de Yo Emprendedor en San Miguel de Tucumán.',
 };
 

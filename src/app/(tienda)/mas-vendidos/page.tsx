@@ -4,7 +4,7 @@ import { ProductoCard } from '@/components/tienda/ProductoCard';
 import { PRODUCTOS } from '@/components/tienda/data';
 
 export const metadata: Metadata = {
-  title: 'Más vendidos — Yo Emprendedor',
+  title: 'Más vendidos · Yo Emprendedor',
   description: 'Los productos que más eligen nuestros clientes.',
 };
 

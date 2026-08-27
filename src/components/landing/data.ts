@@ -73,7 +73,7 @@ export const BENEFICIOS = [
   'Más presencia. Más visibilidad. Más oportunidades.',
   'Sin empleados que gestionar ni alquileres que sostener.',
   'Sin los riesgos de abrir un local propio.',
-  'Crecer no significa trabajar más horas — significa un negocio más inteligente.',
+  'Crecer no significa trabajar más horas, significa un negocio más inteligente.',
 ];
 
 export const BENEFICIO_STATS = [
@@ -95,7 +95,7 @@ export const DOLORES = [
   { cita: 'Mi mercado ya me conoce. Necesito llegar a nuevas personas, pero no puedo abrir otro local.', quien: 'La que quiere vender en otra ciudad' },
   { cita: 'Tengo mi local, pero quiero otro punto de venta sin los costos de la primera vez.', quien: 'El negocio con local propio que busca expansión' },
   { cita: 'Vendo por redes, pero pierdo clientes que quieren ver el producto antes de comprar.', quien: 'La que vende solo por redes' },
-  { cita: 'Tengo mi trabajo, mi profesión me consume — y mi negocio no tiene la atención que merece.', quien: 'El/la profesional con negocio paralelo' },
+  { cita: 'Tengo mi trabajo, mi profesión me consume, y mi negocio no tiene la atención que merece.', quien: 'El/la profesional con negocio paralelo' },
 ];
 
 export const SHOCK = [
@@ -106,15 +106,15 @@ export const SHOCK = [
 ];
 
 export const COSTOS = [
-  { item: 'Alquiler del local', dinero: '$1.500.000', tiempo: '—', ye: '$0 — incluido' },
-  { item: 'Obra y mobiliario', dinero: '$4M–$8M (único)', tiempo: '—', ye: '$0 — incluido' },
-  { item: 'Empleados / atención al cliente', dinero: '$1.200.000', tiempo: '80 hs', ye: '$0 · 0 hs — incluido' },
-  { item: 'Impuestos y servicios', dinero: '$800.000', tiempo: '—', ye: '$0 — incluido' },
-  { item: 'Redes y contenido', dinero: '$700.000', tiempo: '20 hs', ye: 'Incluido · 1–2 hs tuyas' },
+  { item: 'Alquiler del local', dinero: '$1.500.000', tiempo: '0 hs', ye: '$0, incluido' },
+  { item: 'Obra y mobiliario', dinero: '$4M a $8M (único)', tiempo: '0 hs', ye: '$0, incluido' },
+  { item: 'Empleados / atención al cliente', dinero: '$1.200.000', tiempo: '80 hs', ye: '$0 · 0 hs · incluido' },
+  { item: 'Impuestos y servicios', dinero: '$800.000', tiempo: '0 hs', ye: '$0, incluido' },
+  { item: 'Redes y contenido', dinero: '$700.000', tiempo: '20 hs', ye: 'Incluido · 1 a 2 hs tuyas' },
   { item: 'Tienda online y pedidos', dinero: '$300.000', tiempo: '25 hs', ye: 'Incluido · 0 hs' },
   { item: 'Administración e informes', dinero: '$400.000', tiempo: '15 hs', ye: 'Incluido · 1 hs' },
   { item: 'Logística y entregas', dinero: '$300.000', tiempo: '20 hs', ye: 'Incluido · 0 hs' },
-  { item: 'Diseño y capacitaciones', dinero: '$400.000', tiempo: '35 hs', ye: 'Incluido · 1–2 hs' },
+  { item: 'Diseño y capacitaciones', dinero: '$400.000', tiempo: '35 hs', ye: 'Incluido · 1 a 2 hs' },
 ];
 
 export type Plan = {
@@ -139,7 +139,7 @@ export const PLANES: Plan[] = [
     beneficios: [
       'Tu marca exhibida en tienda física todos los días',
       '15 productos en tienda online, siempre disponibles',
-      'Gestión de cobros y ventas — vos solo recibís el dinero',
+      'Gestión de cobros y ventas: vos solo recibís el dinero',
       'Difusión en redes sociales de Yo Emprendedor',
       'Reporte mensual de ventas y rendimiento',
       'Calculadora de precios y rentabilidad',
@@ -157,8 +157,8 @@ export const PLANES: Plan[] = [
     precio: '$550.000',
     hook: '"Quiero que mi marca se vea profesional y llegue a más gente."',
     beneficios: [
-      'Espacio preferencial de exhibición — mejor ubicación',
-      '50 productos en tienda online — más catálogo, más ventas',
+      'Espacio preferencial de exhibición: mejor ubicación',
+      '50 productos en tienda online: más catálogo, más ventas',
       'Gestión integral de ventas y cobranzas',
       '1 video exclusivo por mes en Instagram de Yo Emprendedor',
       '10 historias mensuales exclusivas de tu marca',
@@ -179,7 +179,7 @@ export const PLANES: Plan[] = [
     precio: '$950.000',
     hook: '"Quiero posicionarme en capital y que me vean como una marca seria."',
     beneficios: [
-      'Ubicación exclusiva al frente — máxima visibilidad',
+      'Ubicación exclusiva al frente: máxima visibilidad',
       'Vidriera digital: tu marca en la TV de entrada',
       'Catálogo online ilimitado + banner principal',
       'Publicación en múltiples rubros',
@@ -226,7 +226,7 @@ export const TESTIMONIOS = [
 
 export const ROI = [
   { plan: 'Plan Impulso', ticket: '$15.000', ventas: '17', cadencia: '= 1 venta cada 2 días', precio: '$250.000/mes' },
-  { plan: 'Plan Crecimiento', ticket: '$25.000', ventas: '22', cadencia: '= 5–6 ventas por semana', precio: '$550.000/mes', destacado: true },
+  { plan: 'Plan Crecimiento', ticket: '$25.000', ventas: '22', cadencia: '= 5 a 6 ventas por semana', precio: '$550.000/mes', destacado: true },
   { plan: 'Plan Expansión', ticket: '$40.000', ventas: '24', cadencia: '= 6 ventas por semana', precio: '$950.000/mes' },
 ];
 

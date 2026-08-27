@@ -22,7 +22,7 @@ import { SITIO_INDEXABLE, SITIO_URL } from '@/constants/sitio';
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITIO_URL),
-  title: 'Yo Emprendedor — Tu marca creciendo y vendiendo, aunque no estés presente',
+  title: 'Yo Emprendedor · Tu marca creciendo y vendiendo, aunque no estés presente',
   description:
     'Visibilidad, presencia física y gestión de ventas en San Miguel de Tucumán. Sin abrir un local, sin invertir tu tiempo y sin riesgos innecesarios.',
   openGraph: {

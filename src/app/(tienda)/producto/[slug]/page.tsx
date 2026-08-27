@@ -21,10 +21,10 @@ export function generateStaticParams() {
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
   const producto = productoDetalle(slug);
-  if (!producto) return { title: 'Producto no encontrado — Yo Emprendedor' };
+  if (!producto) return { title: 'Producto no encontrado · Yo Emprendedor' };
 
   return {
-    title: `${producto.nombre} — Yo Emprendedor`,
+    title: `${producto.nombre} · Yo Emprendedor`,
     description: producto.descripcion,
   };
 }

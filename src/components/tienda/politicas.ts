@@ -72,7 +72,7 @@ export const PREGUNTAS: { q: string; a: string }[] = [
   },
   {
     q: '¿Puedo comprar productos de varias marcas en un mismo pedido?',
-    a: 'Sí. Podés agregar productos de diferentes marcas a un mismo carrito. Hacés un único pago y recibís un único pedido — nosotros coordinamos internamente con cada emprendimiento.',
+    a: 'Sí. Podés agregar productos de diferentes marcas a un mismo carrito. Hacés un único pago y recibís un único pedido: nosotros coordinamos internamente con cada emprendimiento.',
   },
   {
     q: '¿Voy a recibir una sola factura o varias?',
@@ -182,7 +182,7 @@ export const ENVIOS: Politica = {
 /** Tabla resumen del documento, para la pagina de envios. */
 export const RESUMEN_ENVIOS = [
   { modalidad: 'Retiro en el local', cobertura: 'San Miguel de Tucumán', costo: 'Gratis', tiempo: 'Una vez preparado el pedido' },
-  { modalidad: 'Envío local', cobertura: 'San Miguel y alrededores', costo: 'Según operador', tiempo: '24–48 h hábiles' },
+  { modalidad: 'Envío local', cobertura: 'San Miguel y alrededores', costo: 'Según operador', tiempo: '24 a 48 h hábiles' },
   { modalidad: 'Interior de Tucumán', cobertura: 'Localidades con cobertura', costo: 'Según operador', tiempo: 'Según operador' },
   { modalidad: 'Otras provincias', cobertura: 'Según cobertura nacional', costo: 'Según operador', tiempo: 'Según operador' },
   { modalidad: 'Envío gratis', cobertura: 'Compras ≥ $200.000', costo: 'Gratis', tiempo: 'Según zona' },
@@ -219,7 +219,7 @@ export const CAMBIOS: Politica = {
     { tipo: 'parrafo', texto: 'Cuando el cambio se solicite porque querés otro producto, modelo, color, tamaño o variante, estará sujeto a la disponibilidad de stock. Si el nuevo producto tiene un valor superior, deberá abonarse la diferencia. Si tiene un valor inferior, se podrá generar un saldo a favor o realizar la devolución correspondiente.' },
 
     { tipo: 'titulo', texto: '6. Costos de envío en los cambios' },
-    { tipo: 'parrafo', texto: 'Cuando el cambio se solicite por decisión del cliente —cambio de color, modelo, tamaño o elección de otro producto—, los costos de traslado podrán quedar a su cargo, y te los informamos antes de realizarlo. Cuando el cambio se deba a un error de Yo Emprendedor, a un producto defectuoso, dañado o diferente del comprado, los costos los asumimos nosotros, de acuerdo con la normativa aplicable.' },
+    { tipo: 'parrafo', texto: 'Cuando el cambio se solicite por decisión del cliente (cambio de color, modelo, tamaño o elección de otro producto), los costos de traslado podrán quedar a su cargo, y te los informamos antes de realizarlo. Cuando el cambio se deba a un error de Yo Emprendedor, a un producto defectuoso, dañado o diferente del comprado, los costos los asumimos nosotros, de acuerdo con la normativa aplicable.' },
 
     { tipo: 'titulo', texto: '7. Producto recibido incorrectamente' },
     { tipo: 'parrafo', texto: 'Si recibiste un producto diferente al que compraste, comunicate dentro del plazo establecido e indicá el número de pedido, el producto recibido, el producto que figuraba en la compra y fotografías del producto y su packaging. Verificamos la situación y te indicamos cómo proceder; si se comprueba un error en la preparación, coordinamos la solución correspondiente.' },
@@ -263,7 +263,7 @@ export const CAMBIOS: Politica = {
     { tipo: 'parrafo', texto: 'Yo Emprendedor trabaja con diferentes marcas y emprendimientos que comercializan sus productos a través de nuestra plataforma. La gestión de cambios se canaliza inicialmente a través de nosotros, procurando brindar una experiencia simple al cliente. Cuando resulte necesario, coordinamos la solución con la marca responsable del producto.' },
 
     { tipo: 'titulo', texto: '18. Contacto' },
-    { tipo: 'parrafo', texto: 'Para consultas o para iniciar una solicitud de cambio: info@yoemprendedortienda.com, o 24 de Septiembre 734, San Miguel de Tucumán, Tucumán, Argentina. Asunto sugerido: "Solicitud de cambio – Pedido N.º [número]".' },
+    { tipo: 'parrafo', texto: 'Para consultas o para iniciar una solicitud de cambio: info@yoemprendedortienda.com, o 24 de Septiembre 734, San Miguel de Tucumán, Tucumán, Argentina. Asunto sugerido: "Solicitud de cambio · Pedido N.º [número]".' },
 
     { tipo: 'destacado', texto: 'Esta Política de Cambios forma parte de las condiciones de compra de Yo Emprendedor y podrá actualizarse cuando resulte necesario para reflejar cambios en nuestros servicios, productos o normativa aplicable. La versión vigente estará publicada en nuestro sitio web.' },
   ],
@@ -360,7 +360,7 @@ export const FORMAS_DE_PAGO: Politica = {
     { tipo: 'parrafo', texto: 'Mercado Pago permite configurar qué medios y tipos de pago se ofrecen, por lo que las opciones disponibles se muestran al momento de realizar la compra.' },
 
     { tipo: 'titulo', texto: '2. Transferencia bancaria' },
-    { tipo: 'parrafo', texto: 'También podés pagar mediante transferencia bancaria. Una vez realizada, será necesario enviar o informar el comprobante según el procedimiento indicado. Importante: el pedido no se considera confirmado únicamente por el envío del comprobante — la compra queda confirmada una vez que verificamos la acreditación del pago.' },
+    { tipo: 'parrafo', texto: 'También podés pagar mediante transferencia bancaria. Una vez realizada, será necesario enviar o informar el comprobante según el procedimiento indicado. Importante: el pedido no se considera confirmado únicamente por el envío del comprobante · la compra queda confirmada una vez que verificamos la acreditación del pago.' },
 
     { tipo: 'titulo', texto: '3. Efectivo' },
     { tipo: 'parrafo', texto: 'El efectivo está disponible como medio de pago para las compras realizadas presencialmente en nuestro local. Actualmente no contemplamos el pago en efectivo para las compras realizadas a través de la tienda online.' },

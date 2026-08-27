@@ -4,7 +4,7 @@ import { ProductoCard } from '@/components/tienda/ProductoCard';
 import { PRODUCTOS } from '@/components/tienda/data';
 
 export const metadata: Metadata = {
-  title: 'Ofertas — Yo Emprendedor',
+  title: 'Ofertas · Yo Emprendedor',
   description: 'Productos con descuento de marcas locales de Tucumán.',
 };
 

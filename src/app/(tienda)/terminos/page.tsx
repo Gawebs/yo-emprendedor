@@ -3,7 +3,7 @@ import { PaginaPolitica } from '@/components/tienda/PaginaPolitica';
 import { TERMINOS } from '@/components/tienda/legales';
 
 export const metadata: Metadata = {
-  title: 'Términos y condiciones — Yo Emprendedor',
+  title: 'Términos y condiciones · Yo Emprendedor',
   description: TERMINOS.bajada,
 };
 

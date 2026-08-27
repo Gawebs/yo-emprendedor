@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import { EnPreparacion } from '@/components/tienda/EnPreparacion';
 
 export const metadata: Metadata = {
-  title: 'Trabajos a medida — Yo Emprendedor',
+  title: 'Trabajos a medida · Yo Emprendedor',
   description: 'Pedidos personalizados y consultas por mayor.',
 };
 

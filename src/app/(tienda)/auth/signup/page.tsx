@@ -3,7 +3,7 @@ import type { Metadata } from 'next';
 import { FormCuenta } from '@/components/tienda/FormCuenta';
 
 export const metadata: Metadata = {
-  title: 'Crear cuenta — Yo Emprendedor',
+  title: 'Crear cuenta · Yo Emprendedor',
   robots: { index: false, follow: true },
 };
 

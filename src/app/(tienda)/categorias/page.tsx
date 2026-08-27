@@ -3,7 +3,7 @@ import type { Metadata } from 'next';
 import { CATEGORIAS, productosDe } from '@/components/tienda/data';
 
 export const metadata: Metadata = {
-  title: 'Categorías — Yo Emprendedor',
+  title: 'Categorías · Yo Emprendedor',
   description: 'Explorá los productos por categoría: belleza, accesorios, deco, hogar y más.',
 };
 

@@ -150,7 +150,7 @@ export function FichaProducto({ producto }: { producto: ProductoDetalle }) {
                       style={{ background: c.hex }}
                       aria-pressed={color === c.nombre}
                       aria-label={agotado ? `${c.nombre}, sin stock` : c.nombre}
-                      title={agotado ? `${c.nombre} — sin stock` : c.nombre}
+                      title={agotado ? `${c.nombre}, sin stock` : c.nombre}
                       onClick={() => setColor(c.nombre)}
                     />
                   );

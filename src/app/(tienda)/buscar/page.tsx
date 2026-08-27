@@ -8,7 +8,7 @@ type Props = { searchParams: Promise<{ q?: string }> };
 export async function generateMetadata({ searchParams }: Props): Promise<Metadata> {
   const { q } = await searchParams;
   return {
-    title: q ? `"${q}" — Yo Emprendedor` : 'Buscar — Yo Emprendedor',
+    title: q ? `"${q}" · Yo Emprendedor` : 'Buscar · Yo Emprendedor',
     // Los resultados de busqueda no aportan nada a un buscador y generan
     // paginas infinitas: se piden fuera del indice.
     robots: { index: false, follow: true },

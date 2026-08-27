@@ -6,7 +6,7 @@ import { CuentaProvider } from '@/contexts/CuentaContext';
 import '@/styles/tienda.css';
 
 export const metadata: Metadata = {
-  title: 'Tienda — Yo Emprendedor',
+  title: 'Tienda · Yo Emprendedor',
   description:
     'Productos de marcas locales de San Miguel de Tucumán. Envíos a todo el país, retiro gratis en el local y pago con tarjeta o transferencia.',
 };

@@ -3,7 +3,7 @@ import { PaginaPolitica } from '@/components/tienda/PaginaPolitica';
 import { GIFT_CARD } from '@/components/tienda/politicas';
 
 export const metadata: Metadata = {
-  title: 'Gift Card — Yo Emprendedor',
+  title: 'Gift Card · Yo Emprendedor',
   description: GIFT_CARD.bajada,
 };
 

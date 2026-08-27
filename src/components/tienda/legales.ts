@@ -171,7 +171,7 @@ export const TERMINOS: Politica = {
     { tipo: 'parrafo', texto: 'Si alguna disposición fuera declarada inválida, ilegal o inaplicable por autoridad competente, se tendrá por no escrita sin afectar la validez del resto.' },
 
     { tipo: 'titulo', texto: '36. Contacto' },
-    { tipo: 'parrafo', texto: 'Yo Emprendedor — 24 de Septiembre 734, San Miguel de Tucumán, Tucumán, Argentina. info@yoemprendedortienda.com. WhatsApp: 381 214-6172.' },
+    { tipo: 'parrafo', texto: 'Yo Emprendedor · 24 de Septiembre 734, San Miguel de Tucumán, Tucumán, Argentina. info@yoemprendedortienda.com. WhatsApp: 381 214-6172.' },
   ],
 };
 
@@ -184,7 +184,7 @@ export const PRIVACIDAD: Politica = {
     { tipo: 'parrafo', texto: 'Esta política explica qué datos personales podemos recopilar, para qué los utilizamos, con quién podemos compartirlos, cómo los protegemos y qué derechos pueden ejercer las personas titulares. El tratamiento se realiza de acuerdo con la Ley N.º 25.326 de Protección de Datos Personales y su normativa complementaria.' },
 
     { tipo: 'titulo', texto: '1. Responsable del tratamiento' },
-    { tipo: 'parrafo', texto: 'Yo Emprendedor — info@yoemprendedortienda.com — 24 de Septiembre 734, San Miguel de Tucumán, Tucumán, Argentina. Para consultas sobre privacidad y protección de datos, escribinos a ese correo.' },
+    { tipo: 'parrafo', texto: 'Yo Emprendedor · info@yoemprendedortienda.com · 24 de Septiembre 734, San Miguel de Tucumán, Tucumán, Argentina. Para consultas sobre privacidad y protección de datos, escribinos a ese correo.' },
 
     { tipo: 'titulo', texto: '2. ¿Qué datos personales recopilamos?' },
     { tipo: 'parrafo', texto: 'Datos de contacto y perfil: nombre y apellido, teléfono, correo electrónico, datos necesarios para identificar una cuenta o usuario, y el nombre de usuario o información pública del perfil desde el cual nos contactás.' },
@@ -247,6 +247,6 @@ export const PRIVACIDAD: Politica = {
     { tipo: 'parrafo', texto: 'Podemos actualizarla cuando resulte necesario para reflejar cambios en nuestros servicios, tecnologías, proveedores o normativa. La versión vigente estará disponible en el sitio e indicará la fecha de su última actualización.' },
 
     { tipo: 'titulo', texto: '13. Contacto' },
-    { tipo: 'parrafo', texto: 'Yo Emprendedor — info@yoemprendedortienda.com — 24 de Septiembre 734, San Miguel de Tucumán, Tucumán, Argentina. Asunto sugerido: "Protección de datos personales".' },
+    { tipo: 'parrafo', texto: 'Yo Emprendedor · info@yoemprendedortienda.com · 24 de Septiembre 734, San Miguel de Tucumán, Tucumán, Argentina. Asunto sugerido: "Protección de datos personales".' },
   ],
 };

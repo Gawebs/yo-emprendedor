@@ -3,7 +3,7 @@ import { PaginaPolitica } from '@/components/tienda/PaginaPolitica';
 import { CAMBIOS } from '@/components/tienda/politicas';
 
 export const metadata: Metadata = {
-  title: 'Cambios y devoluciones — Yo Emprendedor',
+  title: 'Cambios y devoluciones · Yo Emprendedor',
   description: CAMBIOS.bajada,
 };
 

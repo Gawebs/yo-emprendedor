@@ -13,10 +13,10 @@ export function generateStaticParams() {
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
   const existe = CATEGORIAS.some((c) => c.slug === slug);
-  if (!existe) return { title: 'Categoría no encontrada — Yo Emprendedor' };
+  if (!existe) return { title: 'Categoría no encontrada · Yo Emprendedor' };
 
   return {
-    title: `${nombreCategoria(slug)} — Yo Emprendedor`,
+    title: `${nombreCategoria(slug)} · Yo Emprendedor`,
     description: `Productos de ${nombreCategoria(slug).toLowerCase()} de marcas locales de Tucumán.`,
   };
 }

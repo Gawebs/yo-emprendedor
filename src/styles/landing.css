@@ -135,20 +135,28 @@
 .ye-landing .hero-buttons { display: flex; gap: 1rem; flex-wrap: wrap; }
 .ye-landing .btn-primary {
   background: var(--amarillo); color: var(--negro);
-  padding: .875rem 2rem; border: none; border-radius: 2px;
+  /* Borde transparente, no `none`: los botones fantasma tienen 1 px de borde
+     y sin esto el amarillo queda 2 px mas bajo cuando van uno al lado del otro. */
+  padding: .875rem 2rem; border: 1px solid transparent; border-radius: 2px;
   font-size: .875rem; font-weight: 700; cursor: pointer;
   text-decoration: none; font-family: var(--font-spartan), 'League Spartan', sans-serif;
   letter-spacing: .06em; text-transform: uppercase;
-  transition: background .2s, transform .15s; display: inline-block;
+  transition: background .2s, transform .15s;
+  display: inline-flex; align-items: center; justify-content: center;
+  gap: .5rem; white-space: nowrap; text-align: center;
 }
 .ye-landing .btn-primary:hover { background: var(--amarillo-light); transform: translateY(-1px); }
+.ye-landing .btn-primary svg,
+.ye-landing .btn-ghost svg { flex-shrink: 0; }
 .ye-landing .btn-ghost {
   background: transparent; color: rgba(255, 247, 220, .85);
   padding: .875rem 2rem; border: 1px solid rgba(255, 247, 220, .3); border-radius: 2px;
   font-size: .875rem; font-weight: 600; cursor: pointer;
   text-decoration: none; font-family: var(--font-spartan), 'League Spartan', sans-serif;
   letter-spacing: .06em; text-transform: uppercase;
-  transition: all .2s; display: inline-block;
+  transition: all .2s;
+  display: inline-flex; align-items: center; justify-content: center;
+  gap: .5rem; white-space: nowrap; text-align: center;
 }
 .ye-landing .btn-ghost:hover { border-color: var(--amarillo); color: var(--amarillo); }
 .ye-landing .hero-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; }

@@ -512,7 +512,7 @@ export default function Home() {
           </p>
           <div className="cta-buttons">
             <a href={CONTACTO.whatsappLink} className="btn-primary" target="_blank" rel="noopener noreferrer">
-              <IconoWhatsapp size={16} style={{ verticalAlign: 'middle', marginRight: '.5rem' }} />
+              <IconoWhatsapp size={16} />
               WhatsApp
             </a>
             <Link href="/" className="btn-ghost">Ver tienda online</Link>

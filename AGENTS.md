@@ -53,7 +53,17 @@ Lo que hay que pedirle a las marcas, ya al doble para pantallas de alta densidad
 
 **Una sola foto cuadrada por producto** alcanza para la grilla, el carrusel, la ficha y la miniatura: todas son 1:1 desde el 19-ago-2026, justamente para no pedir dos recortes de lo mismo.
 
-**Pendiente de definir:** el banner de la home es hoy un bloque de color con texto rotativo, no una imagen. El wireframe hablaba de "3 a 5 piezas con ofertas activas", que suena a imágenes. Si van imágenes hay que modificar `BannerCarrusel`, y la medida sería 2400 × 600 — con el texto puesto por el sitio y no quemado en la imagen, o en celular se recorta.
+**El banner de la home lleva foto de fondo desde el 27-ago-2026**, con la fachada del local de noche. Tres decisiones, todas de Gabriel y todas con su motivo:
+
+- **La foto es del banner, no de cada pieza.** Rota el texto y la imagen se queda quieta. Cuando cambiaba junto con el texto, el banner parpadeaba.
+- **El banner toma la proporcion de la foto** (`aspect-ratio: 1536 / 920`) en vez de recortarla a una franja. Se eligio sabiendo el costo: en una pantalla de 1900 px son ~1138 px de alto, asi que al entrar hay que scrollear para ver el primer producto. Imagen sobre conversion, a proposito.
+- **Un 10% recortado de arriba**, anclando con `object-position: center bottom`: sobre el cartel habia una franja de pared vacia que solo sumaba altura.
+
+Encima va una **cortina del amarillo de marca al 78%**: tine la foto en vez de apagarla, asi el banner sigue leyendose como identidad. Y el titulo pasa a `--negro-fuerte` cuando hay foto, porque el tono normal sobre el amarillo da 3.2:1 —el minimo justo para texto grande— y una foto detras se come ese margen.
+
+**Las imagenes del sitio van al bucket `sitio`**, no a `productos`: la fachada y los banners no son productos ni logos, y meterlos ahi romperia la convencion de rutas de `puede_tocar_foto()`.
+
+**Antes de subir, optimizar.** La fachada venia en PNG de 2,3 MB y quedo en 166 KB en webp sin perder un pixel de tamano. Un banner de 2 MB hace que la home tarde en cualquier celular con datos.
 
 ## Verificaciones
 

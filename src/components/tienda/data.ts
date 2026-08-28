@@ -83,6 +83,20 @@ export type Producto = {
    */
   marca: string;
   /**
+   * El subrubro dentro del rubro de origen: "Mue" + "bles", "Baño",
+   * "Dormitorio". Sale de la lista `sub` de ese rubro en `CATEGORIAS`, y no
+   * hay tipo que lo verifique, así que un subrubro mal escrito no rompe nada,
+   * simplemente no agrupa.
+   *
+   * Sirve para los relacionados: dentro de Hogar conviven muebles, blanquería
+   * de baño y acolchados, y abrir un juego de comedor para que abajo aparezcan
+   * tres sets de baño no le sirve a nadie.
+   *
+   * Es opcional: sin subrubro el producto sigue apareciendo como relacionado
+   * de su rubro, solo que después de los que sí comparten subrubro.
+   */
+  subrubro?: string;
+  /**
    * URLs de Supabase Storage. La primera es la que se ve en la grilla y en
    * los carruseles; el resto son las miniaturas de la ficha.
    *
@@ -280,25 +294,25 @@ export const PRODUCTOS: Producto[] = [
   // siguen entraron el 28-ago-2026 con las fotos que mando Anita.
 
   { slug: 'set-bano-moon', nombre: 'Set de baño Moon 3 piezas', precio: 18900,
-    categorias: ['hogar', 'regaleria'], marca: 'Jean Cartier',
+    subrubro: 'Baño', categorias: ['hogar', 'regaleria'], marca: 'Jean Cartier',
     fotos: fotosDeColores('set-bano-moon') },
 
   { slug: 'set-bano-mist', nombre: 'Set de baño Mist 5 piezas', precio: 34900,
-    categorias: ['hogar'], marca: 'Jean Cartier',
+    subrubro: 'Baño', categorias: ['hogar'], marca: 'Jean Cartier',
     fotos: [
       ...fotosDeColores('set-bano-mist'),
       foto('set-bano-mist', 'set-bano-mist-4.webp'),
     ] },
 
   { slug: 'set-cortina-bano', nombre: 'Set de cortina de baño 180 x 180', precio: 24900,
-    categorias: ['hogar'], marca: 'Jean Cartier',
+    subrubro: 'Baño', categorias: ['hogar'], marca: 'Jean Cartier',
     fotos: [
       ...fotosDeColores('set-cortina-bano'),
       foto('set-cortina-bano', 'set-cortina-bano-3.webp'),
     ] },
 
   { slug: 'kit-alaska-king', nombre: 'Kit Alaska King', precio: 129900,
-    categorias: ['hogar'], marca: 'Jean Cartier',
+    subrubro: 'Dormitorio', categorias: ['hogar'], marca: 'Jean Cartier',
     fotos: [
       foto('kit-alaska-king', 'kit-alaska-king-1.webp'),
       foto('kit-alaska-king', 'kit-alaska-king-2.webp'),
@@ -308,11 +322,11 @@ export const PRODUCTOS: Producto[] = [
   // selectores, y en Infantiles la ficha pediria talle: un acolchado no tiene.
   // Igual aparece en la fila de Infantiles, que es donde lo busca la clienta.
   { slug: 'acolchado-infantil-sabana', nombre: 'Acolchado infantil con sábana 1½ plaza',
-    precio: 54900, categorias: ['hogar', 'infantiles'], marca: 'Jean Cartier',
+    precio: 54900, subrubro: 'Dormitorio', categorias: ['hogar', 'infantiles'], marca: 'Jean Cartier',
     fotos: fotosDeColores('acolchado-infantil-sabana') },
 
   { slug: 'mantel-ambiente-tusor', nombre: 'Mantel de ambiente tusor 2 m', precio: 38900,
-    categorias: ['hogar'], marca: 'Jean Cartier',
+    subrubro: 'Cocina', categorias: ['hogar'], marca: 'Jean Cartier',
     fotos: [
       ...fotosDeColores('mantel-ambiente-tusor'),
       foto('mantel-ambiente-tusor', 'mantel-ambiente-tusor-4.webp'),
@@ -349,11 +363,11 @@ export const PRODUCTOS: Producto[] = [
   // que trae. Van al final, detras de las del juego como se vende: la primera
   // es la que sale en la grilla y en la fila de la home.
   { slug: 'juego-comedor-caoba', nombre: 'Juego de comedor caoba con 6 sillas', precio: 529900,
-    categorias: ['hogar'], marca: 'A confirmar',
+    subrubro: 'Muebles', categorias: ['hogar'], marca: 'A confirmar',
     fotos: fotosNumeradas('juego-comedor-caoba', 6, 'webp') },
 
   { slug: 'juego-comedor-negro', nombre: 'Juego de comedor negro con 6 sillas', precio: 489900,
-    categorias: ['hogar'], marca: 'A confirmar',
+    subrubro: 'Muebles', categorias: ['hogar'], marca: 'A confirmar',
     fotos: fotosNumeradas('juego-comedor-negro', 4, 'webp') },
 
   // La silla suelta del juego, para el que necesita sentar a mas gente. La
@@ -364,23 +378,23 @@ export const PRODUCTOS: Producto[] = [
   // coherentes entre si: si Anita pasa los reales y la relacion se da vuelta,
   // hay que dar vuelta las cuatro, no dos.
   { slug: 'silla-comedor-caoba', nombre: 'Silla de comedor caoba', precio: 52900,
-    categorias: ['hogar'], marca: 'A confirmar',
+    subrubro: 'Muebles', categorias: ['hogar'], marca: 'A confirmar',
     fotos: fotosNumeradas('silla-comedor-caoba', 2, 'webp') },
 
   { slug: 'silla-comedor-negra', nombre: 'Silla de comedor negra', precio: 48900,
-    categorias: ['hogar'], marca: 'A confirmar',
+    subrubro: 'Muebles', categorias: ['hogar'], marca: 'A confirmar',
     fotos: fotosNumeradas('silla-comedor-negra', 1, 'webp') },
 
   { slug: 'cama-madera-listones', nombre: 'Cama de madera con respaldo de listones',
-    precio: 349900, categorias: ['hogar'], marca: 'A confirmar',
+    precio: 349900, subrubro: 'Muebles', categorias: ['hogar'], marca: 'A confirmar',
     fotos: fotosNumeradas('cama-madera-listones', 8) },
 
   { slug: 'comoda-6-cajones', nombre: 'Cómoda nórdica de 6 cajones', precio: 259900,
-    categorias: ['hogar'], marca: 'A confirmar',
+    subrubro: 'Muebles', categorias: ['hogar'], marca: 'A confirmar',
     fotos: fotosNumeradas('comoda-6-cajones', 4) },
 
   { slug: 'mesa-de-luz-nordica', nombre: 'Mesa de luz nórdica con cajón', precio: 89900,
-    categorias: ['hogar'], marca: 'A confirmar',
+    subrubro: 'Muebles', categorias: ['hogar'], marca: 'A confirmar',
     fotos: fotosNumeradas('mesa-de-luz-nordica', 4) },
 
   // Ojo: este NO es Jean Cartier. La carpeta no lo dice y la foto que se
@@ -388,7 +402,7 @@ export const PRODUCTOS: Producto[] = [
   // que Anita confirme de quien es; no se sumo a MARCAS, que es la lista de
   // las emprendedoras.
   { slug: 'cortinas-blackout', nombre: 'Juego de cortinas blackout', precio: 79900,
-    categorias: ['hogar'], marca: 'Nathan Home',
+    subrubro: 'Living', categorias: ['hogar'], marca: 'Nathan Home',
     fotos: fotosDeColores('cortinas-blackout') },
 
   // --- Muestra del demo -------------------------------------------------
@@ -837,5 +851,31 @@ export function productoDetalle(slug: string): ProductoDetalle | null {
 }
 
 /** Otros productos de la misma categoria, para la fila de relacionados. */
-export const relacionadosDe = (slug: string, categoria: string, limite = 5) =>
-  PRODUCTOS.filter((p) => p.categorias.includes(categoria) && p.slug !== slug).slice(0, limite);
+/**
+ * Otros productos del mismo rubro, **con los del mismo subrubro adelante**.
+ *
+ * Antes agarraba los primeros del rubro en el orden del array, que no quiere
+ * decir nada: abrir un juego de comedor mostraba abajo tres sets de baño y un
+ * acolchado, porque son los que estaban primero en Hogar, y la mesa de luz no
+ * aparecía por ningún lado.
+ *
+ * El tope subió de 5 a 10 porque la fila es un carrusel y se desliza: con 5
+ * quedaban afuera muebles que existen. Los agotados van al final, igual que en
+ * la grilla del rubro.
+ */
+export const relacionadosDe = (slug: string, categoria: string, limite = 10) => {
+  const producto = PRODUCTOS.find((p) => p.slug === slug);
+  const delRubro = PRODUCTOS.filter(
+    (p) => p.categorias.includes(categoria) && p.slug !== slug,
+  );
+  const mismoSubrubro = (p: Producto) =>
+    Boolean(producto?.subrubro) && p.subrubro === producto!.subrubro;
+
+  return delRubro
+    .sort((a, b) => {
+      const porSubrubro = Number(mismoSubrubro(b)) - Number(mismoSubrubro(a));
+      if (porSubrubro !== 0) return porSubrubro;
+      return Number(estaAgotado(a.slug)) - Number(estaAgotado(b.slug));
+    })
+    .slice(0, limite);
+};

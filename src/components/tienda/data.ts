@@ -192,6 +192,11 @@ export const OPCIONES_REALES: Record<string, Variantes> = {
   'cama-madera-listones': {},
   'mesa-de-luz-nordica': {},
   'comoda-6-cajones': {},
+  // Los dos comedores son el mismo mueble en dos terminaciones, pero van como
+  // articulos separados y no como dos colores de uno: **el precio real puede
+  // no ser el mismo**, y un selector de color con un precio solo mentiria.
+  'juego-comedor-caoba': {},
+  'juego-comedor-negro': {},
 
   // El doc lista tres colores y llegaron cuatro fotos: las dos grises son el
   // mismo gris con distinta luz. La cuarta quedo como foto de ambiente.
@@ -338,6 +343,14 @@ export const PRODUCTOS: Producto[] = [
   // marca y quedan con "A confirmar" hasta que Anita diga de quien son. El
   // comprador no ve ese campo, pero se usa para liquidar, asi que no puede
   // quedar con una marca inventada.
+  { slug: 'juego-comedor-caoba', nombre: 'Juego de comedor caoba', precio: 529900,
+    categorias: ['hogar'], marca: 'A confirmar',
+    fotos: fotosNumeradas('juego-comedor-caoba', 6, 'webp') },
+
+  { slug: 'juego-comedor-negro', nombre: 'Juego de comedor negro', precio: 489900,
+    categorias: ['hogar'], marca: 'A confirmar',
+    fotos: fotosNumeradas('juego-comedor-negro', 4, 'webp') },
+
   { slug: 'cama-madera-listones', nombre: 'Cama de madera con respaldo de listones',
     precio: 349900, categorias: ['hogar'], marca: 'A confirmar',
     fotos: fotosNumeradas('cama-madera-listones', 8) },
@@ -709,6 +722,18 @@ const DETALLES: Record<string, Partial<ProductoDetalle>> = {
   // Los tres muebles son los unicos reales que siguen sin doc. Estas
   // descripciones son provisorias, escritas de lo que se ve en la foto, y
   // **faltan las medidas**, que en un mueble es el dato que decide la compra.
+  // Los dos comedores llegaron sin doc y sin precio. Descripcion y precio son
+  // inventados a pedido de Gabriel, para poder verlos armados; **los dos hay
+  // que reemplazarlos**. La diferencia de precio entre uno y otro tambien es
+  // inventada: el pidio que no fueran iguales.
+  'juego-comedor-caoba': {
+    descripcion:
+      'Juego de comedor en madera con terminación caoba. Mesa rectangular de tapa maciza y patas cuadradas, con sillas de respaldo de listones y asiento tapizado en símil cuero color crudo.',
+  },
+  'juego-comedor-negro': {
+    descripcion:
+      'El mismo juego de comedor en terminación negro mate. Mesa rectangular de patas cuadradas y sillas de respaldo de listones, con el asiento tapizado en símil cuero crudo que corta el negro.',
+  },
   'cama-madera-listones': {
     descripcion: 'Cama de madera con respaldo de listones y patas cónicas.',
   },

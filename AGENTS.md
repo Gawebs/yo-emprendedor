@@ -228,6 +228,14 @@ Cuatro decisiones más adentro:
 
 **El zoom deja a la vista qué fotos son chicas.** Las de blanquería vinieron en 640 px y ampliadas se ven blandas; las de muebles son de 1200 y aguantan. El visor no inventa detalle que la foto no tiene, y que se note es útil: marca cuáles conviene volver a pedirle a Anita. **No se arregla con un upscale.**
 
+**Los dos juegos de comedor van como artículos separados, no como dos colores de uno** (28-ago-2026). Son el mismo mueble en caoba y en negro, y modelarlo como un producto con dos colores era lo natural, pero **el precio real puede no ser el mismo** y la ficha tiene un precio solo: un selector de color le mostraría al cliente un precio que para la otra terminación no vale. Esa es la línea para decidirlo más adelante: mismo precio, un producto con dos colores; precios distintos, dos productos.
+
+**Las fotos no coinciden en cuántas sillas trae el juego.** En unas se cuentan seis y en otras ocho. Por eso ni el nombre ni la descripción dicen un número: poner "6 sillas" y que después sean otras es un reclamo asegurado. Falta que Anita lo confirme.
+
+**Estas fotos sí hubo que optimizarlas.** Vinieron en PNG de 1 a 2,3 MB y en cuatro proporciones distintas, aunque la carpeta dijera "optimizadas". Quedaron en webp de 1200 x 1200, entre 17 y 153 KB. **Se rellenaron con blanco hasta el cuadrado en vez de recortarlas**: el fondo ya era blanco, así que el relleno no se ve, y recortar una de 1672 x 941 a cuadrada se comía media mesa. El color del relleno se toma de la esquina de cada imagen, no se asume blanco puro.
+
+**Son renders, no fotografías**, y uno de los archivos originales venía con nombre de ChatGPT. La foto ambientada de la mesa negra quedó afuera: tenía etiquetas de frascos con texto ilegible, que es la clase de detalle que hace que una tienda parezca improvisada. **Vale confirmar con Anita que el mueble real se parece al render** antes de vender contra estas imágenes.
+
 **Los muebles son otro proveedor.** Ese mismo día entraron una cama, una cómoda y una mesa de luz, que no vienen de Jean Cartier ni de ninguna marca identificable. Quedaron con `marca: 'A confirmar'`. El comprador no ve ese campo, pero se usa para liquidarle a quien corresponda, así que no puede llevar una marca inventada.
 
 De la cama llegaron once tomas del mismo mueble y se publicaron ocho. Quedaron afuera una lateral que es la misma que otra espejada, una vista desde arriba que no se entiende, y un montaje con una franja blanca en el medio. **Once miniaturas es una galería que nadie recorre**, y las tres que se sacaron no agregaban nada que no muestre otra.

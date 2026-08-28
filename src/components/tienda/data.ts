@@ -278,7 +278,7 @@ export const PRODUCTOS: Producto[] = [
   // siguen entraron el 28-ago-2026 con las fotos que mando Anita.
 
   { slug: 'set-bano-moon', nombre: 'Set de baño Moon 3 piezas', precio: 18900,
-    categorias: ['hogar'], marca: 'Jean Cartier',
+    categorias: ['hogar', 'regaleria'], marca: 'Jean Cartier',
     fotos: fotosDeColores('set-bano-moon') },
 
   { slug: 'set-bano-mist', nombre: 'Set de baño Mist 5 piezas', precio: 34900,
@@ -310,28 +310,28 @@ export const PRODUCTOS: Producto[] = [
     fotos: fotosDeColores('acolchado-infantil-sabana') },
 
   { slug: 'mantel-ambiente-tusor', nombre: 'Mantel de ambiente tusor 2 m', precio: 38900,
-    categorias: ['hogar', 'deco'], marca: 'Jean Cartier',
+    categorias: ['hogar'], marca: 'Jean Cartier',
     fotos: [
       ...fotosDeColores('mantel-ambiente-tusor'),
       foto('mantel-ambiente-tusor', 'mantel-ambiente-tusor-4.webp'),
     ] },
 
   { slug: 'bata-microflanel-trento', nombre: 'Bata de microflanel Trento', precio: 46900,
-    categorias: ['indumentaria'], marca: 'Jean Cartier',
+    categorias: ['indumentaria', 'regaleria'], marca: 'Jean Cartier',
     fotos: [
       foto('bata-microflanel-trento', 'bata-microflanel-trento-1.webp'),
       foto('bata-microflanel-trento', 'bata-microflanel-trento-2.webp'),
     ] },
 
   { slug: 'toalla-refrescante', nombre: 'Toalla deportiva efecto frío 30 x 80', precio: 9900,
-    categorias: ['hogar'], marca: 'Jean Cartier',
+    categorias: ['regaleria'], marca: 'Jean Cartier',
     fotos: [
       foto('toalla-refrescante', 'toalla-refrescante-1.webp'),
       foto('toalla-refrescante', 'toalla-refrescante-2.webp'),
     ] },
 
   { slug: 'toalla-deportiva-estuche', nombre: 'Toalla deportiva con estuche portable',
-    precio: 12900, categorias: ['hogar', 'regaleria'], marca: 'Jean Cartier',
+    precio: 12900, categorias: ['regaleria'], marca: 'Jean Cartier',
     fotos: [
       foto('toalla-deportiva-estuche', 'toalla-deportiva-estuche-1.webp'),
       foto('toalla-deportiva-estuche', 'toalla-deportiva-estuche-2.webp'),
@@ -343,11 +343,14 @@ export const PRODUCTOS: Producto[] = [
   // marca y quedan con "A confirmar" hasta que Anita diga de quien son. El
   // comprador no ve ese campo, pero se usa para liquidar, asi que no puede
   // quedar con una marca inventada.
-  { slug: 'juego-comedor-caoba', nombre: 'Juego de comedor caoba', precio: 529900,
+  // Las dos ultimas fotos muestran la mesa con ocho sillas, no con las seis
+  // que trae. Van al final, detras de las del juego como se vende: la primera
+  // es la que sale en la grilla y en la fila de la home.
+  { slug: 'juego-comedor-caoba', nombre: 'Juego de comedor caoba con 6 sillas', precio: 529900,
     categorias: ['hogar'], marca: 'A confirmar',
     fotos: fotosNumeradas('juego-comedor-caoba', 6, 'webp') },
 
-  { slug: 'juego-comedor-negro', nombre: 'Juego de comedor negro', precio: 489900,
+  { slug: 'juego-comedor-negro', nombre: 'Juego de comedor negro con 6 sillas', precio: 489900,
     categorias: ['hogar'], marca: 'A confirmar',
     fotos: fotosNumeradas('juego-comedor-negro', 4, 'webp') },
 
@@ -368,7 +371,7 @@ export const PRODUCTOS: Producto[] = [
   // que Anita confirme de quien es; no se sumo a MARCAS, que es la lista de
   // las emprendedoras.
   { slug: 'cortinas-blackout', nombre: 'Juego de cortinas blackout', precio: 79900,
-    categorias: ['hogar', 'deco'], marca: 'Nathan Home',
+    categorias: ['hogar'], marca: 'Nathan Home',
     fotos: fotosDeColores('cortinas-blackout') },
 
   // --- Muestra del demo -------------------------------------------------
@@ -728,11 +731,19 @@ const DETALLES: Record<string, Partial<ProductoDetalle>> = {
   // inventada: el pidio que no fueran iguales.
   'juego-comedor-caoba': {
     descripcion:
-      'Juego de comedor en madera con terminación caoba. Mesa rectangular de tapa maciza y patas cuadradas, con sillas de respaldo de listones y asiento tapizado en símil cuero color crudo.',
+      'Juego de comedor en madera con terminación caoba. Mesa rectangular de tapa maciza y patas cuadradas, con seis sillas de respaldo de listones y asiento tapizado en símil cuero color crudo.',
+    beneficios: [
+      'Viene con seis sillas.',
+      'Si necesitás lugar para más gente, se pueden sumar sillas sueltas del mismo modelo: se venden por separado. Las dos últimas fotos son la mesa con ocho.',
+    ],
   },
   'juego-comedor-negro': {
     descripcion:
-      'El mismo juego de comedor en terminación negro mate. Mesa rectangular de patas cuadradas y sillas de respaldo de listones, con el asiento tapizado en símil cuero crudo que corta el negro.',
+      'El mismo juego de comedor en terminación negro mate. Mesa rectangular de patas cuadradas y seis sillas de respaldo de listones, con el asiento tapizado en símil cuero crudo que corta el negro.',
+    beneficios: [
+      'Viene con seis sillas.',
+      'Si necesitás lugar para más gente, se pueden sumar sillas sueltas del mismo modelo: se venden por separado.',
+    ],
   },
   'cama-madera-listones': {
     descripcion: 'Cama de madera con respaldo de listones y patas cónicas.',

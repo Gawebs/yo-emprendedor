@@ -228,9 +228,31 @@ Cuatro decisiones más adentro:
 
 **El zoom deja a la vista qué fotos son chicas.** Las de blanquería vinieron en 640 px y ampliadas se ven blandas; las de muebles son de 1200 y aguantan. El visor no inventa detalle que la foto no tiene, y que se note es útil: marca cuáles conviene volver a pedirle a Anita. **No se arregla con un upscale.**
 
+## En qué rubro va cada artículo (28-ago-2026)
+
+Hasta acá el rubro se elegía producto por producto y se notaba: dos toallas deportivas habían quedado en Hogar, entre acolchados y juegos de comedor. El criterio, en tres reglas:
+
+**1. El rubro de origen es dónde lo buscaría alguien que ya sabe lo que quiere.** Es el primero de la lista, y no es decorativo: define qué selectores muestra la ficha y de dónde salen los productos relacionados. Uno solo.
+
+**2. Los rubros cruzados son dónde además conviene que aparezca**, y se agregan con cuentagotas. Cada rubro de más le saca lugar a otro producto en esa fila, así que un producto no entra en un rubro solo porque "también podría".
+
+**3. A Regalería va lo que se compra para regalarle a alguien**, no lo que uno compra para su casa. Es el filtro que resuelve la mayoría de las dudas.
+
+Cómo quedó aplicado sobre los productos reales:
+
+- **Las dos toallas deportivas salieron de Hogar y quedaron solo en Regalería.** Una toalla de gimnasio no es blanquería de baño. Es el único caso donde Regalería es el rubro de origen y no un cruce, y funciona: para un producto real los selectores salen de `OPCIONES_REALES`, no del rubro.
+- **El set de baño Moon y la bata suman Regalería** sin salir de su rubro de origen. Son regalo típico. El set Mist, que es más grande y más caro, no: ese se compra para la casa propia.
+- **El mantel y las cortinas salieron de Deco.** Deco son objetos decorativos —cerámica, espejos, cuadros, lámparas, floreros—, no textil de la casa. Con eso **Deco se quedó sin ningún producto real**, solo con los de muestra. Es un agujero que hay que llenar con productos, no forzando categorías.
+- **Hogar concentra doce de los quince**, y está bien: son cinco muebles más blanquería. No hay que repartirlos a la fuerza.
+- **El acolchado infantil sigue en Hogar más Infantiles**, por el motivo técnico de los selectores que se explica más abajo.
+
 **Los dos juegos de comedor van como artículos separados, no como dos colores de uno** (28-ago-2026). Son el mismo mueble en caoba y en negro, y modelarlo como un producto con dos colores era lo natural, pero **el precio real puede no ser el mismo** y la ficha tiene un precio solo: un selector de color le mostraría al cliente un precio que para la otra terminación no vale. Esa es la línea para decidirlo más adelante: mismo precio, un producto con dos colores; precios distintos, dos productos.
 
-**Las fotos no coinciden en cuántas sillas trae el juego.** En unas se cuentan seis y en otras ocho. Por eso ni el nombre ni la descripción dicen un número: poner "6 sillas" y que después sean otras es un reclamo asegurado. Falta que Anita lo confirme.
+**El juego trae seis sillas y se pueden comprar más por separado** (confirmado por Gabriel el 28-ago-2026). Eso explica por qué las fotos no coincidían: dos de las de caoba muestran la mesa con ocho.
+
+El número va **en el nombre del producto**, no solo en la descripción: el nombre es lo único que el comprador ve en la grilla, en la fila de la home y en el carrito, donde no hay descripción que lo aclare. Las dos fotos con ocho sillas se mandaron al final de la galería, detrás de las del juego como se vende, y la descripción avisa que son esas.
+
+**Falta la silla suelta como producto propio.** Hoy la ficha dice que se venden por separado y no hay dónde comprarlas. Para darla de alta hacen falta el precio y una foto de la silla negra sola, que no llegó; de la caoba sí hay.
 
 **Estas fotos sí hubo que optimizarlas.** Vinieron en PNG de 1 a 2,3 MB y en cuatro proporciones distintas, aunque la carpeta dijera "optimizadas". Quedaron en webp de 1200 x 1200, entre 17 y 153 KB. **Se rellenaron con blanco hasta el cuadrado en vez de recortarlas**: el fondo ya era blanco, así que el relleno no se ve, y recortar una de 1672 x 941 a cuadrada se comía media mesa. El color del relleno se toma de la esquina de cada imagen, no se asume blanco puro.
 

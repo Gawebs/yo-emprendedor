@@ -60,6 +60,20 @@ export const ATRIBUTOS_POR_RUBRO: Record<string, (keyof Variantes | 'medidas')[]
 
 export type Producto = {
   slug: string;
+  /**
+   * El codigo que ve el cliente en la ficha y que va a viajar en el pedido.
+   *
+   * **Va escrito, no calculado.** Antes salia de la posicion del producto en
+   * este array, asi que agregar un producto le cambiaba el codigo a los que
+   * venian despues: la cama arranco siendo YE-00011 y hoy es YE-00014. El dia
+   * que un pedido guarde un codigo, ese numero tiene que seguir apuntando al
+   * mismo producto para siempre.
+   *
+   * Es obligatorio a proposito: asi agregar un producto sin codigo no compila,
+   * en vez de renumerar todo en silencio. Al producto nuevo se le da **el
+   * siguiente numero libre**, no el que sigue en la lista.
+   */
+  codigo: string;
   nombre: string;
   precio: number;
   precioAntes?: number;
@@ -293,25 +307,25 @@ export const PRODUCTOS: Producto[] = [
   // El set Moon fue el primero (26-ago-2026) y quedo de molde; los nueve que
   // siguen entraron el 28-ago-2026 con las fotos que mando Anita.
 
-  { slug: 'set-bano-moon', nombre: 'Set de baño Moon 3 piezas', precio: 18900,
+  { slug: 'set-bano-moon', codigo: 'YE-00001', nombre: 'Set de baño Moon 3 piezas', precio: 18900,
     subrubro: 'Baño', categorias: ['hogar', 'regaleria'], marca: 'Jean Cartier',
     fotos: fotosDeColores('set-bano-moon') },
 
-  { slug: 'set-bano-mist', nombre: 'Set de baño Mist 5 piezas', precio: 34900,
+  { slug: 'set-bano-mist', codigo: 'YE-00002', nombre: 'Set de baño Mist 5 piezas', precio: 34900,
     subrubro: 'Baño', categorias: ['hogar'], marca: 'Jean Cartier',
     fotos: [
       ...fotosDeColores('set-bano-mist'),
       foto('set-bano-mist', 'set-bano-mist-4.webp'),
     ] },
 
-  { slug: 'set-cortina-bano', nombre: 'Set de cortina de baño 180 x 180', precio: 24900,
+  { slug: 'set-cortina-bano', codigo: 'YE-00003', nombre: 'Set de cortina de baño 180 x 180', precio: 24900,
     subrubro: 'Baño', categorias: ['hogar'], marca: 'Jean Cartier',
     fotos: [
       ...fotosDeColores('set-cortina-bano'),
       foto('set-cortina-bano', 'set-cortina-bano-3.webp'),
     ] },
 
-  { slug: 'kit-alaska-king', nombre: 'Kit Alaska King', precio: 129900,
+  { slug: 'kit-alaska-king', codigo: 'YE-00004', nombre: 'Kit Alaska King', precio: 129900,
     subrubro: 'Dormitorio', categorias: ['hogar'], marca: 'Jean Cartier',
     fotos: [
       foto('kit-alaska-king', 'kit-alaska-king-1.webp'),
@@ -321,32 +335,32 @@ export const PRODUCTOS: Producto[] = [
   // Va en Hogar y no en Infantiles porque el rubro de origen define los
   // selectores, y en Infantiles la ficha pediria talle: un acolchado no tiene.
   // Igual aparece en la fila de Infantiles, que es donde lo busca la clienta.
-  { slug: 'acolchado-infantil-sabana', nombre: 'Acolchado infantil con sábana 1½ plaza',
+  { slug: 'acolchado-infantil-sabana', codigo: 'YE-00005', nombre: 'Acolchado infantil con sábana 1½ plaza',
     precio: 54900, subrubro: 'Dormitorio', categorias: ['hogar', 'infantiles'], marca: 'Jean Cartier',
     fotos: fotosDeColores('acolchado-infantil-sabana') },
 
-  { slug: 'mantel-ambiente-tusor', nombre: 'Mantel de ambiente tusor 2 m', precio: 38900,
+  { slug: 'mantel-ambiente-tusor', codigo: 'YE-00006', nombre: 'Mantel de ambiente tusor 2 m', precio: 38900,
     subrubro: 'Cocina', categorias: ['hogar'], marca: 'Jean Cartier',
     fotos: [
       ...fotosDeColores('mantel-ambiente-tusor'),
       foto('mantel-ambiente-tusor', 'mantel-ambiente-tusor-4.webp'),
     ] },
 
-  { slug: 'bata-microflanel-trento', nombre: 'Bata de microflanel Trento', precio: 46900,
+  { slug: 'bata-microflanel-trento', codigo: 'YE-00007', nombre: 'Bata de microflanel Trento', precio: 46900,
     categorias: ['indumentaria', 'regaleria'], marca: 'Jean Cartier',
     fotos: [
       foto('bata-microflanel-trento', 'bata-microflanel-trento-1.webp'),
       foto('bata-microflanel-trento', 'bata-microflanel-trento-2.webp'),
     ] },
 
-  { slug: 'toalla-refrescante', nombre: 'Toalla deportiva efecto frío 30 x 80', precio: 9900,
+  { slug: 'toalla-refrescante', codigo: 'YE-00008', nombre: 'Toalla deportiva efecto frío 30 x 80', precio: 9900,
     categorias: ['regaleria'], marca: 'Jean Cartier',
     fotos: [
       foto('toalla-refrescante', 'toalla-refrescante-1.webp'),
       foto('toalla-refrescante', 'toalla-refrescante-2.webp'),
     ] },
 
-  { slug: 'toalla-deportiva-estuche', nombre: 'Toalla deportiva con estuche portable',
+  { slug: 'toalla-deportiva-estuche', codigo: 'YE-00009', nombre: 'Toalla deportiva con estuche portable',
     precio: 12900, categorias: ['regaleria'], marca: 'Jean Cartier',
     fotos: [
       foto('toalla-deportiva-estuche', 'toalla-deportiva-estuche-1.webp'),
@@ -362,11 +376,11 @@ export const PRODUCTOS: Producto[] = [
   // Las dos ultimas fotos muestran la mesa con ocho sillas, no con las seis
   // que trae. Van al final, detras de las del juego como se vende: la primera
   // es la que sale en la grilla y en la fila de la home.
-  { slug: 'juego-comedor-caoba', nombre: 'Juego de comedor caoba con 6 sillas', precio: 529900,
+  { slug: 'juego-comedor-caoba', codigo: 'YE-00010', nombre: 'Juego de comedor caoba con 6 sillas', precio: 529900,
     subrubro: 'Muebles', categorias: ['hogar'], marca: 'A confirmar',
     fotos: fotosNumeradas('juego-comedor-caoba', 6, 'webp') },
 
-  { slug: 'juego-comedor-negro', nombre: 'Juego de comedor negro con 6 sillas', precio: 489900,
+  { slug: 'juego-comedor-negro', codigo: 'YE-00011', nombre: 'Juego de comedor negro con 6 sillas', precio: 489900,
     subrubro: 'Muebles', categorias: ['hogar'], marca: 'A confirmar',
     fotos: fotosNumeradas('juego-comedor-negro', 4, 'webp') },
 
@@ -377,23 +391,23 @@ export const PRODUCTOS: Producto[] = [
   // los dos juegos. Los cuatro precios son inventados, pero al menos son
   // coherentes entre si: si Anita pasa los reales y la relacion se da vuelta,
   // hay que dar vuelta las cuatro, no dos.
-  { slug: 'silla-comedor-caoba', nombre: 'Silla de comedor caoba', precio: 52900,
+  { slug: 'silla-comedor-caoba', codigo: 'YE-00012', nombre: 'Silla de comedor caoba', precio: 52900,
     subrubro: 'Muebles', categorias: ['hogar'], marca: 'A confirmar',
     fotos: fotosNumeradas('silla-comedor-caoba', 2, 'webp') },
 
-  { slug: 'silla-comedor-negra', nombre: 'Silla de comedor negra', precio: 48900,
+  { slug: 'silla-comedor-negra', codigo: 'YE-00013', nombre: 'Silla de comedor negra', precio: 48900,
     subrubro: 'Muebles', categorias: ['hogar'], marca: 'A confirmar',
     fotos: fotosNumeradas('silla-comedor-negra', 1, 'webp') },
 
-  { slug: 'cama-madera-listones', nombre: 'Cama de madera con respaldo de listones',
+  { slug: 'cama-madera-listones', codigo: 'YE-00014', nombre: 'Cama de madera con respaldo de listones',
     precio: 349900, subrubro: 'Muebles', categorias: ['hogar'], marca: 'A confirmar',
     fotos: fotosNumeradas('cama-madera-listones', 8) },
 
-  { slug: 'comoda-6-cajones', nombre: 'Cómoda nórdica de 6 cajones', precio: 259900,
+  { slug: 'comoda-6-cajones', codigo: 'YE-00015', nombre: 'Cómoda nórdica de 6 cajones', precio: 259900,
     subrubro: 'Muebles', categorias: ['hogar'], marca: 'A confirmar',
     fotos: fotosNumeradas('comoda-6-cajones', 4) },
 
-  { slug: 'mesa-de-luz-nordica', nombre: 'Mesa de luz nórdica con cajón', precio: 89900,
+  { slug: 'mesa-de-luz-nordica', codigo: 'YE-00016', nombre: 'Mesa de luz nórdica con cajón', precio: 89900,
     subrubro: 'Muebles', categorias: ['hogar'], marca: 'A confirmar',
     fotos: fotosNumeradas('mesa-de-luz-nordica', 4) },
 
@@ -401,65 +415,79 @@ export const PRODUCTOS: Producto[] = [
   // descarto traia la marca de agua de Nathan Home. Queda con esa marca hasta
   // que Anita confirme de quien es; no se sumo a MARCAS, que es la lista de
   // las emprendedoras.
-  { slug: 'cortinas-blackout', nombre: 'Juego de cortinas blackout', precio: 79900,
+  { slug: 'cortinas-blackout', codigo: 'YE-00017', nombre: 'Juego de cortinas blackout', precio: 79900,
     subrubro: 'Living', categorias: ['hogar'], marca: 'Nathan Home',
     fotos: fotosDeColores('cortinas-blackout') },
 
   // --- Muestra del demo -------------------------------------------------
-  { slug: 'aros-dorados', nombre: 'Aros dorados', precio: 8500, categorias: ['accesorios'], masVendido: true, marca: 'Luna Bijou' },
-  { slug: 'collar-plateado', nombre: 'Collar plateado', precio: 6200, categorias: ['accesorios'], marca: 'Nara' },
-  { slug: 'pulsera-trenzada', nombre: 'Pulsera trenzada', precio: 4900, precioAntes: 6500, categorias: ['accesorios'], oferta: true, masVendido: true, marca: 'Kai' },
-  { slug: 'cinturon-cuero', nombre: 'Cinturón cuero', precio: 11300, categorias: ['accesorios', 'marroquineria'], marca: 'Sur' },
-  { slug: 'anillo-ajustable', nombre: 'Anillo ajustable', precio: 3800, categorias: ['accesorios'], marca: 'Piel Natural' },
+  { slug: 'aros-dorados', codigo: 'YE-00018', nombre: 'Aros dorados', precio: 8500, categorias: ['accesorios'], masVendido: true, marca: 'Luna Bijou' },
+  { slug: 'collar-plateado', codigo: 'YE-00019', nombre: 'Collar plateado', precio: 6200, categorias: ['accesorios'], marca: 'Nara' },
+  { slug: 'pulsera-trenzada', codigo: 'YE-00020', nombre: 'Pulsera trenzada', precio: 4900, precioAntes: 6500, categorias: ['accesorios'], oferta: true, masVendido: true, marca: 'Kai' },
+  { slug: 'cinturon-cuero', codigo: 'YE-00021', nombre: 'Cinturón cuero', precio: 11300, categorias: ['accesorios', 'marroquineria'], marca: 'Sur' },
+  { slug: 'anillo-ajustable', codigo: 'YE-00022', nombre: 'Anillo ajustable', precio: 3800, categorias: ['accesorios'], marca: 'Piel Natural' },
 
-  { slug: 'serum-facial', nombre: 'Serum facial', precio: 9900, categorias: ['belleza'], masVendido: true, marca: 'Bloom' },
-  { slug: 'labial-mate', nombre: 'Labial mate', precio: 5400, categorias: ['belleza'], marca: 'Aroma' },
-  { slug: 'crema-corporal', nombre: 'Crema corporal', precio: 7800, precioAntes: 9750, categorias: ['belleza'], oferta: true, marca: 'Tierra' },
-  { slug: 'perfume-floral', nombre: 'Perfume floral', precio: 14500, categorias: ['belleza'], marca: 'Hilo' },
-  { slug: 'set-de-brochas', nombre: 'Set de brochas', precio: 12100, categorias: ['belleza', 'regaleria'], marca: 'Luna Bijou' },
+  { slug: 'serum-facial', codigo: 'YE-00023', nombre: 'Serum facial', precio: 9900, categorias: ['belleza'], masVendido: true, marca: 'Bloom' },
+  { slug: 'labial-mate', codigo: 'YE-00024', nombre: 'Labial mate', precio: 5400, categorias: ['belleza'], marca: 'Aroma' },
+  { slug: 'crema-corporal', codigo: 'YE-00025', nombre: 'Crema corporal', precio: 7800, precioAntes: 9750, categorias: ['belleza'], oferta: true, marca: 'Tierra' },
+  { slug: 'perfume-floral', codigo: 'YE-00026', nombre: 'Perfume floral', precio: 14500, categorias: ['belleza'], marca: 'Hilo' },
+  { slug: 'set-de-brochas', codigo: 'YE-00027', nombre: 'Set de brochas', precio: 12100, categorias: ['belleza', 'regaleria'], marca: 'Luna Bijou' },
 
-  { slug: 'portavelas-ceramica', nombre: 'Portavelas cerámica', precio: 6900, categorias: ['deco', 'regaleria'], marca: 'Nara' },
-  { slug: 'cuadro-tejido', nombre: 'Cuadro tejido', precio: 15200, categorias: ['deco'], masVendido: true, marca: 'Kai' },
-  { slug: 'macetero-pintado', nombre: 'Macetero pintado', precio: 8300, categorias: ['deco'], marca: 'Sur' },
-  { slug: 'espejo-redondo', nombre: 'Espejo redondo', precio: 18600, categorias: ['deco'], marca: 'Piel Natural' },
-  { slug: 'set-posavasos', nombre: 'Set posavasos', precio: 4700, categorias: ['deco'], marca: 'Bloom' },
+  { slug: 'portavelas-ceramica', codigo: 'YE-00028', nombre: 'Portavelas cerámica', precio: 6900, categorias: ['deco', 'regaleria'], marca: 'Nara' },
+  { slug: 'cuadro-tejido', codigo: 'YE-00029', nombre: 'Cuadro tejido', precio: 15200, categorias: ['deco'], masVendido: true, marca: 'Kai' },
+  { slug: 'macetero-pintado', codigo: 'YE-00030', nombre: 'Macetero pintado', precio: 8300, categorias: ['deco'], marca: 'Sur' },
+  { slug: 'espejo-redondo', codigo: 'YE-00031', nombre: 'Espejo redondo', precio: 18600, categorias: ['deco'], marca: 'Piel Natural' },
+  { slug: 'set-posavasos', codigo: 'YE-00032', nombre: 'Set posavasos', precio: 4700, categorias: ['deco'], marca: 'Bloom' },
 
   // Indumentaria: es el rubro que lleva talle, no "hogar" como estaba antes.
-  { slug: 'remera-oversize-tejida', nombre: 'Remera oversize tejida', precio: 14500, precioAntes: 18000, categorias: ['indumentaria'], oferta: true, masVendido: true, marca: 'Aroma' },
-  { slug: 'buzo-oversize', nombre: 'Buzo oversize', precio: 16200, categorias: ['indumentaria'], marca: 'Tierra' },
-  { slug: 'pantalon-wide-leg', nombre: 'Pantalón wide leg', precio: 13800, categorias: ['indumentaria'], marca: 'Hilo' },
-  { slug: 'top-canesu', nombre: 'Top canesú', precio: 8900, categorias: ['indumentaria'], marca: 'Luna Bijou' },
-  { slug: 'vestido-lino', nombre: 'Vestido lino', precio: 19500, categorias: ['indumentaria'], marca: 'Nara' },
+  { slug: 'remera-oversize-tejida', codigo: 'YE-00033', nombre: 'Remera oversize tejida', precio: 14500, precioAntes: 18000, categorias: ['indumentaria'], oferta: true, masVendido: true, marca: 'Aroma' },
+  { slug: 'buzo-oversize', codigo: 'YE-00034', nombre: 'Buzo oversize', precio: 16200, categorias: ['indumentaria'], marca: 'Tierra' },
+  { slug: 'pantalon-wide-leg', codigo: 'YE-00035', nombre: 'Pantalón wide leg', precio: 13800, categorias: ['indumentaria'], marca: 'Hilo' },
+  { slug: 'top-canesu', codigo: 'YE-00036', nombre: 'Top canesú', precio: 8900, categorias: ['indumentaria'], marca: 'Luna Bijou' },
+  { slug: 'vestido-lino', codigo: 'YE-00037', nombre: 'Vestido lino', precio: 19500, categorias: ['indumentaria'], marca: 'Nara' },
 
-  { slug: 'vela-aromatica', nombre: 'Vela aromática de soja', precio: 7200, categorias: ['hogar', 'aromas-y-tes', 'regaleria'], masVendido: true, marca: 'Kai' },
-  { slug: 'difusor-varillas', nombre: 'Difusor con varillas', precio: 9800, categorias: ['hogar', 'aromas-y-tes'], marca: 'Sur' },
-  { slug: 'te-hebras', nombre: 'Té en hebras', precio: 5600, categorias: ['aromas-y-tes'], marca: 'Piel Natural' },
-  { slug: 'set-mate', nombre: 'Set matero', precio: 21000, precioAntes: 25000, categorias: ['hogar', 'regaleria'], oferta: true, marca: 'Bloom' },
-  { slug: 'body-bebe', nombre: 'Body de algodón', precio: 6800, categorias: ['infantiles', 'indumentaria'], marca: 'Aroma' },
-  { slug: 'toalla-bordada', nombre: 'Toalla bordada', precio: 11500, categorias: ['hogar', 'infantiles'], marca: 'Tierra' },
+  { slug: 'vela-aromatica', codigo: 'YE-00038', nombre: 'Vela aromática de soja', precio: 7200, categorias: ['hogar', 'aromas-y-tes', 'regaleria'], masVendido: true, marca: 'Kai' },
+  { slug: 'difusor-varillas', codigo: 'YE-00039', nombre: 'Difusor con varillas', precio: 9800, categorias: ['hogar', 'aromas-y-tes'], marca: 'Sur' },
+  { slug: 'te-hebras', codigo: 'YE-00040', nombre: 'Té en hebras', precio: 5600, categorias: ['aromas-y-tes'], marca: 'Piel Natural' },
+  { slug: 'set-mate', codigo: 'YE-00041', nombre: 'Set matero', precio: 21000, precioAntes: 25000, categorias: ['hogar', 'regaleria'], oferta: true, marca: 'Bloom' },
+  { slug: 'body-bebe', codigo: 'YE-00042', nombre: 'Body de algodón', precio: 6800, categorias: ['infantiles', 'indumentaria'], marca: 'Aroma' },
+  { slug: 'toalla-bordada', codigo: 'YE-00043', nombre: 'Toalla bordada', precio: 11500, categorias: ['hogar', 'infantiles'], marca: 'Tierra' },
 
   // Las filas de la home son carruseles: con pocos productos no habria nada
   // que deslizar y las flechas no tendrian sentido.
-  { slug: 'aros-piedra', nombre: 'Aros con piedra natural', precio: 9700, categorias: ['accesorios'], marca: 'Hilo' },
-  { slug: 'choker-cuero', nombre: 'Choker de cuero', precio: 5300, categorias: ['accesorios'], marca: 'Luna Bijou' },
-  { slug: 'llavero-tejido', nombre: 'Llavero tejido', precio: 2900, categorias: ['accesorios'], marca: 'Nara' },
-  { slug: 'agenda-artesanal', nombre: 'Agenda artesanal', precio: 13400, categorias: ['accesorios', 'regaleria'], masVendido: true, marca: 'Kai' },
+  { slug: 'aros-piedra', codigo: 'YE-00044', nombre: 'Aros con piedra natural', precio: 9700, categorias: ['accesorios'], marca: 'Hilo' },
+  { slug: 'choker-cuero', codigo: 'YE-00045', nombre: 'Choker de cuero', precio: 5300, categorias: ['accesorios'], marca: 'Luna Bijou' },
+  { slug: 'llavero-tejido', codigo: 'YE-00046', nombre: 'Llavero tejido', precio: 2900, categorias: ['accesorios'], marca: 'Nara' },
+  { slug: 'agenda-artesanal', codigo: 'YE-00047', nombre: 'Agenda artesanal', precio: 13400, categorias: ['accesorios', 'regaleria'], masVendido: true, marca: 'Kai' },
 
-  { slug: 'jabon-artesanal', nombre: 'Jabón artesanal', precio: 3600, categorias: ['belleza', 'regaleria'], marca: 'Sur' },
-  { slug: 'aceite-capilar', nombre: 'Aceite capilar', precio: 8400, categorias: ['belleza'], marca: 'Piel Natural' },
-  { slug: 'mascara-pestanas', nombre: 'Máscara de pestañas', precio: 6900, precioAntes: 8600, categorias: ['belleza'], oferta: true, marca: 'Bloom' },
-  { slug: 'exfoliante-cafe', nombre: 'Exfoliante de café', precio: 5900, categorias: ['belleza'], marca: 'Aroma' },
+  { slug: 'jabon-artesanal', codigo: 'YE-00048', nombre: 'Jabón artesanal', precio: 3600, categorias: ['belleza', 'regaleria'], marca: 'Sur' },
+  { slug: 'aceite-capilar', codigo: 'YE-00049', nombre: 'Aceite capilar', precio: 8400, categorias: ['belleza'], marca: 'Piel Natural' },
+  { slug: 'mascara-pestanas', codigo: 'YE-00050', nombre: 'Máscara de pestañas', precio: 6900, precioAntes: 8600, categorias: ['belleza'], oferta: true, marca: 'Bloom' },
+  { slug: 'exfoliante-cafe', codigo: 'YE-00051', nombre: 'Exfoliante de café', precio: 5900, categorias: ['belleza'], marca: 'Aroma' },
 
-  { slug: 'lampara-mesa', nombre: 'Lámpara de mesa', precio: 24500, categorias: ['deco'], marca: 'Tierra' },
-  { slug: 'almohadon-lino', nombre: 'Almohadón de lino', precio: 12800, categorias: ['deco'], marca: 'Hilo' },
-  { slug: 'bandeja-madera', nombre: 'Bandeja de madera', precio: 9600, precioAntes: 12000, categorias: ['deco'], oferta: true, marca: 'Luna Bijou' },
-  { slug: 'movil-colgante', nombre: 'Móvil colgante', precio: 7400, categorias: ['deco'], marca: 'Nara' },
+  { slug: 'lampara-mesa', codigo: 'YE-00052', nombre: 'Lámpara de mesa', precio: 24500, categorias: ['deco'], marca: 'Tierra' },
+  { slug: 'almohadon-lino', codigo: 'YE-00053', nombre: 'Almohadón de lino', precio: 12800, categorias: ['deco'], marca: 'Hilo' },
+  { slug: 'bandeja-madera', codigo: 'YE-00054', nombre: 'Bandeja de madera', precio: 9600, precioAntes: 12000, categorias: ['deco'], oferta: true, marca: 'Luna Bijou' },
+  { slug: 'movil-colgante', codigo: 'YE-00055', nombre: 'Móvil colgante', precio: 7400, categorias: ['deco'], marca: 'Nara' },
 
-  { slug: 'mochila-lona', nombre: 'Mochila de lona', precio: 22400, categorias: ['marroquineria'], masVendido: true, marca: 'Sur' },
-  { slug: 'cartera-cuero', nombre: 'Cartera de cuero', precio: 31500, precioAntes: 38000, categorias: ['marroquineria', 'regaleria'], oferta: true, marca: 'Piel Natural' },
-  { slug: 'billetera-tejida', nombre: 'Billetera tejida', precio: 9300, categorias: ['marroquineria'], marca: 'Hilo' },
-  { slug: 'neceser-estampado', nombre: 'Neceser estampado', precio: 7900, categorias: ['marroquineria', 'belleza'], marca: 'Bloom' },
+  { slug: 'mochila-lona', codigo: 'YE-00056', nombre: 'Mochila de lona', precio: 22400, categorias: ['marroquineria'], masVendido: true, marca: 'Sur' },
+  { slug: 'cartera-cuero', codigo: 'YE-00057', nombre: 'Cartera de cuero', precio: 31500, precioAntes: 38000, categorias: ['marroquineria', 'regaleria'], oferta: true, marca: 'Piel Natural' },
+  { slug: 'billetera-tejida', codigo: 'YE-00058', nombre: 'Billetera tejida', precio: 9300, categorias: ['marroquineria'], marca: 'Hilo' },
+  { slug: 'neceser-estampado', codigo: 'YE-00059', nombre: 'Neceser estampado', precio: 7900, categorias: ['marroquineria', 'belleza'], marca: 'Bloom' },
 ];
+
+/**
+ * Dos productos con el mismo codigo es lo unico que puede romper la promesa
+ * de arriba, y pasa con un copiar y pegar. Corta el build, que es donde hay
+ * que enterarse: en produccion ya seria un pedido apuntando al producto
+ * equivocado.
+ */
+const codigosVistos = new Set<string>();
+for (const p of PRODUCTOS) {
+  if (codigosVistos.has(p.codigo)) {
+    throw new Error(`Codigo de producto repetido: ${p.codigo} (${p.slug})`);
+  }
+  codigosVistos.add(p.codigo);
+}
 
 export const OFERTAS_DIA = [
   { titulo: 'Envío gratis en accesorios', href: '/categoria/accesorios' },
@@ -822,7 +850,6 @@ export function productoDetalle(slug: string): ProductoDetalle | null {
   if (!base) return null;
 
   const extra = DETALLES[slug] ?? {};
-  const indice = PRODUCTOS.findIndex((p) => p.slug === slug);
   const atributos = ATRIBUTOS_POR_RUBRO[rubroPrincipal(base)] ?? ['variantes'];
 
   // Un producto real ofrece exactamente lo que tiene: si no figura el talle,
@@ -839,7 +866,7 @@ export function productoDetalle(slug: string): ProductoDetalle | null {
 
   return {
     ...base,
-    codigo: extra.codigo ?? `YE-${String(indice + 1).padStart(5, '0')}`,
+    codigo: base.codigo,
     // En un producto real las medidas se muestran siempre que el doc las
     // traiga. El filtro por rubro es para los de muestra, que no tienen doc.
     medidas: esReal || atributos.includes('medidas') ? extra.medidas : undefined,

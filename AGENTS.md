@@ -25,6 +25,12 @@ El sitio tiene **dos secciones**, y esa división es la clave para entenderlo:
 
 Lo que falta para produccion: reescribir el panel, reemplazar `CuentaContext` por Supabase Auth, leer el catalogo de la base, e integrar Mercado Pago al final.
 
+## Quién ve la tienda hoy
+
+**El sitio todavía no es público** (Gabriel, 28-ago-2026). Está deployado y con dominio propio, pero lo miran solamente Anita, Ale, Pao y Gabriel, y a modo de aportar y opinar. Se abre al público recién cuando esté terminado.
+
+Eso cambia cómo pesar un problema de catálogo: **los 42 productos inventados del demo conviviendo con los reales no son urgentes**, porque se van a ir reemplazando a medida que lleguen los reales y nadie de afuera los ve. Lo que sí importa es lo que después es caro de deshacer — un código que se mueve, un slug publicado que hay que redirigir, un dato que quedó mal cargado en cien productos.
+
 ## Fuente de verdad del contenido
 
 Los textos, políticas y decisiones de negocio salen de los documentos que redactó **Anita**, en `Downloads/YO EMPRENDEDOR/Políticas y protocolos/`. **Mandan los documentos**, no lo que se haya decidido sobre la marcha para avanzar: ya pasó dos veces que el checkout hacía lo contrario de lo que decían sus propios términos.
@@ -243,6 +249,14 @@ Cómo quedó aplicado sobre los productos reales:
 - **Las dos toallas deportivas salieron de Hogar y quedaron solo en Regalería.** Una toalla de gimnasio no es blanquería de baño. Es el único caso donde Regalería es el rubro de origen y no un cruce, y funciona: para un producto real los selectores salen de `OPCIONES_REALES`, no del rubro.
 - **El set de baño Moon y la bata suman Regalería** sin salir de su rubro de origen. Son regalo típico. El set Mist, que es más grande y más caro, no: ese se compra para la casa propia.
 - **El mantel y las cortinas salieron de Deco.** Deco son objetos decorativos —cerámica, espejos, cuadros, lámparas, floreros—, no textil de la casa.
+**El código de producto va escrito, no calculado** (28-ago-2026). Salía de la posición en el array `PRODUCTOS`, así que **agregar un producto le cambiaba el código a todos los que venían después**: la cama arrancó el día siendo YE-00011 y terminó en YE-00014 sin que nadie la tocara. El día que un pedido guarde un código, ese número tiene que seguir apuntando al mismo producto para siempre, o el reclamo de un cliente apunta a otra cosa.
+
+Los 59 se congelaron **con el número que tenían en ese momento**, así que ninguno cambió de producto al hacer el arreglo. Tres reglas de acá en adelante:
+
+- **`codigo` es obligatorio en `Producto`.** Agregar un producto sin código no compila, que es justo lo contrario de lo que pasaba antes: renumerar en silencio.
+- **Al producto nuevo se le da el siguiente número libre**, no el que sigue en la lista. El orden del array no significa nada.
+- **Un código repetido corta el build**, con un control al final de `PRODUCTOS` que dice cuál y de quién. Es el único error que puede romper la promesa de arriba y aparece copiando y pegando un producto.
+
 **Cada producto real lleva su subrubro** (`Producto.subrubro`, 28-ago-2026), y no es decorativo: es lo que ordena los productos relacionados. Antes la fila de abajo de la ficha agarraba los primeros del rubro **en el orden del array**, que no quiere decir nada: abrir un juego de comedor mostraba tres sets de baño y un acolchado, porque son los que están primero en Hogar, y la mesa de luz no aparecía por ningún lado. Dentro de Hogar conviven muebles, blanquería de baño y acolchados; sin subrubro son todos "lo mismo".
 
 Ahora `relacionadosDe` pone adelante los del mismo subrubro y después completa con el resto del rubro, y el tope subió de 5 a 10, porque la fila es un carrusel y se desliza. **El subrubro tiene que salir de la lista `sub` de ese rubro en `CATEGORIAS`**; no hay tipo que lo verifique, así que uno mal escrito no rompe nada, simplemente deja de agrupar. Es opcional: un producto sin subrubro sigue apareciendo como relacionado, solo que detrás de los que sí comparten.

@@ -349,11 +349,11 @@ export const PRODUCTOS: Producto[] = [
   // que trae. Van al final, detras de las del juego como se vende: la primera
   // es la que sale en la grilla y en la fila de la home.
   { slug: 'juego-comedor-caoba', nombre: 'Juego de comedor caoba con 6 sillas', precio: 529900,
-    categorias: ['deco', 'hogar'], marca: 'A confirmar',
+    categorias: ['hogar'], marca: 'A confirmar',
     fotos: fotosNumeradas('juego-comedor-caoba', 6, 'webp') },
 
   { slug: 'juego-comedor-negro', nombre: 'Juego de comedor negro con 6 sillas', precio: 489900,
-    categorias: ['deco', 'hogar'], marca: 'A confirmar',
+    categorias: ['hogar'], marca: 'A confirmar',
     fotos: fotosNumeradas('juego-comedor-negro', 4, 'webp') },
 
   // La silla suelta del juego, para el que necesita sentar a mas gente. La
@@ -364,23 +364,23 @@ export const PRODUCTOS: Producto[] = [
   // coherentes entre si: si Anita pasa los reales y la relacion se da vuelta,
   // hay que dar vuelta las cuatro, no dos.
   { slug: 'silla-comedor-caoba', nombre: 'Silla de comedor caoba', precio: 52900,
-    categorias: ['deco', 'hogar'], marca: 'A confirmar',
+    categorias: ['hogar'], marca: 'A confirmar',
     fotos: fotosNumeradas('silla-comedor-caoba', 2, 'webp') },
 
   { slug: 'silla-comedor-negra', nombre: 'Silla de comedor negra', precio: 48900,
-    categorias: ['deco', 'hogar'], marca: 'A confirmar',
+    categorias: ['hogar'], marca: 'A confirmar',
     fotos: fotosNumeradas('silla-comedor-negra', 1, 'webp') },
 
   { slug: 'cama-madera-listones', nombre: 'Cama de madera con respaldo de listones',
-    precio: 349900, categorias: ['deco', 'hogar'], marca: 'A confirmar',
+    precio: 349900, categorias: ['hogar'], marca: 'A confirmar',
     fotos: fotosNumeradas('cama-madera-listones', 8) },
 
   { slug: 'comoda-6-cajones', nombre: 'Cómoda nórdica de 6 cajones', precio: 259900,
-    categorias: ['deco', 'hogar'], marca: 'A confirmar',
+    categorias: ['hogar'], marca: 'A confirmar',
     fotos: fotosNumeradas('comoda-6-cajones', 4) },
 
   { slug: 'mesa-de-luz-nordica', nombre: 'Mesa de luz nórdica con cajón', precio: 89900,
-    categorias: ['deco', 'hogar'], marca: 'A confirmar',
+    categorias: ['hogar'], marca: 'A confirmar',
     fotos: fotosNumeradas('mesa-de-luz-nordica', 4) },
 
   // Ojo: este NO es Jean Cartier. La carpeta no lo dice y la foto que se

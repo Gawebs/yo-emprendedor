@@ -12,6 +12,32 @@ This block is written and re-added by `next dev` — verify at `node_modules/nex
 
 Marketplace B2C más dashboard para emprendedores, para **Anita** (pareja de Ale). Local físico en 24 de Septiembre 734, San Miguel de Tucumán. Contacto: yoemprendedortucuman@gmail.com, +54 381 214-6172.
 
+## Por dónde seguir (cierre del 28-ago-2026)
+
+Ese día entraron **17 productos reales sobre 59** y quedó todo deployado. Lo que sigue, en orden.
+
+### Lo que se puede hacer sin esperar a nadie
+
+1. **La home pesa 1,17 MB de fotos y va a crecer con cada producto real.** En la grilla se ven a 198 px y se están mandando archivos de 640 y 1200: treinta y seis veces más píxeles de los que se ven. Se arregla generando una versión chica al subir y usándola en la grilla y los carruseles, dejando la grande para la ficha y el zoom. Bajaría a unos 250 KB sin que se note. **Es un cambio en el script de subida, no en el diseño**, y es lo que Gabriel eligió dejar para la próxima.
+2. **Quedan 10 guiones largos**: 8 en `/quiero-vender` y 2 en la ficha de producto ("Envío desde $2.500 — 3 a 5 días" y el "Color — Verde"). La limpieza del 27-ago no llegó hasta ahí.
+3. **Los trabajos grandes que ya estaban**: reescribir el panel, leer el catálogo de Supabase en vez de `data.ts`, reemplazar `CuentaContext` por Supabase Auth, el checkout contra la base, y Mercado Pago al final.
+
+### Lo que está esperando a Anita
+
+Sin esto el catálogo no se puede publicar, por más terminado que esté el sitio:
+
+1. **Precio y stock reales de los 17.** Todos los precios cargados son estimaciones. Es lo que más frena.
+2. **Los docs de los tres muebles** (cama, cómoda, mesa de luz) y **las medidas de los cinco muebles**, comedores incluidos. En un mueble la medida es el dato que decide la compra y hoy no está en ninguno.
+3. **Una foto de la silla negra sola.** Quedó con el primer plano del asiento, que como imagen de grilla no se entiende.
+4. **Las fotos de blanquería en 1200 x 1200.** Las que hay son de 640 y el visor las delata al ampliar.
+5. **Cuatro decisiones suyas, todas anotadas más abajo con su contexto:** si la marca va dentro de las descripciones, si el kit es Alaska o Marsella, de quién son los muebles y de quién las cortinas blackout.
+6. **Y lo que venía de antes:** razón social y CUIT para el pie, datos bancarios, tarjetas de Mercado Pago, y cuánto tiempo se le reserva el stock a un pedido por transferencia.
+
+### Dos cosas que no son urgentes pero conviene no olvidar
+
+- **Deco no tiene ningún producto real.** Se llena con productos, no metiendo ahí cosas de otro rubro: ya se probó con los muebles y se volvió atrás.
+- **Los 42 productos de muestra se van a ir reemplazando** a medida que lleguen los reales. No corre apuro: el sitio todavía no es público.
+
 ## Estado real (26-ago-2026)
 
 Deployado en **https://yoemprendedortienda.com**. Repo: `Gawebs/yo-emprendedor`.

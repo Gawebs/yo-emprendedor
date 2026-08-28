@@ -10,15 +10,32 @@ export function FichaProducto({ producto }: { producto: ProductoDetalle }) {
   const { opciones } = producto;
   const { agregar: agregarAlCarrito } = useCarrito();
 
-  const [foto, setFoto] = useState(0);
   const fotos = producto.fotos ?? [];
   const [talle, setTalle] = useState(opciones.talles?.[0]);
   // Arranca en el primer color que se pueda comprar: abrir la ficha en uno
   // agotado deja al cliente mirando un boton deshabilitado sin entender por que.
   const colores = opciones.colores ?? [];
-  const [color, setColor] = useState(
-    (colores.find((c) => c.stock === undefined || c.stock > 0) ?? colores[0])?.nombre,
-  );
+  const colorInicial = (colores.find((c) => c.stock === undefined || c.stock > 0) ?? colores[0])
+    ?.nombre;
+  const [color, setColor] = useState(colorInicial);
+  const indiceDe = (nombre?: string) => {
+    const suya = colores.find((c) => c.nombre === nombre)?.foto;
+    return suya ? fotos.indexOf(suya) : -1;
+  };
+  // La foto abre en la del color con el que abre la ficha, no en la primera:
+  // si el primer color esta agotado, la ficha mostraba uno y decia otro.
+  const [foto, setFoto] = useState(() => Math.max(indiceDe(colorInicial), 0));
+
+  /**
+   * Elegir un color mueve la foto principal. Antes la foto quedaba atada al
+   * color, y en un producto que ademas trae fotos de ambiente esas miniaturas
+   * no hacian nada: se tocaban y la imagen no se movia.
+   */
+  const elegirColor = (nombre: string) => {
+    setColor(nombre);
+    const i = indiceDe(nombre);
+    if (i >= 0) setFoto(i);
+  };
   const [aroma, setAroma] = useState(opciones.aromas?.[0]);
   const [variante, setVariante] = useState(opciones.variantes?.[0]);
   const [agregado, setAgregado] = useState(false);
@@ -26,13 +43,6 @@ export function FichaProducto({ producto }: { producto: ProductoDetalle }) {
   const colorElegido = colores.find((c) => c.nombre === color);
   /** Si cada color trae su foto, la galeria hace de selector y los circulos sobran. */
   const colorTieneFoto = colores.some((c) => c.foto);
-
-  /**
-   * Un color puede tener su propia foto. Al elegirlo, la imagen principal
-   * cambia sola: si no, el cliente elige "negro" y sigue viendo el gris.
-   */
-  const fotoDelColor = colorElegido?.foto ? fotos.indexOf(colorElegido.foto) : -1;
-  const fotoVisible = fotoDelColor >= 0 ? fotoDelColor : foto;
 
   // undefined = todavia no se cargo el stock, y entonces no se muestra cartel.
   // Cero sí se muestra, y bloquea la compra.
@@ -68,8 +78,8 @@ export function FichaProducto({ producto }: { producto: ProductoDetalle }) {
               {producto.masVendido && <span className="prod-badge badge-vendido">Más vendido</span>}
             </div>
           )}
-          {fotos[fotoVisible] && (
-            <img src={fotos[fotoVisible]} alt={producto.nombre} width={640} height={640} />
+          {fotos[foto] && (
+            <img src={fotos[foto]} alt={producto.nombre} width={640} height={640} />
           )}
         </div>
         {/* Tantas miniaturas como fotos haya. Antes eran tres fijas, aunque
@@ -87,14 +97,14 @@ export function FichaProducto({ producto }: { producto: ProductoDetalle }) {
                   key={url}
                   type="button"
                   className={`galeria-mini${agotado ? ' mini-agotada' : ''}`}
-                  aria-current={i === fotoVisible}
+                  aria-current={i === foto}
                   aria-label={
                     suColor
                       ? `${suColor.nombre}${agotado ? ', sin stock' : ''}`
                       : `Ver foto ${i + 1} de ${producto.nombre}`
                   }
                   title={suColor ? suColor.nombre : undefined}
-                  onClick={() => (suColor ? setColor(suColor.nombre) : setFoto(i))}
+                  onClick={() => (suColor ? elegirColor(suColor.nombre) : setFoto(i))}
                 >
                   <img src={url} alt="" width={640} height={640} loading="lazy" />
                   {agotado && <span className="mini-agotada-texto">Sin stock</span>}
@@ -151,7 +161,7 @@ export function FichaProducto({ producto }: { producto: ProductoDetalle }) {
                       aria-pressed={color === c.nombre}
                       aria-label={agotado ? `${c.nombre}, sin stock` : c.nombre}
                       title={agotado ? `${c.nombre}, sin stock` : c.nombre}
-                      onClick={() => setColor(c.nombre)}
+                      onClick={() => elegirColor(c.nombre)}
                     />
                   );
                 })}

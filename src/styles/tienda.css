@@ -429,6 +429,8 @@
 .ye-tienda .detalles h2 { font-size: 1.1rem; font-weight: 700; margin-bottom: .85rem; }
 .ye-tienda .detalles-datos { display: flex; gap: 3rem; flex-wrap: wrap; font-size: .9rem; color: var(--negro-soft); margin-bottom: 1.5rem; }
 .ye-tienda .detalles p { font-size: .92rem; color: var(--negro-soft); line-height: 1.8; }
+.ye-tienda .detalles-beneficios { margin-top: .9rem; padding-left: 1.15rem; list-style: disc; }
+.ye-tienda .detalles-beneficios li { font-size: .92rem; color: var(--negro-soft); line-height: 1.8; }
 
 /* ── MARCAS ─────────────────────────────────────────────────────────────── */
 .ye-tienda .marcas-head { text-align: center; padding: 2.5rem 0 2rem; }

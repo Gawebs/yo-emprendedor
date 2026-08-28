@@ -175,6 +175,58 @@ La ficha **abre en el primer color disponible**, no en el primero de la lista: e
 
 **El comprador nunca ve de qué marca es un producto** — ni en la home, ni en la categoría, ni en la ficha, ni en el carrito. Anita lo decidió porque si el cliente identifica la marca, la busca en Instagram y la próxima vez le compra directo, salteándose la plataforma. La marca sí puede aparecer en la confirmación del pedido ("Preparado por…"), donde la venta ya está cerrada. `pedido_items.emprendedor_id` se guarda igual, para liquidar.
 
+## Cargar un producto real (28-ago-2026)
+
+Se cargaron los nueve productos que faltaban de la tanda de Anita: los ocho de Jean Cartier y el juego de cortinas blackout. Con el set Moon son diez productos reales sobre 52.
+
+**Los diez docs ya entraron** (28-ago-2026). Nueve de los trece productos reales tienen su descripción, sus medidas, su composición y sus beneficios copiados del documento de Anita. Traen datos que la foto no decía y varios que la contradecían:
+
+- La bata se fabrica también en talle **S**, que la ficha del mayorista no listaba, y el color que en la foto parece morado se llama **Malbec**.
+- El mantel mide **130 x 200 cm**, no dos metros de lado.
+- La toalla del estuche es de **30 x 30 cm y 100% poliéster**, no de microfibra.
+- Las estampas del acolchado se llaman Rosa corazón, Rosa animado, Rosa print y Azul universo.
+- Las cortinas son **Arena, Gris claro y Gris oscuro**, y el doc confirma que la marca es Nathan Home.
+
+**El set de cinco piezas es la línea Mist, no "acanalado".** Su doc estaba dentro de la carpeta del set Moon, que tenía dos: uno de tres piezas (Moon) y otro de cinco (Mist). Al slug `set-bano-acanalado`, que era una descripción inventada, lo reemplazó `set-bano-mist`, y las fotos se remontaron con ese nombre. Se pudo renombrar sin costo porque la tienda todavía no está indexada; **una vez publicada, cambiar un slug rompe el enlace y hay que redirigir**.
+
+**Las descripciones nombran la marca y la tienda no la muestra.** Todos los docs de Anita dicen "de Jean Cartier" o "de Nathan Home" dentro del texto de venta, y eso choca con su propia regla de que el comprador no ve la marca en ningún punto de la compra. Se publicó **sin el nombre de la marca**, que es el único cambio que se les hizo: el resto es su texto tal cual. **Es una decisión que tiene que confirmar ella**, y si dice que la marca va, es cambiar una línea por producto.
+
+**El kit dice Alaska en la carpeta y Marsella en el doc.** Las dos fuentes son de Anita, así que la regla de que el doc manda no lo resuelve. Quedó como "Kit Alaska King" hasta que ella diga cuál es.
+
+**`composicion` y `beneficios` son campos nuevos de `ProductoDetalle`**, porque los docs vienen todos con esa forma: un párrafo de venta, una lista de características y una de beneficios. Los beneficios se muestran como lista y no dentro del párrafo: son cuatro o cinco frases sueltas que apretadas en un bloque no las lee nadie.
+
+**Cada carpeta de producto trae su descripción** (acordado el 28-ago-2026). De ahora en adelante, adentro de la carpeta de fotos de cada producto viene un documento con el texto de la descripción. **Ese documento manda**: la descripción se copia de ahí, no se escribe mirando la foto. Los nueve que se cargaron el 28-ago son la excepción, porque todavía no existía esa convención y sus textos salieron de lo que se ve en la imagen y de las fichas del mayorista. Cuando lleguen los docs de esos nueve, hay que reemplazarlos.
+
+Es la misma regla que ya vale para todo lo demás: lo que escribe Anita gana sobre lo que se decidió sobre la marcha para avanzar.
+
+**Las opciones de un producto real viven en `OPCIONES_REALES`**, en `data.ts`. Un producto que figura ahí recibe **solo** lo que ahí dice: no se le agregan los talles S/M/L/XL ni el "Clásico / Premium" de `CATALOGO_OPCIONES`. Antes se los agregaba a cualquiera según su rubro, así que el set de baño ofrecía elegir entre dos variantes que no existen. Ofrecerle al cliente una opción inventada es peor que no ofrecerle ninguna: la elige, la paga, y después hay que explicarle. Los 42 productos del demo siguen con las genéricas porque no tienen otra cosa.
+
+`COLORES_POR_PRODUCTO` ahora se deriva de `OPCIONES_REALES`, así que **hay una sola lista que mantener**. La bata es el caso que obligó a esto: sus talles son M, L y XL, no los cuatro de muestra.
+
+**La foto principal ya no queda atada al color.** Antes, si el color elegido tenía foto, la imagen se calculaba a partir del color y las miniaturas que no eran de ningún color no hacían nada al tocarlas. Eso alcanzaba mientras el único producto real tenía una foto por color y nada más, pero el set Mist y el set de cortina traen además una foto de ambiente. Ahora la foto es estado propio: elegir un color la mueve, y tocar cualquier miniatura también. La ficha además **abre en la foto del color con el que abre**, que no siempre es la primera.
+
+**Qué fotos del proveedor no se publican.** De las 34 fotos nuevas se subieron 28. Las seis que quedaron afuera, por tres motivos:
+
+- **Las que llevan el logo de Jean Cartier sobreimpreso** (dos del kit Alaska, una del set de cortina). Chocan de frente con la regla de que el comprador no ve la marca. El logo estampado en el envase del producto sí queda, porque es el producto.
+- **Las fichas del mayorista**, con textos como "Consultá disponibilidad de talle y/o color". Es lenguaje de venta a comercios, no a la clienta final. De la de la bata salieron las medidas por talle, que sí sirven.
+- **Una con marca de agua de otra empresa**, "Nathan Home", en las cortinas blackout.
+
+**Los muebles son otro proveedor.** Ese mismo día entraron una cama, una cómoda y una mesa de luz, que no vienen de Jean Cartier ni de ninguna marca identificable. Quedaron con `marca: 'A confirmar'`. El comprador no ve ese campo, pero se usa para liquidarle a quien corresponda, así que no puede llevar una marca inventada.
+
+De la cama llegaron once tomas del mismo mueble y se publicaron ocho. Quedaron afuera una lateral que es la misma que otra espejada, una vista desde arriba que no se entiende, y un montaje con una franja blanca en el medio. **Once miniaturas es una galería que nadie recorre**, y las tres que se sacaron no agregaban nada que no muestre otra.
+
+**Los muebles son los únicos que siguen sin doc**, y además llegaron **sin medidas**, que en un mueble es el dato que decide la compra. Sus descripciones son provisorias, escritas de lo que se ve en la foto.
+
+**El juego de cortinas blackout no es de Jean Cartier.** Ni la carpeta lo dice ni la foto lo muestra, y la marca de agua apunta a Nathan Home. Quedó cargado con esa marca y **no** se sumó a `MARCAS`, que es la lista institucional de las emprendedoras. Falta que Anita confirme de quién es.
+
+**Una foto quedó chica:** la de la estampa Estrellas del acolchado infantil mide 240 px y se muestra a 552 en la ficha, así que se ve blanda. Se publicó igual porque es la única de ese dibujo. Vale pedirle a Anita la original.
+
+**El acolchado infantil va en Hogar, no en Infantiles.** El rubro de origen define los selectores, y en Infantiles la ficha pediría talle, que un acolchado no tiene. Igual aparece en la fila de Infantiles, que es donde lo busca la clienta, porque `categorias` es una lista.
+
+**Los precios de los diez productos reales son estimados.** Están puestos para que la ficha no quede vacía y **hay que reemplazarlos por los de Anita antes de vender**. El stock quedó sin cargar a propósito (`undefined`, que no muestra cartel), salvo el del set Moon, que arrastra stock de prueba de cuando se armó el molde.
+
+**Las estampas se cargan como colores.** El acolchado infantil viene en cuatro dibujos, no en cuatro colores, y se modelaron con el mismo `Color` porque es lo que ya tiene foto y stock propios. La ficha los rotula "Color", que para una estampa no es la palabra. Si aparecen más productos así, conviene que `Color` lleve su propia etiqueta.
+
 **Branding de la landing de planes** (`/quiero-vender`): amarillo `#e4c763` sobre beige `#fff7dc`, negro `#313131`, verde `#55643f`, dorado `#7d6210`. League Spartan para títulos y Open Sans para cuerpo, vía `next/font`.
 
 El amarillo de marca es solo para fondos y para texto sobre negro: sobre blanco da 1.7:1. Para texto sobre superficies claras va `--dorado`. El verde original del diseño (`#7f8f6a`) daba 3.2:1 y se oscureció a `#55643f`.

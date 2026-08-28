@@ -53,9 +53,17 @@ export default async function ProductoPage({ params }: Props) {
         <div className="detalles-datos">
           <span>Código: {producto.codigo}</span>
           {producto.medidas && <span>Medidas: {producto.medidas}</span>}
+          {producto.composicion && <span>Composición: {producto.composicion}</span>}
         </div>
         <h2>Descripción</h2>
         <p>{producto.descripcion}</p>
+        {/* Los beneficios vienen como lista en el doc de cada producto y se
+            muestran como lista: apretados en el párrafo no los lee nadie. */}
+        {producto.beneficios && (
+          <ul className="detalles-beneficios">
+            {producto.beneficios.map((b) => <li key={b}>{b}</li>)}
+          </ul>
+        )}
       </section>
 
       {relacionados.length > 0 && (

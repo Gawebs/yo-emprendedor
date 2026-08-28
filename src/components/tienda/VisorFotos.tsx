@@ -3,8 +3,13 @@
 import { useEffect, useRef, useState } from 'react';
 import { X, ChevronLeft, ChevronRight, ZoomIn, ZoomOut } from 'lucide-react';
 
-/** Cuanto agranda el zoom sobre la foto ya encajada en la pantalla. */
-const ZOOM = 2.5;
+/**
+ * Los pasos del zoom: la foto entera, el doble y el triple y medio. Dos
+ * niveles y no uno solo porque no es lo mismo mirar una costura que leer una
+ * etiqueta, y no mas de dos porque a partir del tercer paso las fotos que
+ * tenemos ya no dan mas detalle, solo mas pixel.
+ */
+const NIVELES = [1, 2, 3.5];
 
 type Props = {
   fotos: string[];
@@ -19,7 +24,10 @@ type Props = {
 /**
  * Ver la foto de un producto en grande, para mirarle la textura y las
  * terminaciones. En la ficha la imagen se ve a 552 px; aca ocupa hasta el 92%
- * de la pantalla, y con el zoom llega a 2,5 veces eso.
+ * de la pantalla, y con el zoom llega a 3,5 veces eso.
+ *
+ * Con el zoom puesto la foto se arrastra con el mouse o con el dedo, con la
+ * manito, que es como se mira una foto grande en cualquier lado.
  *
  * **La nitidez depende del original.** Las fotos de blanqueria vinieron en
  * 640 px, asi que ampliadas se ven blandas: el visor no inventa detalle que la
@@ -28,16 +36,42 @@ type Props = {
  */
 export function VisorFotos({ fotos, inicial, nombre, onCambiar, onCerrar }: Props) {
   const [i, setI] = useState(inicial);
-  const [zoom, setZoom] = useState(false);
-  // Punto de la foto que queda bajo el cursor al ampliar, en porcentaje.
-  const [foco, setFoco] = useState({ x: 50, y: 50 });
+  const [nivel, setNivel] = useState(0);
+  const [pos, setPos] = useState({ x: 0, y: 0 });
+  const [arrastrando, setArrastrando] = useState(false);
   const cerrarRef = useRef<HTMLButtonElement>(null);
-  const arrastre = useRef<{ x: number; y: number; fx: number; fy: number } | null>(null);
+  const cajaRef = useRef<HTMLDivElement>(null);
+  const desde = useRef<{ x: number; y: number; px: number; py: number; movio: boolean } | null>(null);
+
+  const escala = NIVELES[nivel];
+  const ampliada = escala > 1;
+
+  /**
+   * La foto no se puede arrastrar mas alla de su propio borde: pasado eso
+   * quedaria mirando el fondo negro sin entender que paso.
+   */
+  const limitar = (x: number, y: number, e: number) => {
+    const caja = cajaRef.current?.getBoundingClientRect();
+    if (!caja) return { x: 0, y: 0 };
+    const topeX = (caja.width * (e - 1)) / 2;
+    const topeY = (caja.height * (e - 1)) / 2;
+    return {
+      x: Math.min(topeX, Math.max(-topeX, x)),
+      y: Math.min(topeY, Math.max(-topeY, y)),
+    };
+  };
+
+  const cambiarNivel = (siguiente: number) => {
+    const n = Math.min(NIVELES.length - 1, Math.max(0, siguiente));
+    setNivel(n);
+    setPos(NIVELES[n] === 1 ? { x: 0, y: 0 } : limitar(pos.x, pos.y, NIVELES[n]));
+  };
 
   const mover = (paso: number) => {
     const siguiente = (i + paso + fotos.length) % fotos.length;
     setI(siguiente);
-    setZoom(false);
+    setNivel(0);
+    setPos({ x: 0, y: 0 });
     onCambiar(siguiente);
   };
 
@@ -60,31 +94,35 @@ export function VisorFotos({ fotos, inicial, nombre, onCambiar, onCerrar }: Prop
     return () => window.removeEventListener('keydown', alTeclado);
   }, [i]);
 
-  /** Con la foto ampliada, el mouse la recorre: mover la cabeza no alcanza. */
-  const alMover = (e: React.MouseEvent<HTMLDivElement>) => {
-    if (!zoom) return;
-    const caja = e.currentTarget.getBoundingClientRect();
-    setFoco({
-      x: ((e.clientX - caja.left) / caja.width) * 100,
-      y: ((e.clientY - caja.top) / caja.height) * 100,
-    });
+  /**
+   * Mouse y dedo por el mismo camino: los eventos de puntero no distinguen, y
+   * escribir dos veces lo mismo es como se desincronizan las dos.
+   */
+  const alAgarrar = (e: React.PointerEvent<HTMLDivElement>) => {
+    if (!ampliada) return;
+    e.currentTarget.setPointerCapture(e.pointerId);
+    desde.current = { x: e.clientX, y: e.clientY, px: pos.x, py: pos.y, movio: false };
+    setArrastrando(true);
   };
 
-  // En el celular no hay cursor que seguir, asi que la foto se arrastra.
-  const alTocar = (e: React.TouchEvent<HTMLDivElement>) => {
-    if (!zoom) return;
-    const t = e.touches[0];
-    arrastre.current = { x: t.clientX, y: t.clientY, fx: foco.x, fy: foco.y };
+  const alArrastrar = (e: React.PointerEvent<HTMLDivElement>) => {
+    if (!desde.current) return;
+    const dx = e.clientX - desde.current.x;
+    const dy = e.clientY - desde.current.y;
+    // Un temblor de tres pixeles al hacer clic no es un arrastre.
+    if (Math.abs(dx) > 3 || Math.abs(dy) > 3) desde.current.movio = true;
+    setPos(limitar(desde.current.px + dx, desde.current.py + dy, escala));
   };
-  const alArrastrar = (e: React.TouchEvent<HTMLDivElement>) => {
-    if (!zoom || !arrastre.current) return;
-    const t = e.touches[0];
-    const caja = e.currentTarget.getBoundingClientRect();
-    const { x, y, fx, fy } = arrastre.current;
-    setFoco({
-      x: Math.min(100, Math.max(0, fx - ((t.clientX - x) / caja.width) * 100)),
-      y: Math.min(100, Math.max(0, fy - ((t.clientY - y) / caja.height) * 100)),
-    });
+
+  const alSoltar = () => {
+    setArrastrando(false);
+    // Si la foto se arrastro, soltar no tiene que cambiar el zoom.
+    if (desde.current?.movio) {
+      desde.current = null;
+      return;
+    }
+    desde.current = null;
+    cambiarNivel(nivel === NIVELES.length - 1 ? 0 : nivel + 1);
   };
 
   return (
@@ -98,11 +136,25 @@ export function VisorFotos({ fotos, inicial, nombre, onCambiar, onCerrar }: Prop
         <button
           type="button"
           className="visor-btn"
-          aria-pressed={zoom}
-          aria-label={zoom ? 'Alejar' : 'Ampliar'}
-          onClick={() => setZoom(!zoom)}
+          aria-label="Alejar"
+          disabled={nivel === 0}
+          onClick={() => cambiarNivel(nivel - 1)}
         >
-          {zoom ? <ZoomOut size={20} aria-hidden="true" /> : <ZoomIn size={20} aria-hidden="true" />}
+          <ZoomOut size={20} aria-hidden="true" />
+        </button>
+        {/* El nivel a la vista: si no, ampliar dos veces y que la segunda no
+            haga nada se lee como que el visor se colgo. */}
+        <span className="visor-nivel" aria-live="polite">
+          {ampliada ? `${String(escala).replace('.', ',')}x` : '1x'}
+        </span>
+        <button
+          type="button"
+          className="visor-btn"
+          aria-label="Ampliar"
+          disabled={nivel === NIVELES.length - 1}
+          onClick={() => cambiarNivel(nivel + 1)}
+        >
+          <ZoomIn size={20} aria-hidden="true" />
         </button>
         <button
           type="button"
@@ -136,22 +188,25 @@ export function VisorFotos({ fotos, inicial, nombre, onCambiar, onCerrar }: Prop
         </>
       )}
 
-      {/* Tocar la foto amplia y vuelve, que es lo que la gente prueba primero. */}
+      {/* Tocar la foto pasa de nivel y vuelve al principio, que es lo que la
+          gente prueba primero. Con el zoom puesto, arrastrarla la mueve. */}
       <div
-        className={`visor-foto${zoom ? ' visor-foto-zoom' : ''}`}
-        onClick={() => setZoom(!zoom)}
-        onMouseMove={alMover}
-        onTouchStart={alTocar}
-        onTouchMove={alArrastrar}
+        ref={cajaRef}
+        className={
+          'visor-foto' +
+          (ampliada ? ' visor-foto-zoom' : '') +
+          (arrastrando ? ' visor-foto-agarrada' : '')
+        }
+        onPointerDown={alAgarrar}
+        onPointerMove={alArrastrar}
+        onPointerUp={alSoltar}
+        onPointerCancel={() => { desde.current = null; setArrastrando(false); }}
       >
         <img
           src={fotos[i]}
           alt={nombre}
-          style={
-            zoom
-              ? { transform: `scale(${ZOOM})`, transformOrigin: `${foco.x}% ${foco.y}%` }
-              : undefined
-          }
+          draggable={false}
+          style={{ transform: `translate(${pos.x}px, ${pos.y}px) scale(${escala})` }}
         />
       </div>
     </div>

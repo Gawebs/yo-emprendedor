@@ -211,12 +211,20 @@ Es la misma regla que ya vale para todo lo demás: lo que escribe Anita gana sob
 - **Las fichas del mayorista**, con textos como "Consultá disponibilidad de talle y/o color". Es lenguaje de venta a comercios, no a la clienta final. De la de la bata salieron las medidas por talle, que sí sirven.
 - **Una con marca de agua de otra empresa**, "Nathan Home", en las cortinas blackout.
 
-**La foto de la ficha abre un visor** (`VisorFotos.tsx`, 28-ago-2026). En la ficha la imagen entra a 552 px y hay terminaciones que a ese tamaño no se ven. El visor la lleva hasta el 92% de la pantalla y el zoom la agranda 2,5 veces más, siguiendo el cursor en escritorio y arrastrándola con el dedo en el celular. Cierra con Escape, con el fondo o con la X, y las flechas del teclado pasan de foto.
+**La foto de la ficha abre un visor** (`VisorFotos.tsx`, 28-ago-2026). En la ficha la imagen entra a 552 px y hay terminaciones que a ese tamaño no se ven. El visor la lleva hasta el 92% de la pantalla. Cierra con Escape, con el fondo o con la X, y las flechas del teclado pasan de foto.
 
-Dos decisiones adentro:
+**El zoom tiene dos niveles, 2x y 3,5x**, en `NIVELES`. Dos y no uno porque no es lo mismo mirar una costura que leer una etiqueta, y no tres porque a partir de ahí las fotos que tenemos no dan más detalle, solo más píxel. Se sube y se baja con los botones, que se apagan en cada tope, y tocar la foto va pasando de nivel y vuelve al principio. **El nivel se muestra escrito**: si no, ampliar dos veces y que la segunda no haga nada se lee como que el visor se colgó.
 
+**Con el zoom puesto la foto se arrastra**, con la manito. Va por eventos de puntero, no por eventos de mouse y de touch por separado: el mismo código sirve para el dedo y para el mouse, y dos caminos distintos es como se terminan desincronizando. `touch-action: none` en `.visor-foto-zoom` es lo que evita que en el celular el gesto se lo lleve el navegador para scrollear.
+
+Cuatro decisiones más adentro:
+
+- **La foto no se puede arrastrar más allá de su borde.** Pasado eso el cliente queda mirando el fondo negro sin entender qué pasó. El tope es `ancho * (escala - 1) / 2` para cada lado.
+- **Arrastrar no cambia el zoom.** Soltar después de mover más de tres píxeles no cuenta como toque, o mover la foto la ampliaría sola cada vez.
 - **Pasar de foto en el visor también mueve el color elegido**, igual que tocar una miniatura. Si no, se salía del visor con la foto del gris y el selector diciendo "Verde".
 - **La página de atrás se traba mientras el visor está abierto**, con el mismo patrón que ya usaba el buscador.
+
+**Ojo al verificar el visor desde el navegador integrado:** con el panel oculto la página no compone cuadros, la transición del `transform` no avanza nunca y `getComputedStyle` devuelve la identidad aunque el estilo en línea diga `scale(2)`. Parece que el zoom no anda y anda perfecto. Para medirlo hay que forzar un viewport con `resize_window` y leerlo durante el arrastre, que corre sin transición.
 
 **El zoom deja a la vista qué fotos son chicas.** Las de blanquería vinieron en 640 px y ampliadas se ven blandas; las de muebles son de 1200 y aguantan. El visor no inventa detalle que la foto no tiene, y que se note es útil: marca cuáles conviene volver a pedirle a Anita. **No se arregla con un upscale.**
 

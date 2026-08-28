@@ -1112,8 +1112,15 @@
   background: rgba(255, 255, 255, .12); color: var(--blanco); border-radius: 50%;
 }
 .ye-tienda .visor-btn { width: 40px; height: 40px; }
-.ye-tienda .visor-btn:hover, .ye-tienda .visor-flecha:hover { background: rgba(255, 255, 255, .24); }
-.ye-tienda .visor-btn[aria-pressed='true'] { background: var(--verde-oscuro); }
+.ye-tienda .visor-btn:hover:not(:disabled),
+.ye-tienda .visor-flecha:hover { background: rgba(255, 255, 255, .24); }
+/* Al tope no se apaga del todo: apagado se lee como roto, y el boton tiene
+   que seguir diciendo que ahi termina el zoom. */
+.ye-tienda .visor-btn:disabled { opacity: .35; cursor: default; }
+.ye-tienda .visor-nivel {
+  color: rgba(255, 255, 255, .8); font-size: .85rem; min-width: 2.4rem;
+  text-align: center; font-variant-numeric: tabular-nums;
+}
 .ye-tienda .visor-flecha {
   position: absolute; top: 50%; transform: translateY(-50%); z-index: 2;
   width: 48px; height: 48px;
@@ -1131,10 +1138,15 @@
      lo que se vino a hacer. */
   object-fit: contain; transition: transform .18s ease-out;
 }
-.ye-tienda .visor-foto-zoom { cursor: zoom-out; }
-/* Con la foto ampliada el navegador ya no puede suavizar de a poco: mejor que
-   se vea el pixel del original que un borroneado. */
-.ye-tienda .visor-foto-zoom img { transition: none; }
+/* Con el zoom puesto la foto se agarra y se mueve. `touch-action: none` es
+   lo que evita que en el celular el gesto se lo lleve el navegador para
+   scrollear en vez de mover la imagen. */
+.ye-tienda .visor-foto-zoom { cursor: grab; touch-action: none; }
+.ye-tienda .visor-foto-agarrada { cursor: grabbing; }
+/* Mientras se arrastra no hay transicion: la foto tiene que ir pegada al
+   dedo, no llegar un cuarto de segundo despues. */
+.ye-tienda .visor-foto-agarrada img { transition: none; }
+.ye-tienda .visor-foto img { user-select: none; -webkit-user-drag: none; }
 
 @media (max-width: 600px) {
   .ye-tienda .visor-flecha { width: 40px; height: 40px; }

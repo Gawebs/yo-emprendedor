@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { Truck, Store, CreditCard } from 'lucide-react';
 import { formatearPrecio, POCAS_UNIDADES, type ProductoDetalle } from './data';
 import { useCarrito } from '@/contexts/CarritoContext';
+import { VisorFotos } from './VisorFotos';
 
 
 export function FichaProducto({ producto }: { producto: ProductoDetalle }) {
@@ -36,9 +37,21 @@ export function FichaProducto({ producto }: { producto: ProductoDetalle }) {
     const i = indiceDe(nombre);
     if (i >= 0) setFoto(i);
   };
+
+  /**
+   * El camino inverso: si la foto a la que se va es la de un color, el
+   * selector se mueve con ella. Sin esto, pasar de foto dentro del visor
+   * dejaba la ficha mostrando el gris y diciendo "Verde".
+   */
+  const irAFoto = (i: number) => {
+    setFoto(i);
+    const suColor = colores.find((c) => c.foto === fotos[i]);
+    if (suColor) setColor(suColor.nombre);
+  };
   const [aroma, setAroma] = useState(opciones.aromas?.[0]);
   const [variante, setVariante] = useState(opciones.variantes?.[0]);
   const [agregado, setAgregado] = useState(false);
+  const [visor, setVisor] = useState(false);
 
   const colorElegido = colores.find((c) => c.nombre === color);
   /** Si cada color trae su foto, la galeria hace de selector y los circulos sobran. */
@@ -70,6 +83,15 @@ export function FichaProducto({ producto }: { producto: ProductoDetalle }) {
 
   return (
     <div className="ficha">
+      {visor && (
+        <VisorFotos
+          fotos={fotos}
+          inicial={foto}
+          nombre={producto.nombre}
+          onCambiar={irAFoto}
+          onCerrar={() => setVisor(false)}
+        />
+      )}
       <div>
         <div className="galeria-principal">
           {(producto.oferta || producto.masVendido) && (
@@ -78,8 +100,17 @@ export function FichaProducto({ producto }: { producto: ProductoDetalle }) {
               {producto.masVendido && <span className="prod-badge badge-vendido">Más vendido</span>}
             </div>
           )}
+          {/* La foto abre el visor: en la ficha entra a 552 px y hay
+              terminaciones que a ese tamano no se ven. */}
           {fotos[foto] && (
-            <img src={fotos[foto]} alt={producto.nombre} width={640} height={640} />
+            <button
+              type="button"
+              className="galeria-lupa"
+              aria-label={`Ampliar la foto de ${producto.nombre}`}
+              onClick={() => setVisor(true)}
+            >
+              <img src={fotos[foto]} alt={producto.nombre} width={640} height={640} />
+            </button>
           )}
         </div>
         {/* Tantas miniaturas como fotos haya. Antes eran tres fijas, aunque

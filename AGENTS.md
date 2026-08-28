@@ -211,6 +211,15 @@ Es la misma regla que ya vale para todo lo demás: lo que escribe Anita gana sob
 - **Las fichas del mayorista**, con textos como "Consultá disponibilidad de talle y/o color". Es lenguaje de venta a comercios, no a la clienta final. De la de la bata salieron las medidas por talle, que sí sirven.
 - **Una con marca de agua de otra empresa**, "Nathan Home", en las cortinas blackout.
 
+**La foto de la ficha abre un visor** (`VisorFotos.tsx`, 28-ago-2026). En la ficha la imagen entra a 552 px y hay terminaciones que a ese tamaño no se ven. El visor la lleva hasta el 92% de la pantalla y el zoom la agranda 2,5 veces más, siguiendo el cursor en escritorio y arrastrándola con el dedo en el celular. Cierra con Escape, con el fondo o con la X, y las flechas del teclado pasan de foto.
+
+Dos decisiones adentro:
+
+- **Pasar de foto en el visor también mueve el color elegido**, igual que tocar una miniatura. Si no, se salía del visor con la foto del gris y el selector diciendo "Verde".
+- **La página de atrás se traba mientras el visor está abierto**, con el mismo patrón que ya usaba el buscador.
+
+**El zoom deja a la vista qué fotos son chicas.** Las de blanquería vinieron en 640 px y ampliadas se ven blandas; las de muebles son de 1200 y aguantan. El visor no inventa detalle que la foto no tiene, y que se note es útil: marca cuáles conviene volver a pedirle a Anita. **No se arregla con un upscale.**
+
 **Los muebles son otro proveedor.** Ese mismo día entraron una cama, una cómoda y una mesa de luz, que no vienen de Jean Cartier ni de ninguna marca identificable. Quedaron con `marca: 'A confirmar'`. El comprador no ve ese campo, pero se usa para liquidarle a quien corresponda, así que no puede llevar una marca inventada.
 
 De la cama llegaron once tomas del mismo mueble y se publicaron ocho. Quedaron afuera una lateral que es la misma que otra espejada, una vista desde arriba que no se entiende, y un montaje con una franja blanca en el medio. **Once miniaturas es una galería que nadie recorre**, y las tres que se sacaron no agregaban nada que no muestre otra.

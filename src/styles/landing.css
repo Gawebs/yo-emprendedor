@@ -206,6 +206,34 @@
 }
 .ye-landing .que-es-img img { width: 100%; height: 100%; object-fit: cover; display: block; }
 
+/* ── TESTIMONIOS EN VIDEO ───────────────────────────────────────────────── */
+/* `auto-fit` con minimo: con dos videos entran dos, con cinco se acomodan
+   solos. No hay que tocar el CSS cada vez que llega un testimonio nuevo. */
+.ye-landing .videos-grid {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 2rem; margin-top: 3rem; justify-content: center;
+}
+.ye-landing .video-testi { margin: 0; max-width: 340px; justify-self: center; }
+.ye-landing .video-testi video {
+  width: 100%; height: auto; display: block; aspect-ratio: 9 / 16;
+  border-radius: 3px; box-shadow: var(--shadow); background: var(--negro);
+}
+.ye-landing .video-testi figcaption { padding-top: 1.1rem; text-align: center; }
+/* La frase se lee sin darle play: mucha gente no reproduce nada, y aun asi
+   tiene que llevarse el testimonio. */
+.ye-landing .video-testi-frase {
+  font-size: .95rem; line-height: 1.7; color: var(--negro-soft);
+  font-style: italic; margin-bottom: .75rem;
+}
+.ye-landing .video-testi-nombre {
+  font-family: var(--font-spartan), 'League Spartan', sans-serif;
+  font-weight: 700; font-size: .95rem; color: var(--negro);
+}
+.ye-landing .video-testi-marca {
+  font-size: .82rem; color: var(--dorado); text-transform: uppercase;
+  letter-spacing: .06em; margin-top: .15rem;
+}
+
 /* El video es vertical (formato reel), asi que no comparte la caja 4:3 de la
    foto que reemplaza. Se limita el alto para que no empuje al texto de al
    lado y quede desbalanceada la seccion. */

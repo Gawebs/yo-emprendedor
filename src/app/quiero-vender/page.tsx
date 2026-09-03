@@ -6,6 +6,7 @@ import { Faq } from '@/components/landing/Faq';
 import { FormContacto } from '@/components/landing/FormContacto';
 import { IconoWhatsapp } from '@/components/landing/IconoWhatsapp';
 import {
+  VIDEOS_TESTIMONIOS,
   CONTACTO,
   RECONOCIMIENTO,
   PILARES,
@@ -165,6 +166,44 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      {/* TESTIMONIOS EN VIDEO */}
+      {VIDEOS_TESTIMONIOS.length > 0 && (
+        <section id="video-testimonios">
+          <div className="container">
+            <span className="eyebrow reveal">Lo dicen ellas</span>
+            <h2 className="section-title reveal">
+              Emprendedoras que ya venden con nosotros
+            </h2>
+            <p className="section-sub reveal">
+              Marcas que empezaron igual que vos y hoy tienen su espacio en el local.
+            </p>
+
+            <div className="videos-grid">
+              {VIDEOS_TESTIMONIOS.map((t) => (
+                <figure className="video-testi reveal" key={t.video}>
+                  {/* `preload="none"`: son varios videos en la misma pagina y
+                      con metadata cada uno abriria su propia descarga apenas
+                      carga la seccion. La portada alcanza para que se vea algo. */}
+                  <video
+                    src={t.video}
+                    poster={t.portada}
+                    controls
+                    preload="none"
+                    playsInline
+                    aria-label={`${t.nombre}, de ${t.marca}, cuenta su experiencia`}
+                  />
+                  <figcaption>
+                    <p className="video-testi-frase">&ldquo;{t.frase}&rdquo;</p>
+                    <p className="video-testi-nombre">{t.nombre}</p>
+                    <p className="video-testi-marca">{t.marca}</p>
+                  </figcaption>
+                </figure>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
 
       {/* COMO LO HACEMOS */}
       <section id="como">

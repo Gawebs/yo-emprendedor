@@ -197,6 +197,32 @@ export const PLANES: Plan[] = [
   },
 ];
 
+/**
+ * Testimonios en video de emprendedoras que ya venden en Yo Emprendedor.
+ * Anita y Ale los pidieron: a quien esta dudando, escuchar a otra
+ * emprendedora la convence mas que cualquier argumento nuestro.
+ *
+ * La seccion no se muestra mientras la lista este vacia: una seccion de
+ * testimonios sin testimonios queda peor que no tenerla.
+ *
+ * Cada video necesita su portada (`.webp`), o antes de darle play se ve un
+ * rectangulo negro.
+ */
+export type VideoTestimonio = {
+  /** Como se llama, para que el testimonio tenga cara y nombre. */
+  nombre: string;
+  /** Su marca. Aca si se muestra: es la vidriera de la emprendedora. */
+  marca: string;
+  /** Una frase suya, la que resume el video. Se lee sin darle play. */
+  frase: string;
+  video: string;
+  portada: string;
+};
+
+export const VIDEOS_TESTIMONIOS: VideoTestimonio[] = [
+  // Se completa a medida que lleguen los videos.
+];
+
 export const TESTIMONIOS = [
   {
     iniciales: 'ST',

@@ -191,13 +191,21 @@ export default function Home() {
                     controls
                     preload="none"
                     playsInline
-                    aria-label={`${t.nombre}, de ${t.marca}, cuenta su experiencia`}
+                    aria-label={
+                      t.nombre
+                        ? `${t.nombre}, de ${t.marca}, cuenta su experiencia`
+                        : 'Una emprendedora cuenta su experiencia en Yo Emprendedor'
+                    }
                   />
-                  <figcaption>
-                    <p className="video-testi-frase">&ldquo;{t.frase}&rdquo;</p>
-                    <p className="video-testi-nombre">{t.nombre}</p>
-                    <p className="video-testi-marca">{t.marca}</p>
-                  </figcaption>
+                  {/* Sin nombre no va epigrafe: un generico repetido debajo de
+                      cada video se lee como relleno. */}
+                  {(t.frase || t.nombre) && (
+                    <figcaption>
+                      {t.frase && <p className="video-testi-frase">&ldquo;{t.frase}&rdquo;</p>}
+                      {t.nombre && <p className="video-testi-nombre">{t.nombre}</p>}
+                      {t.marca && <p className="video-testi-marca">{t.marca}</p>}
+                    </figcaption>
+                  )}
                 </figure>
               ))}
             </div>

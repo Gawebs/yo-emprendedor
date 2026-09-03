@@ -209,18 +209,30 @@ export const PLANES: Plan[] = [
  * rectangulo negro.
  */
 export type VideoTestimonio = {
-  /** Como se llama, para que el testimonio tenga cara y nombre. */
-  nombre: string;
-  /** Su marca. Aca si se muestra: es la vidriera de la emprendedora. */
-  marca: string;
-  /** Una frase suya, la que resume el video. Se lee sin darle play. */
-  frase: string;
   video: string;
   portada: string;
+  /**
+   * Los tres son opcionales a proposito. Cuando llegaron los primeros videos
+   * no se sabia quienes eran, y poner un generico repetido tres veces —
+   * "Emprendedora de Yo Emprendedor" debajo de cada uno — se nota como
+   * relleno y resta mas de lo que suma. El titulo de la seccion ya dice
+   * quienes son.
+   *
+   * Cuando se sepan los nombres conviene completarlos: un testimonio con
+   * nombre y marca vale mucho mas que uno anonimo.
+   */
+  nombre?: string;
+  marca?: string;
+  /** La frase que resume el video, para quien no le da play a nada. */
+  frase?: string;
 };
 
+const VIDEOS = `${process.env.NEXT_PUBLIC_SUPABASE_URL ?? ''}/storage/v1/object/public/sitio/testimonios`;
+
 export const VIDEOS_TESTIMONIOS: VideoTestimonio[] = [
-  // Se completa a medida que lleguen los videos.
+  { video: `${VIDEOS}/testimonio-1.mp4`, portada: `${VIDEOS}/testimonio-1.webp` },
+  { video: `${VIDEOS}/testimonio-2.mp4`, portada: `${VIDEOS}/testimonio-2.webp` },
+  { video: `${VIDEOS}/testimonio-3.mp4`, portada: `${VIDEOS}/testimonio-3.webp` },
 ];
 
 export const TESTIMONIOS = [

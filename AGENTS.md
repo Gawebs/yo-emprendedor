@@ -101,8 +101,13 @@ Encima va una **cortina del amarillo de marca al 78%**: tine la foto en vez de a
 
 ```bash
 npm run prueba:precios   # 15 casos sobre las reglas de precio
+npm run prueba:guiones   # ningun guion largo en texto visible
 npx tsc --noEmit         # strict: true desde el 19-ago-2026
 ```
+
+**Nada de guiones largos en los textos.** Gabriel los marco dos veces: delatan que el texto lo escribio una IA. Van coma, dos puntos, parentesis, o "a" en los rangos ("24 a 48 h", no "24–48 h").
+
+La primera limpieza busco solo dentro de comillas y dejo doce afuera, porque **en JSX el texto va suelto entre etiquetas**. Por eso existe `prueba:guiones`, que recorre todo y falla si aparece alguno. Los comentarios no cuentan.
 
 Las reglas de precio viven en `src/lib/tienda/precios.ts`, separadas de la UI, y son lo más fácil de romper sin darse cuenta: el umbral de envío gratis, el 10%, y el cruce con la gift card (que no se combina con promociones ni paga envío).
 

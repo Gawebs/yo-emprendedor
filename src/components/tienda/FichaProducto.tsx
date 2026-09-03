@@ -173,7 +173,7 @@ export function FichaProducto({ producto }: { producto: ProductoDetalle }) {
         {opciones.colores && (
           <div className="opcion">
             <span className="opcion-label" id="lbl-color">
-              Color {color && <span className="opcion-nota">— {color}</span>}
+              Color{color && <span className="opcion-nota">: {color}</span>}
             </span>
             {/* Sin circulos de color: cuando cada color tiene su foto, las
                 miniaturas de la galeria ya son el selector y muestran el
@@ -261,7 +261,7 @@ export function FichaProducto({ producto }: { producto: ProductoDetalle }) {
         <div className="ficha-bullets">
           <p className="ficha-bullet">
             <Truck size={18} aria-hidden="true" />
-            Envío desde $2.500 — 3 a 5 días
+            Envío desde $2.500 · 3 a 5 días
           </p>
           <p className="ficha-bullet">
             <Store size={18} aria-hidden="true" />

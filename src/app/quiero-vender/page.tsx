@@ -219,7 +219,7 @@ export default function Home() {
           <span className="eyebrow reveal">¿Cómo lo hacemos?</span>
           <h2 className="section-title reveal">Seis pilares que hacen funcionar tu presencia</h2>
           <p className="section-sub reveal">
-            Un sistema completo para que tu marca venda, crezca y se vea profesional — sin que tengas
+            Un sistema completo para que tu marca venda, crezca y se vea profesional, sin que tengas
             que estar en todos lados.
           </p>
           <div className="como-grid">
@@ -246,7 +246,7 @@ export default function Home() {
                 Tu negocio vende aunque vos <em>no estés</em>
               </h2>
               <p className="reveal">
-                Mientras trabajás, producís, estudiás o compartís tiempo con tu familia — tus productos
+                Mientras trabajás, producís, estudiás o compartís tiempo con tu familia, tus productos
                 siguen exhibidos, visibles y disponibles para la venta.
               </p>
               <div className="beneficio-checks reveal">
@@ -300,7 +300,7 @@ export default function Home() {
             <span className="amarillo">Cuesta $5.000.000 y 195 horas de tu vida.</span>
           </h2>
           <p className="section-sub reveal">
-            Cuando sumás dinero y tiempo, el número real es mucho más alto de lo que imaginabas — y eso
+            Cuando sumás dinero y tiempo, el número real es mucho más alto de lo que imaginabas, y eso
             antes de vender la primera unidad.
           </p>
 
@@ -322,8 +322,8 @@ export default function Home() {
               <thead>
                 <tr>
                   <th className="th-item" scope="col">Concepto</th>
-                  <th className="th-bad" scope="col">Dinero — local propio / mes</th>
-                  <th className="th-bad" scope="col">Tiempo — horas / mes</th>
+                  <th className="th-bad" scope="col">Dinero (local propio) / mes</th>
+                  <th className="th-bad" scope="col">Tiempo (horas) / mes</th>
                   <th className="th-good" scope="col">Yo Emprendedor</th>
                 </tr>
               </thead>
@@ -340,7 +340,7 @@ export default function Home() {
                   <td className="td-item">TOTAL MENSUAL</td>
                   <td className="td-bad">~$5.000.000</td>
                   <td className="td-bad">~195 hs</td>
-                  <td className="td-good">$250K–$950K · 7–11 hs</td>
+                  <td className="td-good">$250K a $950K · 7 a 11 hs</td>
                 </tr>
               </tbody>
             </table>
@@ -476,7 +476,7 @@ export default function Home() {
           <span className="eyebrow reveal">En resumen</span>
           <h2 className="section-title reveal">Todo lo que necesitás para crecer, en un solo lugar</h2>
           <p className="section-sub reveal">
-            Es la estructura que le faltaba a tu negocio para pasar al siguiente nivel — sin los
+            Es la estructura que le faltaba a tu negocio para pasar al siguiente nivel, sin los
             riesgos, los costos ni la carga operativa de hacerlo solo.
           </p>
           <div className="conclusion-grid">
@@ -564,7 +564,7 @@ export default function Home() {
       {/* CTA FINAL */}
       <section id="cta-final">
         <div className="container cta-content">
-          <span className="eyebrow cta-eyebrow">Más que una tienda — una comunidad para crecer</span>
+          <span className="eyebrow cta-eyebrow">Más que una tienda, una comunidad para crecer</span>
           <h2 className="cta-title">
             La pregunta no es si podés<br />
             permitirte estar en <em>Yo Emprendedor.</em>
@@ -607,7 +607,7 @@ export default function Home() {
       <footer>
         <div className="container">
           <p>
-            © {new Date().getFullYear()} Yo Emprendedor · Más que una tienda — una comunidad para
+            © {new Date().getFullYear()} Yo Emprendedor · Más que una tienda, una comunidad para
             crecer · San Miguel de Tucumán, Argentina
           </p>
         </div>

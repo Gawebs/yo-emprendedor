@@ -91,7 +91,7 @@ export function FormArrepentimiento() {
 
         <div className="campo">
           <label htmlFor="a-comentario">
-            Comentario <span className="opcion-nota">(opcional — no hace falta que expliques el motivo)</span>
+            Comentario <span className="opcion-nota">(opcional, no hace falta que expliques el motivo)</span>
           </label>
           <textarea id="a-comentario" rows={3} value={campos.comentario} onChange={actualizar('comentario')} />
         </div>

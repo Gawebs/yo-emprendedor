@@ -36,8 +36,9 @@ const HERO_FOTO =
  * PLACEHOLDER — interior de la tienda, mejor con clientes adentro.
  * Se recorta a 4:3, asi que el motivo tiene que estar centrado. 800x600 alcanza.
  */
-const TIENDA_FOTO =
-  'https://images.unsplash.com/photo-1441984904996-e0b6ba687e04?w=800&q=80';
+const MEDIOS = `${process.env.NEXT_PUBLIC_SUPABASE_URL ?? ''}/storage/v1/object/public/sitio`;
+const VIDEO_ANITA = `${MEDIOS}/video/anita.mp4`;
+const VIDEO_ANITA_PORTADA = `${MEDIOS}/video/anita-portada.webp`;
 
 export default function Home() {
   return (
@@ -122,8 +123,23 @@ export default function Home() {
       <section id="que-es">
         <div className="container">
           <div className="que-es-grid">
-            <div className="que-es-img reveal">
-              <img src={TIENDA_FOTO} alt="Interior de la tienda Yo Emprendedor con clientes" />
+            {/* Video de Anita contando de que se trata. Reemplaza a una foto de
+                banco de imagenes: que lo cuente ella, con el local atras,
+                convence mucho mas que dos parrafos al lado de una foto de
+                stock.
+
+                `preload="metadata"` descarga unos kilobytes, no los 8 MB: el
+                video empieza a bajar recien cuando alguien le da play. Y sin
+                arranque automatico ni sonido, que espanta mas de lo que suma. */}
+            <div className="que-es-video reveal">
+              <video
+                src={VIDEO_ANITA}
+                poster={VIDEO_ANITA_PORTADA}
+                controls
+                preload="metadata"
+                playsInline
+                aria-label="Anita cuenta qué es Yo Emprendedor"
+              />
             </div>
             <div className="que-es-text">
               <span className="eyebrow reveal">¿Qué es Yo Emprendedor?</span>
